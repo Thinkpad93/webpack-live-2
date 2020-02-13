@@ -1,0 +1,13 @@
+.flex {
+  display: flex;
+}
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+p {
+  text-align: center;
+  background-image: url(../images/20190223205202.jpg);
+}
+
