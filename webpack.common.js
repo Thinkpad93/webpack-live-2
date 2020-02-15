@@ -5,19 +5,18 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== "production";
 
 //活动页名称
-const HtmlName = "oauth";
+const HtmlName = "operational";
 
 module.exports = {
   entry: {
-    // 多入口文件
-    app: __dirname + `/src/pages/${HtmlName}/js/index.js`
-    //another: __dirname + "/src/pages/oauth/js/another-module.js"
+    // 入口文件
+    app: `./src/pages/${HtmlName}/js/index.js`
   },
   output: {
     // 打包多出口文件
     filename: "js/[name].[hash:8].bundle.js",
     path: path.resolve(__dirname, `dist/${HtmlName}/`),
-    publicPath: "./"
+    publicPath: ""
   },
   module: {
     rules: [
@@ -34,9 +33,8 @@ module.exports = {
         ]
       },
       {
-        test: /\.css$/i,
+        test: /\.(css|scss|sass)$/,
         use: [
-          devMode ? "style-loader" : 
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
@@ -46,7 +44,8 @@ module.exports = {
             }
           },
           "css-loader",
-          "postcss-loader"
+          "postcss-loader",
+          "sass-loader"
         ]
       },
       {
@@ -69,14 +68,14 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "css/[name].[hash:8].css",
-      chunkFilename: "css/[id].[hash:8].css"
-    }),
     new HtmlWebpackPlugin({
       template: __dirname + `/src/pages/${HtmlName}/index.html`,
       minify: false,
-      hash: true
+      hash: false
+    }),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].[hash:8].css",
+      chunkFilename: "css/[id].[hash:8].css"
     })
   ]
 };

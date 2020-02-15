@@ -1,7 +1,15 @@
-import "../css/index.css";
+import "normalize.css";
+import "../css/index.scss";
+import axios from "axios";
+import "../../../assets/js/flexible";
 
-const arr =  [1,  2,  3];
-console.log(...arr);
-console.log("operational");
-console.log("operational222");
-console.log(localStorage);
+function operationGet() {
+  axios
+    .get("http://beta.guangzhouyueda.com/act/operation/get", {
+      params: { id: 2 }
+    })
+    .then(res => {
+      console.log(res);
+    });
+}
+operationGet();

@@ -7,14 +7,17 @@ module.exports = merge(common, {
   stats: { children: false },
   devtool: "inline-source-map",
   devServer: {
-    contentBase: path.join(__dirname, "./dist"),
-    https: true,
+    contentBase: "./dist",
     hot: true,
     port: 1993,
-    https: true,
-    overlay: true,
+    historyApiFallback: true,
     proxy: {
-      "/api": "http://localhost:3000"
+      "/api": {
+        arget: "http://beta.guangzhouyueda.com",
+        changeOrigin : true,
+        secure: false,
+        pathRewrite: {"^/api" : ""}
+      }
     }
   },
   plugins: [

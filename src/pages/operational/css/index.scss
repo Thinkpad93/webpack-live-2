@@ -1,0 +1,17 @@
+@import "../../../assets/css/base.css";
+/******************************************************/
+@function px2rem($px, $rem: 75) {
+  @return $px / $rem + rem;
+}
+.page {
+  &-bd {
+    padding: px2rem(20);
+  }
+}
+.box {
+  width: px2rem(280);
+  height: px2rem(280);
+  background-image: url(../images/v2-610cad.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
