@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
 
 module.exports = {
+  stats: { children: false },
   mode: "production", //压缩输出
   entry: {
     app: "./src/index.js"

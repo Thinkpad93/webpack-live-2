@@ -1,20 +1,22 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== "production";
+
+//活动页名称
+const HtmlName = "oauth";
 
 module.exports = {
   entry: {
     // 多入口文件
-    app: __dirname + "/src/pages/oauth/js/index.js",
-    another: __dirname + "/src/pages/oauth/js/another-module.js"
+    app: __dirname + `/src/pages/${HtmlName}/js/index.js`
+    //another: __dirname + "/src/pages/oauth/js/another-module.js"
   },
   output: {
     // 打包多出口文件
-    filename: "js/[name].bundle.js",
-    path: path.resolve(__dirname, "dist/oauth/"),
+    filename: "js/[name].[hash:8].bundle.js",
+    path: path.resolve(__dirname, `dist/${HtmlName}/`),
     publicPath: "./"
   },
   module: {
@@ -25,14 +27,16 @@ module.exports = {
           {
             loader: "babel-loader",
             options: {
+              //因为新版本的babel更新 原配置修改如下
               presets: ["@babel/preset-env"]
             }
           }
         ]
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.css$/i,
         use: [
+          devMode ? "style-loader" : 
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
@@ -65,27 +69,14 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin({
-      verbose: false, //开启在控制台输出信息
-      dry: false
-    }),
     new MiniCssExtractPlugin({
       filename: "css/[name].[hash:8].css",
       chunkFilename: "css/[id].[hash:8].css"
     }),
     new HtmlWebpackPlugin({
-      template: __dirname + "/src/pages/oauth/index.html",
+      template: __dirname + `/src/pages/${HtmlName}/index.html`,
       minify: false,
       hash: true
-    }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  optimization: {
-    splitChunks: {
-      name: "common", // 指定公共 bundle 的名称。
-      chunks: "initial",
-      minChunks: 2
-    }
-  }
+    })
+  ]
 };

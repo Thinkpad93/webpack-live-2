@@ -11,3 +11,13 @@ p {
   background-image: url(../images/20190223205202.jpg);
 }
 
+img {
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: 13px;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
