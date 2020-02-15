@@ -7,15 +7,9 @@ module.exports = merge(common, {
   stats: { children: false },
   devtool: "inline-source-map",
   devServer: {
-    contentBase: path.join(__dirname, "./dist"),
-    https: true,
-    hot: true,
+    contentBase: "./dist",
+    hot: false,
     port: 1993,
-    https: true,
-    overlay: true,
-    proxy: {
-      "/api": "http://localhost:3000"
-    }
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
