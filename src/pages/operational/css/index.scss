@@ -3,9 +3,17 @@
 @function px2rem($px, $rem: 75) {
   @return $px / $rem + rem;
 }
+body {
+  font-size: 14px !important;
+}
+p {
+  line-height: 1.4;
+  margin: 10px 0;
+  text-align: justify;
+}
 .page {
   &-bd {
-    padding: px2rem(20);
+    padding: px2rem(30);
   }
 }
 .box {

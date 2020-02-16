@@ -2,8 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const devMode = process.env.NODE_ENV !== "production";
-
 //活动页名称
 const HtmlName = "operational";
 
@@ -35,14 +33,16 @@ module.exports = {
       {
         test: /\.(css|scss|sass)$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              esModule: true,
-              publicPath: "../",
-              hmr: process.env.NODE_ENV === "development"
-            }
-          },
+          process.env.NODE_ENV === "production"
+            ? {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  esModule: true,
+                  publicPath: "../",
+                  hmr: process.env.NODE_ENV === "development"
+                }
+              }
+            : "style-loader",
           "css-loader",
           "postcss-loader",
           "sass-loader"
@@ -76,6 +76,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "css/[name].[hash:8].css",
       chunkFilename: "css/[id].[hash:8].css"
+    }),
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify("production")
     })
   ]
 };
