@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const VueLoaderPlugin  = require("vue-loader/lib/plugin");
 //活动页名称
 const HtmlName = "operational";
 
@@ -18,6 +19,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        use: ["vue-loader"]
+      },
       {
         test: /\.js$/,
         use: [
@@ -68,6 +73,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: __dirname + `/src/pages/${HtmlName}/index.html`,
       minify: false,
