@@ -1,4 +1,4 @@
-@import "../../../assets/css/base.css";
+@import "../../../assets/css/base.scss";
 /******************************************************/
 @function px2rem($px, $rem: 75) {
   @return $px / $rem + rem;
@@ -19,7 +19,7 @@ p {
 .box {
   width: px2rem(280);
   height: px2rem(280);
-  background-image: url(../images/v2-610cad.jpg);
+  // background-image: url(../images/v2-610cad.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
 }
