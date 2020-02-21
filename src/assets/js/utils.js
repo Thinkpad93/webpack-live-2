@@ -4,7 +4,7 @@ export function getQueryString() {
   let theRequest = new Object();
   if (_url.indexOf("?") != -1) {
     let str = _url.substr(1);
-    strs = str.split("&");
+    let strs = str.split("&");
     for (let i in strs) {
       theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
     }

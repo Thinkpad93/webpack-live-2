@@ -1,43 +1,9 @@
-// import Vue from "vue";
-// import axios from "axios";
-// import "normalize.css";
-// import "../css/index.scss";
 
-// //创建div节点
-// const root = document.createElement("div");
-// //将div节点添加到body下
-// document.body.appendChild(root);
-// function operationGet() {
-//   axios
-//     .get("http://beta.guangzhouyueda.com/act/operation/get", {
-//       params: { id: 2 }
-//     })
-//     .then(res => {
-//       let result = res.data;
-//       console.log(result.data);
-//     });
-// }
-// operationGet();
-// const vm = new Vue({
-//   data: {
-//     msg: "Hello"
-//   },
-//   methods: {
-//     operationGet() {
-//       axios
-//         .get("http://beta.guangzhouyueda.com/act/operation/get", {
-//           params: { id: 2 }
-//         })
-//         .then(res => {
-//           let result = res.data;
-//           console.log(result.data);
-//         });
-//     }
-//   }
-// });
-// console.log(vm);
 import Vue from "vue";
 import index from "../index.vue";
+//引入rem支持
+import "@/assets/js/flexible";
+
 //创建div节点
 //const root = document.createElement("div");
 //将div节点添加到body下
