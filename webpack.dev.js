@@ -8,8 +8,17 @@ module.exports = merge(common, {
   devtool: "inline-source-map",
   devServer: {
     contentBase: "./dist",
-    hot: false,
+    hot: true,
     port: 1993,
+    historyApiFallback: true,
+    proxy: {
+      "/api": {
+        arget: "http://beta.guangzhouyueda.com",
+        changeOrigin : true,
+        secure: false,
+        pathRewrite: {"^/api" : ""}
+      }
+    }
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
