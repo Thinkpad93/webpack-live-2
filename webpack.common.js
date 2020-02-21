@@ -12,7 +12,6 @@ module.exports = {
     // 入口文件
     index: `./src/pages/${HtmlName}/js/index.js`,
     bus: `./src/pages/${HtmlName}/js/bus.js`
-    //vendor: ["Vue", "axios"]
   },
   output: {
     // 打包多出口文件
@@ -101,8 +100,15 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify("production")
-    }),
+    })
   ],
+  //配置模块如何解析
+  resolve: {
+    extensions: [".js", ".vue", ".json"],
+    alias: {
+      "@": path.resolve(__dirname, "./src")
+    }
+  },
   optimization: {
     runtimeChunk: {
       name: "manifest"

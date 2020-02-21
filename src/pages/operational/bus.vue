@@ -2,7 +2,8 @@
   <div class="page">
     <div class="page-bd">
       <p>{{ msg }}</p>
-      <van-button type="default" @click="handle">默认按钮</van-button>
+      <div class="box"></div>
+      <van-button type="info" @click="handle">默认按钮</van-button>
     </div>
   </div>
 </template>
@@ -14,13 +15,16 @@ export default {
   name: "",
   data() {
     return {
-      msg: "这是BUS页面"
+      msg: "这是BUS页面",
     };
+  },
+  mounted() {
+    console.log("mounted");
   },
   methods: {
     handle() {
-      alert(window);
-    }
+      console.log(window);
+    },
   }
 };
 </script>
