@@ -10,13 +10,12 @@ const HtmlName = "operational";
 module.exports = {
   entry: {
     // 入口文件
-    index: `./src/pages/${HtmlName}/js/index.js`,
-    bus: `./src/pages/${HtmlName}/js/bus.js`
+    index: `./src/index.js`,
   },
   output: {
     // 打包多出口文件
-    filename: "js/[name].[hash:8].bundle.js",
-    path: path.resolve(__dirname, `dist/${HtmlName}/`),
+    filename: "[name].[hash:8].bundle.js",
+    path: path.resolve(__dirname, "dist"),
     publicPath: ""
   },
   module: {
@@ -86,16 +85,9 @@ module.exports = {
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
       chunks: ["manifest", "vendor", "index"]
     }),
-    new HtmlWebpackPlugin({
-      template: __dirname + `/src/index.html`,
-      filename: "bus.html",
-      minify: false,
-      hash: false,
-      chunks: ["manifest", "vendor", "bus"]
-    }),
     new MiniCssExtractPlugin({
-      filename: devMode ? "[name].css" : "css/[name].[hash:8].css",
-      chunkFilename: devMode ? "[id].css" : "css/[id].[hash:8].css"
+      filename: devMode ? "[name].css" : "[name].[hash:8].css",
+      chunkFilename: devMode ? "[id].css" : "[id].[hash:8].css"
     }),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify("production")
