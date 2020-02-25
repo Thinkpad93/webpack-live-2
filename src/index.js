@@ -1,4 +1,8 @@
 import "./index.css";
 import printMe from "./print";
 
-printMe();
+if (process.env.NODE_ENV === "production") {
+  printMe();
+} else {
+  console.log("header");
+}
