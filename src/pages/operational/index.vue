@@ -19,6 +19,7 @@
 </template>
 <script>
 import axios from "axios";
+import { getQueryString } from "@/assets/js/utils";
 export default {
   name: "",
   data() {
@@ -26,8 +27,12 @@ export default {
       buttomText: navigator.appCodeName
     };
   },
+  created() {
+    let obj = getQueryString();
+    console.log(obj);
+  },
   mounted() {
-    console.log(this);
+    console.log(process.env.NODE_ENV);
     this.operationGet();
   },
   methods: {

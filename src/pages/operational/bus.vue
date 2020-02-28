@@ -11,12 +11,17 @@
 import Vue from "vue";
 import { Button } from "vant";
 Vue.use(Button);
+import { getQueryString } from "@/assets/js/utils";
 export default {
   name: "",
   data() {
     return {
       msg: "这是BUS页面",
     };
+  },
+  created() {
+    let obj = getQueryString();
+    console.log(obj);
   },
   mounted() {
     console.log("mounted");

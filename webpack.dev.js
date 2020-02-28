@@ -11,13 +11,17 @@ module.exports = merge(common, {
     hot: true,
     port: 1993,
     historyApiFallback: true,
+    compress: true, //启用gzip 压缩
     proxy: {
       "/api": {
         arget: "http://beta.guangzhouyueda.com",
-        changeOrigin : true,
+        changeOrigin: true,
         secure: false,
-        pathRewrite: {"^/api" : ""}
+        pathRewrite: { "^/api": "" }
       }
+    },
+    headers: {
+      "X-Custom-Foo": "bar"
     }
   },
   plugins: [

@@ -5,13 +5,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const devMode = process.env.NODE_ENV === "development";
 //活动页名称
-const HtmlName = "operational";
+const HtmlName = "award";
 
 module.exports = {
   entry: {
     // 入口文件
     index: `./src/pages/${HtmlName}/js/index.js`,
-    bus: `./src/pages/${HtmlName}/js/bus.js`
+    //bus: `./src/pages/${HtmlName}/js/bus.js`
   },
   output: {
     // 打包多出口文件
@@ -86,13 +86,13 @@ module.exports = {
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
       chunks: ["manifest", "vendor", "index"]
     }),
-    new HtmlWebpackPlugin({
-      template: __dirname + `/src/index.html`,
-      filename: "bus.html",
-      minify: false,
-      hash: false,
-      chunks: ["manifest", "vendor", "bus"]
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: __dirname + `/src/index.html`,
+    //   filename: "bus.html",
+    //   minify: false,
+    //   hash: false,
+    //   chunks: ["manifest", "vendor", "bus"]
+    // }),
     new MiniCssExtractPlugin({
       filename: devMode ? "[name].css" : "css/[name].[hash:8].css",
       chunkFilename: devMode ? "[id].css" : "css/[id].[hash:8].css"
