@@ -1,0 +1,16 @@
+@import "@/assets/css/base";
+
+@function px2rem($px, $rem: 75) {
+  @return $px / $rem + rem;
+}
+
+body {
+  color: #222;
+  font-size: 14px !important;
+}
+
+.page {
+  &-bd {
+    padding: px2rem(20);
+  }
+}

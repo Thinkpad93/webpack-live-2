@@ -1,12 +1,15 @@
 import Vue from "vue";
 import index from "../index";
 
+//normalize.css
+import "normalize.css";
 //引入rem支持
 import "@/assets/js/flexible";
-import { checkVersion } from "@/assets/js/appNativeFun";
 
-let obj = checkVersion();
-console.log(obj);
+const info = {};
+function getMessage(key, value) {
+  info[key] = value;
+}
 
 //实例化操作
 new Vue({
