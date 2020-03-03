@@ -1,6 +1,6 @@
 
 import Vue from "vue";
-import bus from "../bus.vue";
+import bus from "../bus";
 //引入rem支持
 import "@/assets/js/flexible";
 

@@ -1,6 +1,6 @@
 
 import Vue from "vue";
-import index from "../index.vue";
+import index from "../index";
 //引入rem支持
 import "@/assets/js/flexible";
 

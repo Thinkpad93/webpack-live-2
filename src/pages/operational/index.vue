@@ -38,11 +38,11 @@ export default {
   methods: {
     operationGet() {
       axios
-        .get("http://beta.guangzhouyueda.com/act/operation/get", {
+        .get("/act/operation/get", {
           params: { id: 2 }
         })
         .then(res => {
-          let result = res.data;
+          let result = res.data; 
           this.buttomText = "测试按钮";
           console.log(result.data);
         });
