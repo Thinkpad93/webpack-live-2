@@ -8,21 +8,20 @@ import "@/assets/js/flexible";
 //引入调试工具
 import vConsole from "vconsole";
 
-import { getUid, getTicket } from "@/assets/js/appNativeFun";
+//import { getUid, getTicket } from "@/assets/js/appNativeFun";
 
 window.info = {};
 window.getMessage = function(key, value) {
   console.log(`${key}=${value}`);
-  console.log(vm);
   info[key] = value;
 }
-getUid();
-getTicket();
+// getUid();
+// getTicket();
 
 //实例化vconsole
 new vConsole();
 
 //实例化操作
-const vm = new Vue({
+new Vue({
   render: h => h(index)
 }).$mount("#root");
