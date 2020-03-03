@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       msg: "这是arard页面",
-      uid: getUid(),
+      uid: getUid() || info.uid,
       ticket: null
     };
   },
@@ -35,7 +35,8 @@ export default {
     },
     getUidfn() {
       console.log("getUidfn");
-      window.webkit.messageHandlers.getUid.postMessage(null);
+      let u = window.webkit.messageHandlers.getUid.postMessage(null);
+      console.log(u);
     },
     postMessage() {
       window.addEventListener("message", messageEvent => {
