@@ -8,10 +8,13 @@ import "@/assets/js/flexible";
 //引入调试工具
 import VConsole from "vconsole";
 
-const info = {};
-function getMessage(key, value) {
+window.info = {};
+window.getMessage = function(key, value) {
   info[key] = value;
 }
+// function getMessage(key, value) {
+//   info[key] = value;
+// }
 
 //实例化vconsole
 const vConsole = new VConsole();

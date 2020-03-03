@@ -24,6 +24,7 @@ export default {
   },
   created() {
     this.init();
+    this.postMessage();
   },
   mounted() {
     console.log(this);
@@ -32,11 +33,18 @@ export default {
     init() {
       console.log("初始化操作，如获取用户id");
     },
+    getUidfn() {
+      window.webkit.messageHandlers.getUid.postMessage(null);
+    },
+    postMessage() {
+      window.addEventListener("message", messageEvent => {
+        console.log(messageEvent);
+        console.log("messageEvent");
+      });
+    },
     propsData() {
       return new Promise((resolve, reject) => {
         //这里放异步代码
-        this.uid = getUid();
-        this.kicket = getTicket();
       });
     }
   }
