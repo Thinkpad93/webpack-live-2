@@ -12,13 +12,19 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "award",
   data() {
     return {
       msg: "这是arard页面",
       uid: null,
-      ticket: null
+      ticket: null,
+      query: {
+        uid: "90293691",
+        type: 2,
+        subType: 1
+      }
     };
   },
   created() {
@@ -26,28 +32,26 @@ export default {
   },
   mounted() {
     console.log(this);
-    this.postMessage();
+    this.list();
   },
   methods: {
     init() {
       console.log("初始化操作，如获取用户id");
     },
     getUidfn() {
-      window.webkit.messageHandlers.getTicket.postMessage(null, function(data) {
-        console.log(data);
-        console.log("data=====================");
-      });
       console.log("getUidfn");
       console.log(info);
       console.log(info.uid);
     },
-    postMessage() {
-      // console.log(info);
-      // console.log(info.ticket);
-    },
+    postMessage() {},
     propsData() {
       return new Promise((resolve, reject) => {
         //这里放异步代码
+      });
+    },
+    list() {
+      axios.get("/allrank/listV2", { params: this.query }).then(res => {
+        console.log(res);
       });
     }
   }

@@ -21,8 +21,19 @@ npm install
 
 > 开发下这些文件是保存到内存中的，但是你最后打包生成的是需要直接生成到目标文件夹中的
 
-### 客户端交互
+### ios客户端交互
 
 > 获取uid方法
-ios
-android
+
+```javascript
+var info = {};
+//js调用native方法
+//异步执行的，成功后oc会去执行js里的一个全局(getMessage)函数，并把数据以键值对的方式带回到JS中
+window.webkit.messageHandlers.getUid.postMessage(null); 
+//getMessage
+function getMessage(key, value) {
+  info[key] = value;
+}
+
+```
+
