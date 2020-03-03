@@ -15,7 +15,7 @@ module.exports = {
   },
   output: {
     // 打包多出口文件
-    filename: "js/[name].[hash:8].bundle.js",
+    filename: "js/[name].bundle.js",
     path: path.resolve(__dirname, `dist/${HtmlName}/`),
     publicPath: ""
   },
@@ -62,7 +62,7 @@ module.exports = {
             loader: "file-loader",
             options: {
               esModule: false,
-              name: "[name].[hash:7].[ext]",
+              name: "[name].[ext]",
               outputPath: "images/"
             }
           }
@@ -95,8 +95,8 @@ module.exports = {
     //   chunks: ["manifest", "vendor", "bus"]
     // }),
     new MiniCssExtractPlugin({
-      filename: devMode ? "[name].css" : "css/[name].[hash:8].css",
-      chunkFilename: devMode ? "[id].css" : "css/[id].[hash:8].css"
+      filename: devMode ? "[name].css" : "css/[name].css",
+      //chunkFilename: devMode ? "[id].css" : "css/[id].css"
     }),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify("production")
