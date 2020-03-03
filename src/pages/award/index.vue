@@ -33,7 +33,10 @@ export default {
       console.log("初始化操作，如获取用户id");
     },
     getUidfn() {
-      window.webkit.messageHandlers.getTicket.postMessage(null);
+      window.webkit.messageHandlers.getTicket.postMessage(null, function(data) {
+        console.log(data);
+        console.log("data=====================");
+      });
       console.log("getUidfn");
       console.log(info);
       console.log(info.uid);
