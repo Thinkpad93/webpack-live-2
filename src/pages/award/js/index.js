@@ -13,6 +13,7 @@ import { getUid, getTicket } from "@/assets/js/appNativeFun";
 window.info = {};
 window.getMessage = function(key, value) {
   console.log(`${key}=${value}`);
+  console.log(vm);
   info[key] = value;
 }
 getUid();
