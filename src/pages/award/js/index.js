@@ -12,6 +12,7 @@ import { getUid, getTicket } from "@/assets/js/appNativeFun";
 
 window.info = {};
 window.getMessage = function(key, value) {
+  console.log(`${key}=${value}`);
   info[key] = value;
 }
 getUid();
@@ -21,6 +22,6 @@ getTicket();
 new vConsole();
 
 //实例化操作
-new Vue({
+const vm = new Vue({
   render: h => h(index)
 }).$mount("#root");

@@ -38,8 +38,8 @@ export default {
       console.log(info.uid);
     },
     postMessage() {
-      console.log(info);
-      console.log(info.ticket);
+      // console.log(info);
+      // console.log(info.ticket);
     },
     propsData() {
       return new Promise((resolve, reject) => {
