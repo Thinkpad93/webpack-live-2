@@ -24,10 +24,10 @@ export default {
   },
   created() {
     this.init();
-    this.postMessage();
   },
   mounted() {
     console.log(this);
+    this.postMessage();
   },
   methods: {
     init() {
@@ -40,6 +40,8 @@ export default {
     postMessage() {
       console.log("info============================");
       console.log(info);
+      console.log(info.uid);
+      console.log(info.ticket);
       // window.addEventListener("message", messageEvent => {
       //   console.log(messageEvent);
       //   console.log("messageEvent");
