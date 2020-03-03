@@ -34,9 +34,11 @@ export default {
     },
     getUidfn() {
       console.log("getUidfn");
+      console.log(info);
       console.log(info.uid);
     },
     postMessage() {
+      console.log(info);
       console.log(info.ticket);
     },
     propsData() {
