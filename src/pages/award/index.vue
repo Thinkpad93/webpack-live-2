@@ -34,6 +34,7 @@ export default {
       console.log("初始化操作，如获取用户id");
     },
     getUidfn() {
+      console.log("getUidfn");
       window.webkit.messageHandlers.getUid.postMessage(null);
     },
     postMessage() {
