@@ -7,7 +7,7 @@
       </p>
       <p class="">
         <button class="btn" @click="getUidfn">获取uid</button>
-      </p>      
+      </p>
     </div>
   </div>
 </template>
@@ -18,33 +18,30 @@ export default {
   data() {
     return {
       msg: "这是arard页面",
-      uid: null,
+      uid: getUid(),
       ticket: null
     };
   },
   created() {
-    this.init()
+    this.init();
   },
   mounted() {
+    console.log(this);
   },
   methods: {
     init() {
       console.log("初始化操作，如获取用户id");
     },
-    getUidfn() {
-      let uid = getUid();
-      console.log(uid);
-    },
     propsData() {
       return new Promise((resolve, reject) => {
         //这里放异步代码
         this.uid = getUid();
-        this.kicket  = getTicket();
+        this.kicket = getTicket();
       });
     }
-  },
+  }
 };
 </script>
 <style lang="scss">
-@import "./css/index";  
+@import "./css/index";
 </style>
