@@ -18,8 +18,8 @@ export default {
   data() {
     return {
       msg: "这是arard页面",
-      uid: getUid() || info.uid,
-      ticket: null
+      uid: getUid(),
+      ticket: getTicket()
     };
   },
   created() {
@@ -35,14 +35,15 @@ export default {
     },
     getUidfn() {
       console.log("getUidfn");
-      let u = window.webkit.messageHandlers.getUid.postMessage(null);
-      console.log(u);
+      console.log(info);
     },
     postMessage() {
-      window.addEventListener("message", messageEvent => {
-        console.log(messageEvent);
-        console.log("messageEvent");
-      });
+      console.log("info============================");
+      console.log(info);
+      // window.addEventListener("message", messageEvent => {
+      //   console.log(messageEvent);
+      //   console.log("messageEvent");
+      // });
     },
     propsData() {
       return new Promise((resolve, reject) => {
