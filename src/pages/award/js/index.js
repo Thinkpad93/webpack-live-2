@@ -6,18 +6,22 @@ import "normalize.css";
 //引入rem支持
 import "@/assets/js/flexible";
 //引入调试工具
-import VConsole from "vconsole";
+import vConsole from "vconsole";
+
+import { getUid, getTicket } from "@/assets/js/appNativeFun";
 
 window.info = {};
 window.getMessage = function(key, value) {
   info[key] = value;
 }
+getUid();
+getTicket();
 // function getMessage(key, value) {
 //   info[key] = value;
 // }
 
 //实例化vconsole
-const vConsole = new VConsole();
+new vConsole();
 
 //实例化操作
 new Vue({

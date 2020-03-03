@@ -12,14 +12,13 @@
   </div>
 </template>
 <script>
-import { getUid, getTicket } from "@/assets/js/appNativeFun";
 export default {
   name: "award",
   data() {
     return {
       msg: "这是arard页面",
-      uid: getUid(),
-      ticket: getTicket()
+      uid: null,
+      ticket: null
     };
   },
   created() {
@@ -37,16 +36,7 @@ export default {
       console.log("getUidfn");
       console.log(info);
     },
-    postMessage() {
-      console.log("info============================");
-      console.log(info);
-      console.log(info.uid);
-      console.log(info.ticket);
-      // window.addEventListener("message", messageEvent => {
-      //   console.log(messageEvent);
-      //   console.log("messageEvent");
-      // });
-    },
+    postMessage() {},
     propsData() {
       return new Promise((resolve, reject) => {
         //这里放异步代码
