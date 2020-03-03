@@ -2,6 +2,9 @@
   <div class="page">
     <div class="page-bd">
       <p>{{ msg }}</p>
+      <p class="">
+        <button class="btn">获取ticket</button>
+      </p>
     </div>
   </div>
 </template>
