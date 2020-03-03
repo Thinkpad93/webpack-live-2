@@ -16,9 +16,6 @@ window.getMessage = function(key, value) {
 }
 getUid();
 getTicket();
-// function getMessage(key, value) {
-//   info[key] = value;
-// }
 
 //实例化vconsole
 new vConsole();

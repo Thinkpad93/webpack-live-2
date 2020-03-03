@@ -34,9 +34,11 @@ export default {
     },
     getUidfn() {
       console.log("getUidfn");
-      console.log(info);
+      console.log(info.uid);
     },
-    postMessage() {},
+    postMessage() {
+      console.log(info.ticket);
+    },
     propsData() {
       return new Promise((resolve, reject) => {
         //这里放异步代码
