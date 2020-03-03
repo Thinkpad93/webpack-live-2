@@ -3,8 +3,11 @@
     <div class="page-bd">
       <p>{{ msg }}</p>
       <p class="">
-        <button class="btn">获取ticket</button>
+        <button class="btn" @click="Getticket">获取ticket</button>
       </p>
+      <p class="">
+        <button class="btn" @click="getUidfn">获取uid</button>
+      </p>      
     </div>
   </div>
 </template>
@@ -27,6 +30,10 @@ export default {
   methods: {
     init() {
       console.log("初始化操作，如获取用户id");
+    },
+    getUidfn() {
+      let uid = getUid();
+      console.log(uid);
     },
     propsData() {
       return new Promise((resolve, reject) => {
