@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const devMode = process.env.NODE_ENV === "development";
+// 动态添加CDN
+const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 //活动页名称
 const HtmlName = "operational";
 
@@ -86,7 +88,7 @@ module.exports = {
       hash: false,
       favicon: "./ic-app.png",
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
-      chunks: ["manifest", "vendor", "utils", "index"]
+      chunks: ["manifest", "vendor", "commons", "index"]
     }),
     new HtmlWebpackPlugin({
       template: __dirname + `/src/index.html`,
@@ -94,15 +96,33 @@ module.exports = {
       minify: false,
       hash: false,
       favicon: "./ic-app.png",
-      chunks: ["manifest", "vendor", "utils", "bus"]
+      chunks: ["manifest", "vendor", "commons", "bus"]
     }),
     new MiniCssExtractPlugin({
       filename: devMode ? "[name].css" : "css/[name].css"
       //chunkFilename: devMode ? "[id].css" : "css/[id].css"
-    })
+    }),
     // new webpack.DefinePlugin({
     //   "process.env.NODE_ENV": JSON.stringify("production")
     // })
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          // 引入的模块
+          module: "wx",
+          // cdn的地址
+          entry: "http://res2.wx.qq.com/open/js/jweixin-1.6.0.js",
+          // 挂载到了window上的名称
+          // window.jQuery就可以全局使用
+          global: "wx"
+        },
+        {
+          module: "linkedme",
+          entry: "https://static.lkme.cc/linkedme.min.js",
+          global: "linkedme"
+        }
+      ]
+    })
   ],
   //配置模块如何解析
   resolve: {
@@ -126,9 +146,9 @@ module.exports = {
         //抽取公共模块
         utils: {
           chunks: "initial",
-          name: "utils",
+          name: "commons",
           minSize: 0,
-          minChunks: 2
+          minChunks: 2 //至少引用2次，才打包出commons文件
         }
       }
     }

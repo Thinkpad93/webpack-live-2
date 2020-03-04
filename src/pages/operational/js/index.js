@@ -3,7 +3,13 @@ import Vue from "vue";
 import index from "../index";
 //引入rem支持
 import "@/assets/js/flexible";
+//引入调试工具
+import vConsole from "vconsole";
 
+if (process.env.NODE_ENV === "development") {
+  //实例化vconsole
+  new vConsole();
+}
 //创建div节点
 //const root = document.createElement("div");
 //将div节点添加到body下

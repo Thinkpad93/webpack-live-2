@@ -1,8 +1,6 @@
 import Vue from "vue";
 import index from "../index";
 
-//normalize.css
-import "normalize.css";
 //引入rem支持
 import "@/assets/js/flexible";
 //引入调试工具

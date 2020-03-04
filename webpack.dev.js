@@ -14,7 +14,7 @@ module.exports = merge(common, {
     compress: true, //启用gzip 压缩
     proxy: {
       "/api": {
-        arget: "http://beta.guangzhouyueda.com",
+        target: "https://api-user.uyess.com/v2",
         changeOrigin: true,
         secure: false,
         pathRewrite: { "^/api": "" }
