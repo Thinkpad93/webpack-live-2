@@ -51,6 +51,5 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "~normalize.css";
 @import "./css/index.scss";
 </style>

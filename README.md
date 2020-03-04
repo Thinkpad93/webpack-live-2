@@ -36,4 +36,5 @@ function getMessage(key, value) {
 }
 
 ```
+- 在npm run dev开发环境编译的时候，dist目录的内容都在内存中了
 

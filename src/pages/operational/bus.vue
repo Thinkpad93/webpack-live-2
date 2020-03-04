@@ -16,7 +16,7 @@ export default {
   name: "",
   data() {
     return {
-      msg: "这是BUS页面",
+      msg: "这是BUS页面"
     };
   },
   created() {
@@ -25,15 +25,17 @@ export default {
   },
   mounted() {
     console.log("mounted");
+    if (process.env.NODE_ENV === "production") {
+      console.log("Looks like we are in production mode!");
+    }
   },
   methods: {
     handle() {
       console.log(window);
-    },
+    }
   }
 };
 </script>
 <style lang="scss">
-@import "~normalize.css";
-@import "./css/index.scss";
+@import "./css/bus.scss";
 </style>

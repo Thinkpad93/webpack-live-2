@@ -15,7 +15,7 @@ module.exports = {
   },
   output: {
     // 打包多出口文件
-    filename: "js/[name].bundle.js",
+    filename: "js/[name].js",
     path: path.resolve(__dirname, `dist/${HtmlName}/`),
     publicPath: ""
   },
@@ -86,7 +86,7 @@ module.exports = {
       hash: false,
       favicon: "./ic-app.png",
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
-      chunks: ["manifest", "vendor", "index"]
+      chunks: ["manifest", "vendor", "utils", "index"]
     }),
     new HtmlWebpackPlugin({
       template: __dirname + `/src/index.html`,
@@ -94,15 +94,15 @@ module.exports = {
       minify: false,
       hash: false,
       favicon: "./ic-app.png",
-      chunks: ["manifest", "vendor", "bus"]
+      chunks: ["manifest", "vendor", "utils", "bus"]
     }),
     new MiniCssExtractPlugin({
-      filename: devMode ? "[name].css" : "css/[name].css",
+      filename: devMode ? "[name].css" : "css/[name].css"
       //chunkFilename: devMode ? "[id].css" : "css/[id].css"
-    }),
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("production")
     })
+    // new webpack.DefinePlugin({
+    //   "process.env.NODE_ENV": JSON.stringify("production")
+    // })
   ],
   //配置模块如何解析
   resolve: {
@@ -111,6 +111,7 @@ module.exports = {
       "@": path.resolve(__dirname, "./src")
     }
   },
+  //抽取第三方模块
   optimization: {
     runtimeChunk: {
       name: "manifest"
@@ -121,6 +122,13 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           name: "vendor",
           chunks: "initial"
+        },
+        //抽取公共模块
+        utils: {
+          chunks: "initial",
+          name: "utils",
+          minSize: 0,
+          minChunks: 2
         }
       }
     }
