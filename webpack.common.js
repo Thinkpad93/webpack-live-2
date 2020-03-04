@@ -4,18 +4,20 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const devMode = process.env.NODE_ENV === "development";
+// 动态添加CDN
+const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 //活动页名称
-const HtmlName = "award";
+const HtmlName = "operational";
 
 module.exports = {
   entry: {
     // 入口文件
     index: `./src/pages/${HtmlName}/js/index.js`,
-    //bus: `./src/pages/${HtmlName}/js/bus.js`
+    bus: `./src/pages/${HtmlName}/js/bus.js`
   },
   output: {
     // 打包多出口文件
-    filename: "js/[name].[hash:8].bundle.js",
+    filename: "js/[name].js",
     path: path.resolve(__dirname, `dist/${HtmlName}/`),
     publicPath: ""
   },
@@ -62,7 +64,8 @@ module.exports = {
             loader: "file-loader",
             options: {
               esModule: false,
-              name: "[name].[hash:7].[ext]"
+              name: "[name].[ext]",
+              outputPath: "images/"
             }
           }
         ]
@@ -83,22 +86,42 @@ module.exports = {
       filename: "index.html",
       minify: false,
       hash: false,
+      favicon: "./ic-app.png",
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
-      chunks: ["manifest", "vendor", "index"]
+      chunks: ["manifest", "vendor", "commons", "index"]
     }),
-    // new HtmlWebpackPlugin({
-    //   template: __dirname + `/src/index.html`,
-    //   filename: "bus.html",
-    //   minify: false,
-    //   hash: false,
-    //   chunks: ["manifest", "vendor", "bus"]
-    // }),
+    new HtmlWebpackPlugin({
+      template: __dirname + `/src/index.html`,
+      filename: "bus.html",
+      minify: false,
+      hash: false,
+      favicon: "./ic-app.png",
+      chunks: ["manifest", "vendor", "commons", "bus"]
+    }),
     new MiniCssExtractPlugin({
-      filename: devMode ? "[name].css" : "css/[name].[hash:8].css",
-      chunkFilename: devMode ? "[id].css" : "css/[id].[hash:8].css"
+      filename: devMode ? "[name].css" : "css/[name].css"
+      //chunkFilename: devMode ? "[id].css" : "css/[id].css"
     }),
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("production")
+    // new webpack.DefinePlugin({
+    //   "process.env.NODE_ENV": JSON.stringify("production")
+    // })
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          // 引入的模块
+          module: "wx",
+          // cdn的地址
+          entry: "http://res2.wx.qq.com/open/js/jweixin-1.6.0.js",
+          // 挂载到了window上的名称
+          // window.jQuery就可以全局使用
+          global: "wx"
+        },
+        {
+          module: "linkedme",
+          entry: "https://static.lkme.cc/linkedme.min.js",
+          global: "linkedme"
+        }
+      ]
     })
   ],
   //配置模块如何解析
@@ -108,6 +131,7 @@ module.exports = {
       "@": path.resolve(__dirname, "./src")
     }
   },
+  //抽取第三方模块
   optimization: {
     runtimeChunk: {
       name: "manifest"
@@ -118,6 +142,13 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           name: "vendor",
           chunks: "initial"
+        },
+        //抽取公共模块
+        utils: {
+          chunks: "initial",
+          name: "commons",
+          minSize: 0,
+          minChunks: 2 //至少引用2次，才打包出commons文件
         }
       }
     }
