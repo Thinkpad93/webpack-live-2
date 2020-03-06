@@ -4,8 +4,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const devMode = process.env.NODE_ENV === "development";
-// 动态添加CDN
-const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 //活动页名称
 const HtmlName = "operational";
 
@@ -100,29 +98,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: devMode ? "[name].css" : "css/[name].css"
-      //chunkFilename: devMode ? "[id].css" : "css/[id].css"
     }),
-    // new webpack.DefinePlugin({
-    //   "process.env.NODE_ENV": JSON.stringify("production")
-    // })
-    new HtmlWebpackExternalsPlugin({
-      externals: [
-        {
-          // 引入的模块
-          module: "wx",
-          // cdn的地址
-          entry: "http://res2.wx.qq.com/open/js/jweixin-1.6.0.js",
-          // 挂载到了window上的名称
-          // window.jQuery就可以全局使用
-          global: "wx"
-        },
-        {
-          module: "linkedme",
-          entry: "https://static.lkme.cc/linkedme.min.js",
-          global: "linkedme"
-        }
-      ]
-    })
   ],
   //配置模块如何解析
   resolve: {
@@ -144,7 +120,7 @@ module.exports = {
           chunks: "initial"
         },
         //抽取公共模块
-        utils: {
+        commons: {
           chunks: "initial",
           name: "commons",
           minSize: 0,
