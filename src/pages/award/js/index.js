@@ -12,12 +12,14 @@ window.info = {};
 window.getMessage = function(key, value) {
   console.log(`${key}=${value}`);
   info[key] = value;
-}
+};
 // getUid();
 // getTicket();
 
 //实例化vconsole
-new vConsole();
+if (process.env.NODE_ENV === "development") {
+  new vConsole();
+}
 
 //实例化操作
 new Vue({

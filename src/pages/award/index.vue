@@ -1,5 +1,8 @@
 <template>
   <div class="page">
+    <div class="page-hd">
+      <Share title="哎呀语音" desc="哎呀，你也在这里～" />
+    </div>
     <div class="page-bd">
       <p>{{ msg }}</p>
       <p class="">
@@ -12,9 +15,13 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import service from "@/api";
+import Share from "@/components/Share";
 export default {
   name: "award",
+  components: {
+    Share
+  },
   data() {
     return {
       msg: "这是arard页面",
@@ -38,6 +45,7 @@ export default {
     init() {
       console.log("初始化操作，如获取用户id");
     },
+    Getticket() {},
     getUidfn() {
       console.log("getUidfn");
       console.log(info);
@@ -50,7 +58,7 @@ export default {
       });
     },
     list() {
-      axios.get("/allrank/listV2", { params: this.query }).then(res => {
+      service.spike({}).then(res => {
         console.log(res);
       });
     }

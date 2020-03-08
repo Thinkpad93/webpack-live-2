@@ -1,4 +1,4 @@
-@import "@/assets/css/base";
+@import "@/assets/css/site";
 
 @function px2rem($px, $rem: 75) {
   @return $px / $rem + rem;
