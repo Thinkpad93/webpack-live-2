@@ -1,8 +1,6 @@
 <template>
   <div class="page">
-    <div class="page-hd">
-      <Share title="哎呀语音" desc="哎呀，你也在这里～" />
-    </div>
+    <Share title="哎呀语音" desc="哎呀，你也在这里～" />
     <div class="page-bd">
       <p>{{ msg }}</p>
       <p class="">
@@ -15,6 +13,7 @@
   </div>
 </template>
 <script>
+import { getQueryString } from "@/assets/js/utils";
 import service from "@/api";
 import Share from "@/components/Share";
 export default {
@@ -36,6 +35,7 @@ export default {
   },
   created() {
     this.init();
+    let obj = getQueryString();
   },
   mounted() {
     console.log(this);

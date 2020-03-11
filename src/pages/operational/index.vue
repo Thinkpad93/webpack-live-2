@@ -45,7 +45,7 @@ export default {
     operationGet() {
       axios
         .get(
-          "/home/spike?city_id=1987&qd_no=uyes_gzh",
+          "https://api-user.uyess.com/v2/home/spike?city_id=1987&qd_no=uyes_gzh",
           {}
         )
         .then(res => {

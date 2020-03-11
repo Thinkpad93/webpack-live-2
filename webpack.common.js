@@ -8,12 +8,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const devMode = process.env.NODE_ENV === "development";
 //活动页名称
-const HtmlName = "award";
+const HtmlName = "operational";
 
 module.exports = {
   entry: {
     // 入口文件
-    index: `./src/pages/${HtmlName}/js/index.js`
+    index: `./src/pages/${HtmlName}/main.js`
     //bus: `./src/pages/${HtmlName}/js/bus.js`
   },
   output: {

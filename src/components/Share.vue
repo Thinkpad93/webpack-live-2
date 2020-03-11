@@ -1,5 +1,5 @@
 <template>
-  <div class="share">
+  <div class="share" v-if="isApp">
     <div class="share-bd">
       <img
         src="@/assets/images/logo.png"
@@ -14,19 +14,35 @@
       </div>
     </div>
     <div class="share-ft">
-      <a href="javascript:void(0);" class="btn">打开</a>
+      <a :href="href" class="btn">打开</a>
     </div>
   </div>
 </template>
 <script>
-import linkedmeInit from "@/config/linkedme";
+import { checkVersion } from "@/assets/js/appNativeFun";
+import { linkedmeInit } from "@/config/linkedme";
 export default {
   name: "share",
   props: {
     title: String,
     desc: String
   },
-  mounted() {}
+  data() {
+    return {
+      href: "",
+      isApp: false, //是否在app内打开的
+    }
+  },
+  mounted() {
+    let obj = checkVersion();
+    this.isApp = obj.app ? true : true;
+    //生成深度链接
+    linkedmeInit("award", "award").then(res => {
+      if (res.url) {
+        this.href = res.url;
+      }
+    });
+  }
 };
 </script>
 <style lang="scss">
