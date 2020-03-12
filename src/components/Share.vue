@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="share-ft">
-      <a :href="href" class="linkedme btn">打开</a>
+      <a id="open_header" href="" class="btn">打开</a>
     </div>
   </div>
 </template>
@@ -30,8 +30,8 @@ export default {
   data() {
     return {
       href: "",
-      isApp: false, //是否在app内打开的
-    }
+      isApp: false //是否在app内打开的
+    };
   },
   mounted() {
     let obj = checkVersion();
@@ -39,7 +39,11 @@ export default {
     //生成深度链接
     linkedmeInit("award", "award").then(res => {
       if (res.url) {
-        this.href = "https://lkme.cc/ytD/mFh2JuTiO";
+        var open_header = document.getElementById("open_header");
+        open_header.addEventListener("click", function() {
+          linkedme.trigger_deeplink(res.url);
+        });
+        open_header.setAttribute("href", res.url);
       }
     });
   }
