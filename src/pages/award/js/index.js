@@ -6,7 +6,7 @@ import "@/assets/js/flexible";
 //引入公共样式
 import "@/assets/css/site.scss";
 
-//import { getUid, getTicket } from "@/assets/js/appNativeFun";
+import { envChenk } from "@/assets/js/utils";
 
 window.info = {};
 window.getMessage = function(key, value) {
@@ -17,7 +17,7 @@ window.getMessage = function(key, value) {
 // getTicket();
 
 //实例化VConsole
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development" && envChenk() === "beta") {
   new VConsole();
 }
 

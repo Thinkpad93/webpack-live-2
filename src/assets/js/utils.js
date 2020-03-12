@@ -11,3 +11,9 @@ export function getQueryString() {
   }
   return theRequest;
 }
+//判断是测试环境还是正式环境
+export function envChenk() {
+  let href = window.location.href;
+  let res = href.match(/beta|localhost|192.168./);
+  return res ? "beta" : "official";
+}
