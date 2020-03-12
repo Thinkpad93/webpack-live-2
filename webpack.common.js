@@ -6,15 +6,18 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // vue-loader 插件
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+
+// 添加资源到html文件
+const AddAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin");
+
 const devMode = process.env.NODE_ENV === "development";
 //活动页名称
-const HtmlName = "operational";
+const HtmlName = "award";
 
 module.exports = {
   entry: {
     // 入口文件
-    index: `./src/pages/${HtmlName}/main.js`
-    //bus: `./src/pages/${HtmlName}/js/bus.js`
+    index: `./src/pages/${HtmlName}/js/index.js`
   },
   output: {
     // 打包多出口文件
@@ -82,11 +85,16 @@ module.exports = {
   resolve: {
     extensions: [".js", ".scss", ".css", ".json"]
   },
-  externals: {
-    vue: "Vue",
-    axios: "axios"
-  },
+  // externals: {
+  //   vue: "Vue",
+  //   axios: "axios"
+  // },
   plugins: [
+    // 告诉 Webpack 使用动态链接库
+    // 引用对应的动态链接库的manifest.json文件
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve("dist/dll", "manifest.json")
+    }),
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
@@ -96,18 +104,15 @@ module.exports = {
       hash: false,
       favicon: "./ic-app.png",
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
-      chunks: ["manifest", "vendor", "commons", "index"]
+      chunks: ["commons", "index"]
     }),
-    // new HtmlWebpackPlugin({
-    //   template: __dirname + `/src/index.html`,
-    //   filename: "bus.html",
-    //   minify: false,
-    //   hash: false,
-    //   favicon: "./ic-app.png",
-    //   chunks: ["manifest", "vendor", "commons", "bus"]
-    // }),
     new MiniCssExtractPlugin({
-      filename: devMode ? "[name].css" : "css/[name].css"
+      filename: "css/[name].css"
+    }),
+    // 直接将打包好的react.dll.js添加到html模板
+    new AddAssetHtmlWebpackPlugin({
+      //filepath: path.resolve(__dirname, "dist/dll/main.dll.js")
+      filepath: path.resolve("dist/dll", "main.dll.js")
     })
   ],
   //配置模块如何解析
@@ -119,16 +124,16 @@ module.exports = {
   },
   //抽取第三方模块
   optimization: {
-    runtimeChunk: {
-      name: "manifest"
-    },
+    // runtimeChunk: {
+    //   name: "manifest"
+    // },
     splitChunks: {
       cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          chunks: "initial"
-        },
+        // vendor: {
+        //   test: /[\\/]node_modules[\\/]/,
+        //   name: "vendor",
+        //   chunks: "initial"
+        // },
         //抽取公共模块
         commons: {
           chunks: "initial",
