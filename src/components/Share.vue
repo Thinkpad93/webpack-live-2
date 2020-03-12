@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="share-ft">
-      <a :href="href" class="btn">打开</a>
+      <a :href="href" class="linkedme btn">打开</a>
     </div>
   </div>
 </template>
