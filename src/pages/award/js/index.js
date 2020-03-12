@@ -3,8 +3,8 @@ import index from "../index";
 
 //引入rem支持
 import "@/assets/js/flexible";
-//引入调试工具
-import vConsole from "vconsole";
+//引入公共样式
+import "@/assets/css/site.scss";
 
 //import { getUid, getTicket } from "@/assets/js/appNativeFun";
 
@@ -16,9 +16,9 @@ window.getMessage = function(key, value) {
 // getUid();
 // getTicket();
 
-//实例化vconsole
+//实例化VConsole
 if (process.env.NODE_ENV === "development") {
-  new vConsole();
+  new VConsole();
 }
 
 //实例化操作

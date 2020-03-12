@@ -3,7 +3,12 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: ["axios", "vue", "vue-router", "vconsole"],
+  mode: "production",
+  devtool: "none",
+  // 要打包的第三方模块
+  entry: {
+    main: ["vue", "vue-router", "axios"]
+  },
   output: {
     filename: "[name].dll.js",
     library: "[name]_[hash]",
@@ -13,7 +18,7 @@ module.exports = {
     // 动态链接库
     new webpack.DllPlugin({
       name: "[name]_[hash]",
-      path: path.resolve("dist/dll", "manifest.json")
+      path: path.join(__dirname, "", "manifest.json")
     })
   ]
 };

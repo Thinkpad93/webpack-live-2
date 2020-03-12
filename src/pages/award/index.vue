@@ -58,7 +58,7 @@ export default {
       });
     },
     list() {
-      service.spike({}).then(res => {
+      service.hot({}).then(res => {
         console.log(res);
       });
     }

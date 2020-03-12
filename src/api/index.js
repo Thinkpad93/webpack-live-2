@@ -10,5 +10,10 @@ export default {
     return request
       .get("/home/spike?city_id=1987&qd_no=uyes_gzh", { params: obj })
       .then(res => res.data);
+  },
+  hot(obj = {}) {
+    return request
+      .get("/home/hot?city_id=1987&qd_no=uyes_gzh", { params: obj })
+      .then(res => res.data);
   }
 };

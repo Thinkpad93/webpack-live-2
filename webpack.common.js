@@ -6,11 +6,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // vue-loader 插件
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-
 // 添加资源到html文件
 const AddAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin");
-
 const devMode = process.env.NODE_ENV === "development";
+const manifest = require("./manifest.json");
+
 //活动页名称
 const HtmlName = "award";
 
@@ -85,15 +85,12 @@ module.exports = {
   resolve: {
     extensions: [".js", ".scss", ".css", ".json"]
   },
-  // externals: {
-  //   vue: "Vue",
-  //   axios: "axios"
-  // },
   plugins: [
     // 告诉 Webpack 使用动态链接库
     // 引用对应的动态链接库的manifest.json文件
     new webpack.DllReferencePlugin({
-      manifest: path.resolve("dist/dll", "manifest.json")
+      context: path.join(__dirname),
+      manifest
     }),
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
@@ -106,13 +103,13 @@ module.exports = {
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
       chunks: ["commons", "index"]
     }),
+    // 直接将打包好的main.dll.js添加到html模板
+    // new AddAssetHtmlWebpackPlugin({
+    //   filepath: path.resolve(__dirname, "./dist/dll/main.dll.js"),
+    //   hash: false
+    // }),
     new MiniCssExtractPlugin({
       filename: "css/[name].css"
-    }),
-    // 直接将打包好的react.dll.js添加到html模板
-    new AddAssetHtmlWebpackPlugin({
-      //filepath: path.resolve(__dirname, "dist/dll/main.dll.js")
-      filepath: path.resolve("dist/dll", "main.dll.js")
     })
   ],
   //配置模块如何解析
@@ -129,11 +126,6 @@ module.exports = {
     // },
     splitChunks: {
       cacheGroups: {
-        // vendor: {
-        //   test: /[\\/]node_modules[\\/]/,
-        //   name: "vendor",
-        //   chunks: "initial"
-        // },
         //抽取公共模块
         commons: {
           chunks: "initial",

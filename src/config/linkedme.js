@@ -4,6 +4,7 @@ const KEY = "934e2ee702a248ba59025e330bf36f93";
 export function linkedmeInit(channel, tags) {
   return new Promise(function(resolove, reject) {
     let linkData = {
+      promotion_name: "",
       type: "live", //"live"表示使用线上模式,"test"表示测试模式.【可选】
       channel: channel,
       tags: tags

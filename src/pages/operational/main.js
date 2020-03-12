@@ -3,12 +3,13 @@ import App from "./App.vue";
 import router from "./js/router";
 //引入rem支持
 import "@/assets/js/flexible";
-//引入调试工具
-import vConsole from "vconsole";
+//引入公共样式
+import "@/assets/css/site.scss";
+
 
 if (process.env.NODE_ENV === "development") {
   //实例化vconsole
-  new vConsole();
+  new VConsole();
 }
 
 new Vue({
