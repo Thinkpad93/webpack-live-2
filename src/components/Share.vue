@@ -39,7 +39,7 @@ export default {
     //生成深度链接
     linkedmeInit("award", "award").then(res => {
       if (res.url) {
-        this.href = res.url;
+        this.href = "https://lkme.cc/ytD/mFh2JuTiO";
       }
     });
   }
