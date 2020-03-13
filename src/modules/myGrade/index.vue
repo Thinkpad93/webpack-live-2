@@ -8,10 +8,10 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 import data from "./data.json";
 import Share from "@/components/Share";
 import { getUid, getTicket } from "@/assets/js/appNativeFun";
+import _cookie from "@/assets/js/cookies";
 export default {
   name: "",
   components: {
@@ -21,7 +21,10 @@ export default {
     return {
       msg: "",
       list: [],
-      info: {}
+      info: {
+        uid: getUid() || _cookie.get("uid"),
+        ticket: null
+      }
     };
   },
   created() {
