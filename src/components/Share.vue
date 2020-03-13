@@ -33,6 +33,10 @@ export default {
       isApp: false //是否在app内打开的
     };
   },
+  created() {
+    console.log("created");
+    console.log(this.$props.title);
+  },
   mounted() {
     let obj = checkVersion();
     this.isApp = obj.app ? true : true;

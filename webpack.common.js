@@ -6,24 +6,22 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // vue-loader 插件
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-// 添加资源到html文件
-const AddAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin");
-const devMode = process.env.NODE_ENV === "development";
+
 const manifest = require("./manifest.json");
 
 //活动页名称
-const HtmlName = "operational";
+const HtmlName = "myGrade";
 
 module.exports = {
   entry: {
     // 入口文件
-    index: `./src/activity/${HtmlName}/main.js`,
+    index: `./src/modules/${HtmlName}/js/index.js`,
     //help: `./src/modules/${HtmlName}/js/help.js`
   },
   output: {
     // 打包多出口文件
     filename: "js/[name].js",
-    path: path.resolve(__dirname, `dist/activity/${HtmlName}/`),
+    path: path.resolve(__dirname, `dist/modules/${HtmlName}/`),
     publicPath: ""
   },
   module: {
@@ -112,11 +110,6 @@ module.exports = {
     //   favicon: "./ic-app.png",
     //   chunks: ["commons", "help"]
     // }),
-    // 直接将打包好的main.dll.js添加到html模板
-    // new AddAssetHtmlWebpackPlugin({
-    //   filepath: path.resolve(__dirname, "./dist/dll/main.dll.js"),
-    //   hash: false
-    // }),
     new MiniCssExtractPlugin({
       filename: "css/[name].css"
     })
@@ -130,9 +123,6 @@ module.exports = {
   },
   //抽取第三方模块
   optimization: {
-    // runtimeChunk: {
-    //   name: "manifest"
-    // },
     splitChunks: {
       cacheGroups: {
         //抽取公共模块
