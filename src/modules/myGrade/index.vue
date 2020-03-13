@@ -34,6 +34,7 @@ export default {
   mounted() {
     console.log(data);
     this.list = data.data || [];
+    this.consoleTicket();
   },
   methods: {
     init() {
