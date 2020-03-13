@@ -38,9 +38,7 @@ export default {
       let _that = this;
       getTicket(); //异步调用
       window.getMessage = function(key, value) {
-        console.log(`${key}=${value}`);
         _that.info[key] = value;
-        console.log(_that.info);
         if (_that.info.ticket) {
           console.log("都有值了");
           _that.consoleTicket();
