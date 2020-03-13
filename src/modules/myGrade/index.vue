@@ -41,6 +41,7 @@ export default {
       axios.all([getUid(),getTicket()]).then(axios.spread((res) => {
         console.log("axios========");
         console.log(info);
+        console.log(info.ticket);
       }))
     },
     consoleTicket() {
