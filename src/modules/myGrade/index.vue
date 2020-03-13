@@ -33,13 +33,12 @@ export default {
   methods: {
     init() {
       let _that = this;
-      getUid(); //异步调用
       getTicket(); //异步调用
       window.getMessage = function(key, value) {
         console.log(`${key}=${value}`);
         _that.info[key] = value;
         console.log(_that.info);
-        if (_that.info.uid && _that.info.ticket) {
+        if (_that.info.ticket) {
           console.log("都有值了");
           _that.consoleTicket();
         }
