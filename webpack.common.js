@@ -12,17 +12,18 @@ const devMode = process.env.NODE_ENV === "development";
 const manifest = require("./manifest.json");
 
 //活动页名称
-const HtmlName = "award";
+const HtmlName = "operational";
 
 module.exports = {
   entry: {
     // 入口文件
-    index: `./src/pages/${HtmlName}/js/index.js`
+    index: `./src/activity/${HtmlName}/main.js`,
+    //help: `./src/modules/${HtmlName}/js/help.js`
   },
   output: {
     // 打包多出口文件
     filename: "js/[name].js",
-    path: path.resolve(__dirname, `dist/${HtmlName}/`),
+    path: path.resolve(__dirname, `dist/activity/${HtmlName}/`),
     publicPath: ""
   },
   module: {
@@ -103,6 +104,14 @@ module.exports = {
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
       chunks: ["commons", "index"]
     }),
+    // new HtmlWebpackPlugin({
+    //   template: __dirname + `/src/index.html`,
+    //   filename: "help.html",
+    //   minify: false,
+    //   hash: false,
+    //   favicon: "./ic-app.png",
+    //   chunks: ["commons", "help"]
+    // }),
     // 直接将打包好的main.dll.js添加到html模板
     // new AddAssetHtmlWebpackPlugin({
     //   filepath: path.resolve(__dirname, "./dist/dll/main.dll.js"),
