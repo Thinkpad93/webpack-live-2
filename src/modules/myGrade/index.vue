@@ -44,18 +44,10 @@ export default {
       };
       getUid(); //异步调用
       getTicket(); //异步调用
-
-      // axios.all([getUid(), getTicket()]).then(
-      //   axios.spread(res => {
-      //     console.log("axios========");
-      //     console.log(info);
-      //     console.log(info.ticket);
-      //   })
-      // );
     },
     consoleTicket() {
-      console.log(info);
-      console.log(info.ticket);
+      console.log(this.info);
+      console.log(this.info.ticket);
       console.log("info=============");
     }
   }
