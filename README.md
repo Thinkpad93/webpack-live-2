@@ -26,14 +26,31 @@ npm install
 > 获取uid方法
 
 ```javascript
+
+//用一个对象保存oc返回来的键与值
 var info = {};
-//js调用native方法
-//异步执行的，成功后oc会去执行js里的一个全局(getMessage)函数，并把数据以键值对的方式带回到JS中
-window.webkit.messageHandlers.getUid.postMessage(null); 
-//getMessage
+
+//调用oc原生方法，（注意这是一个异步调用）
+window.webkit.messageHandlers.getTicket.postMessage(null);
+//这也是一个异步调用函数
+window.webkit.messageHandlers.getUid.postMessage(null);
+//oc那边收到通知成功后，会去执行js里的一个全局函数，并把前端JS需要的值以键值对的方式带给前端
+
 function getMessage(key, value) {
+  console.log(`${key}=${value}`);
   info[key] = value;
 }
+
+//接下来是ajax请求
+$.ajax({
+  data: info, //info对象里的键值是 undefined
+  success: function(res) {
+    // todo
+  }
+});
+
+
+
 
 ```
 - 在npm run dev开发环境编译的时候，dist目录的内容都在内存中了

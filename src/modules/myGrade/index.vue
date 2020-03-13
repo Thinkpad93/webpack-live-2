@@ -5,13 +5,13 @@
     <ul>
       <li v-for="item in list">{{ item.name }}</li>
     </ul>
-    <button class="btn">这是一个按钮</button>
   </div>
 </template>
 <script>
+import axios from "axios";
 import data from "./data.json";
 import Share from "@/components/Share";
-import { getTicket } from "@/assets/js/appNativeFun";
+import { getUid, getTicket } from "@/assets/js/appNativeFun";
 export default {
   name: "",
   components: {
@@ -34,12 +34,15 @@ export default {
   },
   mounted() {
     this.list = data.data || [];
-    
+    this.consoleTicket();
   },
   methods: {
-    async init() {
-      await getTicket();
-      this.consoleTicket();
+    init() {
+      axios.all([getUid(),getTicket()]).then(axios.spread((res) => {
+        console.log(res);
+        console.log("axios========");
+      }))
+      
     },
     consoleTicket() {
       console.log(info);
