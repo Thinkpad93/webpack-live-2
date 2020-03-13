@@ -32,6 +32,7 @@ export default {
   },
   mounted() {
     this.list = data.data || [];
+    _that.consoleTicket();
   },
   methods: {
     init() {
