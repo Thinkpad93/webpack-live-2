@@ -11,6 +11,7 @@
 <script>
 import data from "./data.json";
 import Share from "@/components/Share";
+import { getTicket } from "@/assets/js/appNativeFun";
 export default {
   name: "",
   components: {
@@ -32,13 +33,21 @@ export default {
     this.init();
   },
   mounted() {
-    console.log(data);
     this.list = data.data || [];
-    this.consoleTicket();
+    
   },
   methods: {
-    init() {
-      window.webkit.messageHandlers.getTicket.postMessage(null);
+    async init() {
+      getTicket();
+      let result = window.getMessage = await function(key, value) {
+        console.log(`${key}=${value}`);
+        let obj = {
+          key,
+          value
+        }
+      };
+      console.log(result);
+      console.log("result================");
     },
     consoleTicket() {
       this.$nextTick(() => {

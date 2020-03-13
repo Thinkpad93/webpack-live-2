@@ -15,7 +15,7 @@ const HtmlName = "myGrade";
 module.exports = {
   entry: {
     // 入口文件
-    index: `./src/modules/${HtmlName}/js/index.js`,
+    index: `./src/modules/${HtmlName}/js/index.js`
     //help: `./src/modules/${HtmlName}/js/help.js`
   },
   output: {
@@ -39,7 +39,8 @@ module.exports = {
             loader: "babel-loader",
             options: {
               //因为新版本的babel更新 原配置修改如下
-              presets: ["@babel/preset-env"]
+              presets: ["@babel/preset-env"],
+              plugins: ["@babel/plugin-transform-runtime"]
             }
           }
         ]

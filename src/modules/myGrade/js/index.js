@@ -9,11 +9,11 @@ if (process.env.NODE_ENV === "production") {
   new VConsole();
 }
 
-window.info = {};
-window.getMessage = function(key, value) {
-  console.log(`${key}=${value}`);
-  info[key] = value;
-};
+// window.info = {};
+// window.getMessage = function(key, value) {
+//   console.log(`${key}=${value}`);
+//   info[key] = value;
+// };
 
 //实例化操作
 new Vue({
