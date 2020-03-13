@@ -43,6 +43,7 @@ export default {
     consoleTicket() {
       this.$nextTick(() => {
         console.log(info);
+        console.log(info.ticket);
         console.log("info=============");
       });
     }
