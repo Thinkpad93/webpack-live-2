@@ -17,16 +17,11 @@ export default {
   components: {
     Share
   },
-  props: {
-    value: {
-      type: String,
-      default: "is"
-    }
-  },
   data() {
     return {
       msg: "",
-      list: []
+      list: [],
+      info: {}
     };
   },
   created() {
@@ -38,12 +33,12 @@ export default {
   },
   methods: {
     init() {
-      window.info = {};
+      let _that = this;
       window.getMessage = function(key, value) {
         console.log(`${key}=${value}`);
-        info[key] = value;
-        console.log(info);
-        if (info.uid && info.ticket) {
+        _that.info[key] = value;
+        console.log(_that.info);
+        if (_that.info.uid && _that.info.ticket) {
           console.log("都有值了");
         }
       };
