@@ -38,24 +38,13 @@ export default {
   },
   methods: {
     async init() {
-      getTicket();
-      let result = window.getMessage = await function(key, value) {
-        console.log(`${key}=${value}`);
-        let obj = {
-          key,
-          value
-        }
-      };
-      let r = result();
-      console.log(r);
-      console.log("result================");
+      await getTicket();
+      this.consoleTicket();
     },
     consoleTicket() {
-      this.$nextTick(() => {
-        console.log(info);
-        console.log(info.ticket);
-        console.log("info=============");
-      });
+      console.log(info);
+      console.log(info.ticket);
+      console.log("info=============");
     }
   }
 };
