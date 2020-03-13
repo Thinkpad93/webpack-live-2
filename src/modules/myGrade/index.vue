@@ -10,7 +10,7 @@
 <script>
 import data from "./data.json";
 import Share from "@/components/Share";
-import { getUid, getTicket } from "@/assets/js/appNativeFun";
+import { checkVersion, getUid, getTicket } from "@/assets/js/appNativeFun";
 import _cookie from "@/assets/js/cookies";
 export default {
   name: "",
@@ -23,7 +23,7 @@ export default {
       list: [],
       info: {
         uid: getUid() || _cookie.get("uid"),
-        ticket: null
+        ticket: getTicket()
       }
     };
   },
@@ -36,7 +36,8 @@ export default {
   methods: {
     init() {
       let _that = this;
-      getTicket(); //异步调用
+      //getTicket(); //异步调用
+      //只会在ios客户端下执行调用
       window.getMessage = function(key, value) {
         _that.info[key] = value;
         if (_that.info.ticket) {
