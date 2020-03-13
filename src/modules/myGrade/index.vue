@@ -46,7 +46,8 @@ export default {
           value
         }
       };
-      console.log(result);
+      let r = result();
+      console.log(r);
       console.log("result================");
     },
     consoleTicket() {
