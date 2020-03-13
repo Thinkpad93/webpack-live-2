@@ -43,6 +43,9 @@ export default {
         console.log(`${key}=${value}`);
         info[key] = value;
         console.log(info);
+        if (info.uid && info.ticket) {
+          console.log("都有值了");
+        }
       };
       getUid(); //异步调用
       getTicket(); //异步调用
