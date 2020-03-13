@@ -38,11 +38,22 @@ export default {
   },
   methods: {
     init() {
-      axios.all([getUid(),getTicket()]).then(axios.spread((res) => {
-        console.log("axios========");
+      window.info = {};
+      window.getMessage = function(key, value) {
+        console.log(`${key}=${value}`);
+        info[key] = value;
         console.log(info);
-        console.log(info.ticket);
-      }))
+      };
+      getUid(); //异步调用
+      getTicket(); //异步调用
+
+      // axios.all([getUid(), getTicket()]).then(
+      //   axios.spread(res => {
+      //     console.log("axios========");
+      //     console.log(info);
+      //     console.log(info.ticket);
+      //   })
+      // );
     },
     consoleTicket() {
       console.log(info);
