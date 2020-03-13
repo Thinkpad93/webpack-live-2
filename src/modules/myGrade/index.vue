@@ -29,11 +29,12 @@ export default {
   },
   mounted() {
     this.list = data.data || [];
-    this.consoleTicket();
   },
   methods: {
     init() {
       let _that = this;
+      getUid(); //异步调用
+      getTicket(); //异步调用
       window.getMessage = function(key, value) {
         console.log(`${key}=${value}`);
         _that.info[key] = value;
@@ -42,8 +43,7 @@ export default {
           console.log("都有值了");
         }
       };
-      getUid(); //异步调用
-      getTicket(); //异步调用
+      this.consoleTicket();
     },
     consoleTicket() {
       console.log(this.info);
