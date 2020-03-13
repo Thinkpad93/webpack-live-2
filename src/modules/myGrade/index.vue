@@ -41,7 +41,7 @@ export default {
         console.log(_that.info);
         if (_that.info.uid && _that.info.ticket) {
           console.log("都有值了");
-          this.consoleTicket();
+          _that.consoleTicket();
         }
       };
     },
