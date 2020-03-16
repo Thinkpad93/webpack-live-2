@@ -8,6 +8,7 @@
   </div>
 </template>
 <script>
+import service from "@/api";
 import data from "./data.json";
 import Share from "@/components/Share";
 import { getUid, getTicket } from "@/assets/js/appNativeFun";
@@ -23,8 +24,8 @@ export default {
       list: [],
       info: {
         uid: getUid() || _cookie.get("uid"),
-        ticket: getTicket()
-      }
+        //ticket: getTicket()
+      },
     };
   },
   created() {
@@ -32,26 +33,29 @@ export default {
   },
   mounted() {
     this.list = data.data || [];
-    this.consoleTicket();
+    this.getUserExper();
   },
   methods: {
     init() {
       let _that = this;
-      //getTicket(); // 异步调用
-      // 该函数只会在ios客户端下被执行调用
+      /*
+       getTicket(); // 异步调用
+       注册一个全局函数
+       并且该函数只会在ios客户端下被执行调用
+      */
       window.getMessage = (key, value) => {
         console.log(`${key}-${value}`);
         this.info[key] = value;
-        if (this.info.ticket) {
+        if (this.info.ticket || this.info.uid) {
           console.log("都有值了");
-          this.consoleTicket();
+          this.getUserExper();
         }
       };
     },
-    consoleTicket() {
-      console.log(this.info);
-      console.log(this.info.ticket);
-      console.log("info=============");
+    getUserExper() {
+      service.getUserExper(this.info).then(res => {
+        console.log("res");
+      });
     }
   }
 };

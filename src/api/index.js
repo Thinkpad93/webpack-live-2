@@ -15,5 +15,8 @@ export default {
     return request
       .get("/home/hot?city_id=1987&qd_no=uyes_gzh", { params: obj })
       .then(res => res.data);
+  },
+  getUserExper(obj = {}) {
+    return request.get("/userLevel/getUserExper", { params: obj }).then(res => res.data);
   }
 };
