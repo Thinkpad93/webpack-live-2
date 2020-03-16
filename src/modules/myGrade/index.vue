@@ -10,7 +10,7 @@
 <script>
 import data from "./data.json";
 import Share from "@/components/Share";
-import { checkVersion, getUid, getTicket } from "@/assets/js/appNativeFun";
+import { getUid, getTicket } from "@/assets/js/appNativeFun";
 import _cookie from "@/assets/js/cookies";
 export default {
   name: "",
@@ -37,13 +37,14 @@ export default {
   methods: {
     init() {
       let _that = this;
-      //getTicket(); //异步调用
-      //只会在ios客户端下执行调用
-      window.getMessage = function(key, value) {
-        _that.info[key] = value;
-        if (_that.info.ticket) {
+      //getTicket(); // 异步调用
+      // 该函数只会在ios客户端下被执行调用
+      window.getMessage = () => {
+        console.log(`${key}-${value}`);
+        this.info[key] = value;
+        if (this.info.ticket) {
           console.log("都有值了");
-          _that.consoleTicket();
+          this.consoleTicket();
         }
       };
     },
