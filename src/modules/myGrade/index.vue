@@ -11,7 +11,7 @@
 import service from "@/api";
 import data from "./data.json";
 import Share from "@/components/Share";
-import { getUid, getTicket } from "@/assets/js/appNativeFun";
+import { checkVersion, getUid, getTicket } from "@/assets/js/appNativeFun";
 import _cookie from "@/assets/js/cookies";
 export default {
   name: "",
@@ -23,9 +23,9 @@ export default {
       msg: "",
       list: [],
       info: {
-        uid: getUid() || _cookie.get("uid"),
+        uid: getUid() || _cookie.get("uid")
         //ticket: getTicket()
-      },
+      }
     };
   },
   mounted() {
@@ -34,6 +34,7 @@ export default {
   },
   methods: {
     init() {
+      let obj = checkVersion();
       /*
        getTicket(); // 异步调用
        注册一个全局函数
@@ -47,7 +48,9 @@ export default {
           this.getUserExper();
         }
       };
-      this.getUserExper();
+      if (obj.android) {
+        this.getUserExper();
+      }
     },
     getUserExper() {
       service.getUserExper(this.info).then(res => {
