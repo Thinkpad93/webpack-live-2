@@ -28,12 +28,9 @@ export default {
       },
     };
   },
-  created() {
-    this.init();
-  },
   mounted() {
+    this.init();
     this.list = data.data || [];
-    this.getUserExper();
   },
   methods: {
     init() {
@@ -50,6 +47,7 @@ export default {
           this.getUserExper();
         }
       };
+      this.getUserExper();
     },
     getUserExper() {
       service.getUserExper(this.info).then(res => {
