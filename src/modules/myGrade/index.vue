@@ -39,7 +39,7 @@ export default {
       let _that = this;
       //getTicket(); // 异步调用
       // 该函数只会在ios客户端下被执行调用
-      window.getMessage = () => {
+      window.getMessage = (key, value) => {
         console.log(`${key}-${value}`);
         this.info[key] = value;
         if (this.info.ticket) {
