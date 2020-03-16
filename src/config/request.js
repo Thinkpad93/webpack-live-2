@@ -2,8 +2,8 @@ import axios from "axios";
 
 const baseURL =
   process.env.NODE_ENV === "production"
-    ? "https://api-user.uyess.com/v2"
-    : "https://api-user.uyess.com/v2";
+    ? "https://www.whsd666.com"
+    : "https://beta.whsd666.com";
     
 const service = axios.create({
   baseURL,

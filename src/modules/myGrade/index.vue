@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     init() {
-      let _that = this;
       /*
        getTicket(); // 异步调用
        注册一个全局函数
