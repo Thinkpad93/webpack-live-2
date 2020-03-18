@@ -5,7 +5,7 @@ import "@/assets/js/flexible";
 //引入公共样式
 import "@/assets/css/site.scss";
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "development") {
   new VConsole();
 }
 

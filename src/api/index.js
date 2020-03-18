@@ -18,5 +18,8 @@ export default {
   },
   getUserExper(obj = {}) {
     return request.get("/userLevel/getUserExper", { params: obj }).then(res => res.data);
+  },
+  allrank(obj = {}) {
+    return request.get("/allrank/geth5", { params: obj }).then(res => res.data);
   }
 };

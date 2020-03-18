@@ -1,10 +1,12 @@
 <template>
   <div class="page">
     <Share title="哎呀语音" desc="哎呀，你也在这里～" />
-    <div class="max"></div>
     <ul>
       <li v-for="item in list">{{ item.name }}</li>
     </ul>
+    <button class="btn">提交</button>
+    <input type="text" value="" class="input">
+    <textarea class="textarea"></textarea>
   </div>
 </template>
 <script>
@@ -25,12 +27,18 @@ export default {
       info: {
         uid: getUid() || _cookie.get("uid")
         //ticket: getTicket()
+      },
+      query: {
+        uid: "90295944",
+        datetype: 1,
+        type: 2
       }
     };
   },
   mounted() {
     this.init();
     this.list = data.data || [];
+    this.allrank();
   },
   methods: {
     init() {
@@ -52,8 +60,8 @@ export default {
         this.getUserExper();
       }
     },
-    getUserExper() {
-      service.getUserExper(this.info).then(res => {
+    allrank() {
+      service.allrank(this.query).then(res => {
         console.log("res");
       });
     }
@@ -61,8 +69,4 @@ export default {
 };
 </script>
 <style lang="scss">
-.max {
-  height: 200px;
-  background: linear-gradient(225deg, #ff9f99 0%, #ff639c 100%);
-}
 </style>

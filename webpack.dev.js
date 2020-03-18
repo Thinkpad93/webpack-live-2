@@ -8,13 +8,14 @@ module.exports = merge(common, {
   devtool: "inline-source-map",
   devServer: {
     contentBase: "./dist",
+    host: "192.168.61.193",
     hot: true,
     port: 1993,
     historyApiFallback: true,
     compress: true, //启用gzip 压缩
     proxy: {
       "/api": {
-        target: "https://api-user.uyess.com/v2",
+        target: "http://beta.whddd666.com/",
         changeOrigin: true,
         secure: false,
         pathRewrite: { "^/api": "" }
