@@ -13,6 +13,12 @@ module.exports = merge(common, {
     port: 1993,
     historyApiFallback: true,
     compress: true, //启用gzip 压缩
+    // proxy: {
+    //   "/api": {
+    //     target: "http://localhost:8033",
+    //     pathRewrite: { "^/api": "" }
+    //   }
+    // }
     proxy: {
       "/api": {
         target: "http://beta.whddd666.com/",

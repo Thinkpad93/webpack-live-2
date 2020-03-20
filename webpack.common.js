@@ -34,7 +34,7 @@ module.exports = {
         test: /\.js$/,
         //排除node_modules 目录下的文件
         exclude: /node_modules/,
-        include: [path.resolve(__dirname, 'src')],
+        include: [path.resolve(__dirname, "src")],
         use: [
           {
             loader: "babel-loader",
@@ -73,6 +73,20 @@ module.exports = {
               esModule: false,
               name: "[name].[ext]",
               outputPath: "images/"
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              esModule: false,
+              limit: 10000,
+              name: "[name].[ext]",
+              //outputPath: "media/"
             }
           }
         ]
@@ -120,7 +134,8 @@ module.exports = {
   resolve: {
     extensions: [".js", ".vue", ".json"],
     alias: {
-      "@": path.resolve(__dirname, "./src")
+      "@": path.resolve(__dirname, "./src"),
+      assets: path.resolve(__dirname, "src/assets")
     }
   },
   //抽取第三方模块

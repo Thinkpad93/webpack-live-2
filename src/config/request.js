@@ -2,13 +2,13 @@ import axios from "axios";
 
 const baseURL =
   process.env.NODE_ENV === "production"
-    ? "http://www.whsd666.com/"
-    : "http://beta.whsd666.com/";
+    ? "http://www.whddd666.com/"
+    : "http://www.whddd666.com/";
     
 const service = axios.create({
-  baseURL,
+  //baseURL,
   timeout: 20000, // 请求超时时间
-  withCredentials: false // 允许携带cookie
+  //withCredentials: false // 允许携带cookie
 });
 
 //request

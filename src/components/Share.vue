@@ -1,5 +1,5 @@
 <template>
-  <div class="share" v-if="isApp">
+  <div class="share" v-if="isApp" :class="[position]">
     <div class="share-bd">
       <img
         src="@/assets/images/logo.png"
@@ -21,11 +21,19 @@
 <script>
 import { checkVersion } from "@/assets/js/appNativeFun";
 import { linkedmeInit } from "@/config/linkedme";
+import { EventBus } from "@/event-bus";
 export default {
   name: "share",
   props: {
     title: String,
-    desc: String
+    desc: String,
+    position: {
+      type: String,
+      default: "top",
+      validator(val) {
+        return ["top", "bottom"].indexOf(val) !== -1;
+      }
+    }
   },
   data() {
     return {
@@ -50,6 +58,17 @@ export default {
         open_header.setAttribute("href", res.url);
       }
     });
+    //侦听i-got-clicked事件及其有效负载
+    EventBus.$on("i-got-clicked", this.clickHandler);
+  },
+  methods: {
+    clickHandler(clickCount) {
+      console.log(`Oh, that's nice. It's gotten ${clickCount} clicks! :)`);
+      if (clickCount === 10) {
+        // 停止监听事件
+        EventBus.$off("i-got-clicked");
+      }
+    }
   }
 };
 </script>
@@ -59,13 +78,19 @@ export default {
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  left: 0;
-  top: 0;
   z-index: 9527;
   width: 100%;
   height: 60px;
-  padding: 0 20px;
+  padding: 0 15px;
   background-color: #ffe600;
+  &.top {
+    left: 0;
+    top: 0;
+  }
+  &.bottom {
+    left: 0;
+    bottom: 0;
+  }
   &-bd {
     display: flex;
     align-items: center;
