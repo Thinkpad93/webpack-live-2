@@ -1,3 +1,7 @@
+.text-center {
+  text-align: center;
+}
+
 .text-ellipsis {
   white-space: nowrap;
   overflow: hidden;
@@ -36,4 +40,13 @@
   box-sizing: border-box;
   resize: none;
   overflow: auto;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.empty {
+  color: #8c8c8c;
+  margin: 20px auto;
 }

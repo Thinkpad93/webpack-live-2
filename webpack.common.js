@@ -10,7 +10,7 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const manifest = require("./manifest.json");
 
 //活动页名称
-const HtmlName = "myGrade";
+const HtmlName = "exchange";
 
 module.exports = {
   entry: {
@@ -114,7 +114,7 @@ module.exports = {
       filename: "index.html",
       minify: false,
       hash: false,
-      favicon: "./ic-app.png",
+      //favicon: "./ic-app.png",
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
       chunks: ["commons", "index"]
     }),

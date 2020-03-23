@@ -7,6 +7,11 @@ rm package-lock.json
 npm cache clear --force //清除缓存
 npm install
 
+git branch -a //查看所有分支
+git branch -d [本地分支名]
+//删除远程的bug_xzx分支
+git push origin --delete [远程分支名]
+
 
 ```
 

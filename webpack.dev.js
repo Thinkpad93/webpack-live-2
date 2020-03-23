@@ -27,9 +27,9 @@ module.exports = merge(common, {
         pathRewrite: { "^/api": "" }
       }
     },
-    headers: {
-      "X-Custom-Foo": "bar"
-    }
+    // headers: {
+    //   "X-Custom-Foo": "bar"
+    // }
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
