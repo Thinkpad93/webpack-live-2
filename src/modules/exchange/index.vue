@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="page-ft fixed" v-if="list.length">
-      <button class="btn btn-linear-one btn-linear-one" large>
+      <button class="btn btn-linear-one btn-linear-one" large @click="toastClick">
         兑换
       </button>
       <p v-show="active != -999">
@@ -45,6 +45,9 @@
 import service from "@/api";
 import { getUid, getTicket } from "assets/js/appNativeFun";
 import _cookie from "assets/js/cookies";
+import Vue from 'vue';
+import { Toast } from 'vant';
+Vue.use(Toast);
 export default {
   name: "",
   data() {
@@ -76,17 +79,23 @@ export default {
     this.init();
   },
   methods: {
-    init() {},
+    // 初始化操作
+    init() {
+
+    },
     switchItem(params, index) {
       let { nums, name } = params;
       this.activeText = name;
       this.activeNums = nums;
       return (this.active = index);
+    },
+    toastClick() {
+      this.$toast("提示");
     }
   }
 };
 </script>
-<style lang="scss">
+<style type="text/scss" lang="scss">
 @function px2rem($px, $rem: 75) {
   @return $px / $rem + rem;
 }
