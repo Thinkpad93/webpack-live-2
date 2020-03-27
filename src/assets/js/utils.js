@@ -17,7 +17,6 @@ export function envChenk() {
   let res = href.match(/beta|localhost|192.168./);
   return res ? "beta" : "official";
 }
-
 export function serializeData(obj) {
   let arr = [];
   for (var i in obj) {

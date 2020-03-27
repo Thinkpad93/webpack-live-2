@@ -11,6 +11,7 @@ const manifest = require("./manifest.json");
 
 //活动页名称
 const HtmlName = "exchange";
+const HtmlTitle = "兑换";
 
 module.exports = {
   entry: {
@@ -110,6 +111,7 @@ module.exports = {
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
+      title: HtmlTitle,
       template: __dirname + `/src/index.html`,
       filename: "index.html",
       minify: false,

@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="page-ft fixed" v-if="list.length">
-      <button class="btn btn-linear-one btn-linear-one" large @click="toastClick">
+      <button class="btn btn-linear-one btn-linear-one animation anim-scalespring" large @click="toastClick">
         兑换
       </button>
       <p v-show="active != -999">
@@ -42,12 +42,13 @@
   </div>
 </template>
 <script>
+  
 import service from "@/api";
 import { getUid, getTicket } from "assets/js/appNativeFun";
 import _cookie from "assets/js/cookies";
-import Vue from 'vue';
-import { Toast } from 'vant';
-Vue.use(Toast);
+import Taoat from "vant/lib/toast";
+import 'vant/lib/toast/style';
+
 export default {
   name: "",
   data() {
@@ -90,7 +91,7 @@ export default {
       return (this.active = index);
     },
     toastClick() {
-      this.$toast("提示");
+      Taoat("提示");
     }
   }
 };
@@ -100,10 +101,10 @@ export default {
   @return $px / $rem + rem;
 }
 body {
-  background: rgba(245, 245, 245, 1);
+  background: var(--body-bg);
 }
 .color-1 {
-  color: #ff5c9d;
+  color: var(--red);
 }
 .page-hd {
   width: 100%;
