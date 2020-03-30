@@ -9,50 +9,9 @@ npm install
 
 ```
 
-> 目录
-
-- src
-
-  - assets
-  - pages
-
-> 因为 sass-loader 依赖于 node-sass，所以还要安装 node-sass，但是建设使用 cnpm 安装，避免安装不成功出现各种问题
-
-> 开发下这些文件是保存到内存中的，但是你最后打包生成的是需要直接生成到目标文件夹中的
-
-### ios客户端交互
-
-> 获取uid方法
-
-```javascript
-
-//用一个对象保存oc返回来的键与值
-var info = {};
-
-//调用oc原生方法，（注意这是一个异步调用）
-window.webkit.messageHandlers.getTicket.postMessage(null);
-//这也是一个异步调用函数
-window.webkit.messageHandlers.getUid.postMessage(null);
-//oc那边收到通知成功后，会去执行js里的一个全局函数，并把前端JS需要的值以键值对的方式带给前端
-
-function getMessage(key, value) {
-  console.log(`${key}=${value}`);
-  info[key] = value;
-}
-
-//接下来是ajax请求
-$.ajax({
-  data: info, //info对象里的键值是 undefined
-  success: function(res) {
-    // todo
-  }
-});
-
-
-
-
-```
-- 在npm run dev开发环境编译的时候，dist目录的内容都在内存中了
+因为 sass-loader 依赖于 node-sass，所以还要安装 node-sass，但是建设使用 cnpm 安装，避免安装不成功出现各种问题
+开发下这些文件是保存到内存中的，但是你最后打包生成的是需要直接生成到目标文件夹中的
+在npm run dev开发环境编译的时候，dist目录的内容都在内存中了
 
 ```javascript
 
