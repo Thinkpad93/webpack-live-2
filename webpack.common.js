@@ -9,20 +9,18 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 const manifest = require("./manifest.json");
 
-//活动页名称
-const HtmlName = "exchange";
-const HtmlTitle = "兑换";
+const $obj = require("./config");
 
 module.exports = {
   entry: {
     // 入口文件
-    index: `./src/modules/${HtmlName}/js/index.js`
+    index: `./src/${$obj.targets}/${$obj.dirName}/js/index.js`
     //help: `./src/modules/${HtmlName}/js/help.js`
   },
   output: {
     // 打包多出口文件
     filename: "js/[name].js",
-    path: path.resolve(__dirname, `dist/modules/${HtmlName}/`),
+    path: path.resolve(__dirname, `dist/${$obj.targets}/${$obj.dirName}/`),
     publicPath: ""
   },
   module: {
@@ -111,7 +109,7 @@ module.exports = {
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      title: HtmlTitle,
+      title: "",
       template: __dirname + `/src/index.html`,
       filename: "index.html",
       minify: false,
