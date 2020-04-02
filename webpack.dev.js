@@ -8,7 +8,6 @@ module.exports = merge(common, {
   devtool: "inline-source-map",
   devServer: {
     contentBase: "./dist",
-    host: "192.168.61.193",
     hot: true,
     port: 1993,
     historyApiFallback: true,
@@ -21,15 +20,12 @@ module.exports = merge(common, {
     // }
     proxy: {
       "/api": {
-        target: "http://beta.whddd666.com/",
+        target: "http://beta.whddd666.com",
         changeOrigin: true,
         secure: false,
         pathRewrite: { "^/api": "" }
       }
     },
-    // headers: {
-    //   "X-Custom-Foo": "bar"
-    // }
   },
   plugins: [
     new webpack.NamedModulesPlugin(),

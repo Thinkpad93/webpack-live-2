@@ -15,7 +15,7 @@ import data from "./data.json";
 import Share from "@/components/Share";
 import { checkVersion, getUid, getTicket } from "assets/js/appNativeFun";
 import _cookie from "assets/js/cookies";
-import { EventBus } from "@/event-bus";
+import { EventBus } from "@/eventBus";
 export default {
   name: "",
   components: {

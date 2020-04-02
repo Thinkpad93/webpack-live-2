@@ -137,7 +137,7 @@ module.exports = {
     extensions: [".js", ".vue", ".json"],
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      assets: path.resolve(__dirname, "src/assets")
+      "assets": path.resolve(__dirname, "src/assets")
     }
   },
   //抽取第三方模块
