@@ -1,4 +1,5 @@
 import request from "@/config/request";
+const isDev = process.env.NODE_ENV === "development" ? "/api" : "";
 
 export default {
   index(obj = {}) {
@@ -36,6 +37,6 @@ export default {
   },
   //获取打泡泡排行榜单
   rankings(obj = {}) {
-    return request.get("/box/rankings", { params: obj });
+    return request.get(isDev + "/box/rankings", { params: obj });
   }
 };
