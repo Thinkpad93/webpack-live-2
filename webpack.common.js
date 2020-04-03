@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // vue-loader 插件
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
-const manifest = require("./manifest.json");
+//const manifest = require("./manifest.json");
 
 const $obj = require("./config");
 
@@ -33,6 +33,7 @@ module.exports = {
         test: /\.js$/,
         //排除node_modules 目录下的文件
         exclude: /node_modules/,
+        //只转化src目录下的js
         include: [path.resolve(__dirname, "src")],
         use: [
           {
@@ -104,7 +105,7 @@ module.exports = {
     // 引用对应的动态链接库的manifest.json文件
     new webpack.DllReferencePlugin({
       context: path.join(__dirname),
-      manifest
+      manifest: require("./manifest.json")
     }),
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
