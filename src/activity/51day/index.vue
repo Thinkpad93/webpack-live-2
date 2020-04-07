@@ -2,6 +2,7 @@
   <div class="page">
     <div class="page-hd">
       <div class="banner"></div>
+      <SwipeCell />
     </div>
     <div class="page-bd">
       <van-tabs
@@ -92,15 +93,20 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { Tab, Tabs, CountDown } from "vant";
-Vue.use(Tab).use(Tabs).use(CountDown);
+// import Vue from "vue";
+// import { Tab, Tabs, CountDown } from "vant";
+// Vue.use(Tab).use(Tabs).use(CountDown);
 
 import service from "@/api";
 import { openRoom } from "assets/js/appNativeFun";
 
+import SwipeCell from "@/components/SwipeCell";
+
 export default {
   name: "51day",
+  components: {
+    SwipeCell
+  },
   data() {
     return {
       active: 0,
@@ -114,6 +120,12 @@ export default {
   methods: {
     init() {
       //todo...
+      let obj = Object.assign({}, { name: "Jack", age: 25 });
+      console.log(obj);
+      let result = (name) => {
+        console.log(`${name}`);
+      }
+      result(obj.name);
     }
   }
 };
