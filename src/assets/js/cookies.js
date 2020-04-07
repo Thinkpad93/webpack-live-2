@@ -26,3 +26,5 @@ var _cookie = {
     document.cookie = key + "=v; expires =" + date.toGMTString(); //设置cookie
   }
 };
+
+export default _cookie;

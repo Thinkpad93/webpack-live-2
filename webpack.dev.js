@@ -8,21 +8,25 @@ module.exports = merge(common, {
   devtool: "inline-source-map",
   devServer: {
     contentBase: "./dist",
-    hot: true,
-    port: 1993,
+    host: "localhost", //默认是localhost
+    hot: true, //开启热更新
+    port: 1993, //端口
     historyApiFallback: true,
     compress: true, //启用gzip 压缩
+    // proxy: {
+    //   "/api": {
+    //     target: "http://localhost:8033",
+    //     pathRewrite: { "^/api": "" }
+    //   }
+    // }
     proxy: {
       "/api": {
-        target: "https://api-user.uyess.com/v2",
+        target: "http://beta.whddd666.com",
         changeOrigin: true,
         secure: false,
         pathRewrite: { "^/api": "" }
       }
     },
-    headers: {
-      "X-Custom-Foo": "bar"
-    }
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
