@@ -7,6 +7,9 @@ rm package-lock.json
 npm cache clear --force //清除缓存
 npm install
 
+//git拉取线上指定分支
+git clone -b development [代码仓库地址] //development是分支名
+
 ```
 
 因为 sass-loader 依赖于 node-sass，所以还要安装 node-sass，但是建设使用 cnpm 安装，避免安装不成功出现各种问题
