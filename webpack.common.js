@@ -34,7 +34,7 @@ module.exports = {
         //排除node_modules 目录下的文件
         exclude: /node_modules/,
         //只转化src目录下的js
-        include: [path.resolve(__dirname, "src")],
+        include: path.resolve(__dirname, "src"),
         use: [
           {
             loader: "babel-loader",

@@ -38,5 +38,13 @@ export default {
   //获取打泡泡排行榜单
   rankings(obj = {}) {
     return request.get(isDev + "/box/rankings", { params: obj });
+  },
+  //获取全部榜单
+  labouractRanking(params = {}) {
+    return request.post(isDev + "/labouract/ranking", params);
+  },
+  //获取用户榜单
+  labouractRankingByUid(params = {}) {
+    return request.post(isDev + "/labouract/rankingByUid", params);
   }
 };

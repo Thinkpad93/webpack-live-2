@@ -93,9 +93,6 @@ export function getUid() {
   var browser = checkVersion();
   var uid = null;
   if (browser.app) {
-    if (browser.ios) {
-      window.webkit.messageHandlers.getUid.postMessage(null);
-    }
     if (browser.android) {
       if (androidJsObj && typeof androidJsObj === "object") {
         uid = parseInt(window.androidJsObj.getUid());
