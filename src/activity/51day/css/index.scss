@@ -1,19 +1,69 @@
+@function px2rem($px, $rem: 75) {
+  @return $px / $rem + rem;
+}
+
+.page {
+  margin-bottom: 60px;
+}
+
 .page-ft {
   left: 0;
   bottom: 0;
   z-index: 9527;
   width: 100%;
-  height: 60px;
-  border-radius: 20px 20px 0 0;
   background-color: #f2f2f2;
 }
-// .page-bd {
-//   min-height: calc(100% - 100px);
-// }
 
 .page-tabs {
   position: relative;
   .van-tab {
     
   }
+}
+
+.user {
+  align-items: center;
+  position: relative;
+  height: px2rem(120);
+  padding: 0 15px 0 10px;
+  &-hd {
+    min-width: 30px;
+  }
+  &-bd {
+    padding-left: 6px;
+    align-items: center;
+  }
+
+  &-ft {
+
+  }
+  &-info {
+    padding-left: 6px;
+    h5 {
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+    span {
+      color: #999;
+    }
+  }
+}
+
+.person {
+  align-items: center;
+  padding: 0 15px;
+  padding: 5px 0;
+  &-bd {
+    padding-left: 6px;
+    align-items: center;
+  }
+  &-info {
+    padding-left: 6px;
+  }
+}
+
+.avatar {
+  width: px2rem(100);
+  height: px2rem(100);
+  border-radius: 50%;
 }

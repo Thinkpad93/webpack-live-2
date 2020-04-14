@@ -46,5 +46,9 @@ export default {
   //获取用户榜单
   labouractRankingByUid(params = {}) {
     return request.post(isDev + "/labouract/rankingByUid", params);
-  }
+  },
+  //活动状态
+  labouractStatus(obj = {}) {
+    return request.get(isDev + "/labouract/status", { params: obj });
+  },
 };

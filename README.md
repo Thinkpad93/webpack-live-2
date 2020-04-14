@@ -5,10 +5,6 @@
 rm -rf node_modules //删除指定目录
 rm package-lock.json
 npm cache clear --force //清除缓存
-npm install
-
-//git拉取线上指定分支
-git clone -b development [代码仓库地址] //development是分支名
 
 ```
 
@@ -42,3 +38,8 @@ document.body.appendChild(root);
 - DllPlugin: 将模块预先编译，它会在第一次编译的时候将配置好的需要预先编译的模块编译在缓存中，第二次编译的时候，解析到这些模块就直接使用缓存，而不是去编译这些模块(webpack的内置插件)
 - DllReferencePlugin: 将预先编译好的模块关联到当前编译中，当 webpack 解析到这些模块时，会直接使用预先编译好的模块(webpack的内置插件)
 - HotModuleReplacementPlugin: 实现局部热加载(刷新)，区别与在webpack-dev-server的全局刷新(webpack的内置插件)
+
+
+#### IOS安装不了问题汇总
+
+- 证书过期，导致app安装不了
