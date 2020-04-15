@@ -8,82 +8,179 @@
           height="160"
         />
       </div>
+      <div class="act-time text-center fs-16">4月27日-5月11日</div>
+      <div class="act-desc text-center">
+        <div class="act-desc-box fs-15 lh-2">
+          <p>爱情需要诺言更需要陪伴</p>
+          <p>陪伴是最长情的告白</p>
+          <p>在五一长假营造最浪漫的气氛。</p>
+          <p>五一有假，浪漫无价！</p>
+        </div>
+      </div>
     </div>
     <div class="page-bd">
       <van-tabs
         class="page-tabs"
         v-model="active"
         animated
-        line-width="6px"
-        line-height="4px"
+        line-width="0px"
+        line-height="0px"
         color="#000"
-        title-inactive-color="#8c8c8c"
-        title-active-color="#262626"
+        title-active-color="#a34400"
         :border="false"
         @change="tabsChange"
       >
         <van-tab title="活动规则">
-          <div class="mod">
-            <p>劳动节上线3款限时礼物！</p>
+          <div class="container">
+            <div class="mod mod-skin mb-16">
+              <div class="mod-box text-center">
+                <img src="./images/title.png" alt="" width="308" height="35" />
+                <div class="mod flex flex-wrap" style="margin: 0 -4px;">
+                  <div class="col" style="width: 33.3333%;">
+                    <div class="award"></div>
+                  </div>
+                  <div class="col" style="width: 33.3333%;">
+                    <div class="award"></div>
+                  </div>
+                  <div class="col" style="width: 33.3333%;">
+                    <div class="award"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mod mod-skin mb-16">
+              <div class="mod-box text-center fs-14 lh-2">
+                <img src="./images/title2.png" alt="" width="218" height="35" />
+                <p>活动期间上架3款劳动节限时礼物!!</p>
+                <p>收到赠送的限时礼物可获得相对应的浪漫值；</p>
+                <p>送出限时礼物可获得相对应的温馨值；</p>
+              </div>
+            </div>
+            <div class="mod mod-skin mb-16">
+              <div class="mod-box text-center fs-14">
+                <img src="./images/title3.png" alt="" width="308" height="35" />
+                <p class="lh-2">
+                  每天获得浪漫值或温馨值日榜前10名的可获得相对应的头饰奖励以及座驾奖励
+                </p>
+                <div class="mod flex flex-wrap" style="margin: 0 -4px;">
+                  <div class="col">
+                    <div class="award">
+                      <div class="lg-1 rank">日榜浪漫奖励</div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="award">
+                      <div class="lg-2 rank">日榜温馨奖励</div>
+                    </div>
+                  </div>
+                </div>
+                <p class="lh-2">
+                  在活动结束后浪漫榜第一和温馨榜第一更能获得玛莎拉蒂座驾
+                </p>
+                <div class="mod flex flex-wrap" style="margin: 0 -4px;">
+                  <div class="col">
+                    <div class="award">
+                      <div class="lg-1 rank">总榜浪漫奖励</div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="award">
+                      <div class="lg-2 rank">总榜温馨奖励</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mod text-center fs-14 lh-2">
+              <img
+                src="https://img.erbanyy.com/default_head.png"
+                alt=""
+                width="149"
+                height="149"
+              />
+              <p>
+                bibi约玩微信公众号
+              </p>
+              <p>本活动最终解释权归bibi约玩所有</p>
+            </div>
           </div>
         </van-tab>
         <van-tab title="浪漫榜">
-          <div class="mod">
-            <p>每天榜单前十名可获得</p>
-            <p>浪漫头饰（3天）和粉红小摩托（1天）</p>
-            <div class="">
-              <van-tabs v-model="tabIndex">
-                <van-tab title="今日榜单">
-                  <van-list
-                    v-model="list[0].loading"
-                    :finished="list[0].finished"
-                    :offset="10"
-                    :immediate-check="false"
-                    @load="onLoad(0)"
-                  >
-                    <ul>
-                      <li class="user flex" v-for="item in list[0].items">
-                        <div class="user-hd">No{{ item.rankNo }}</div>
-                        <div class="user-bd flex flex-1">
-                          <img class="avatar" :src="item.avatar" alt="" />
-                          <div class="user-info">
-                            <h5 class="text-ellipsis">{{ item.nick }}</h5>
-                            <span>浪漫值{{ item.value | formatTotal }}</span>
+          <div class="mod mod-skin">
+            <div class="mod-box">
+              <p>每天榜单前十名可获得</p>
+              <p>浪漫头饰（3天）和粉红小摩托（1天）</p>
+            </div>
+          </div>
+          <div class="mod mod-skin">
+            <div class="mod-box">
+              <div class="">
+                <van-tabs
+                  v-model="tabIndex"
+                  line-width="0px"
+                  line-height="0px"
+                  @change="tabsLmChange"
+                >
+                  <van-tab title="今日榜单">
+                    <van-list
+                      v-model="list[0].loading"
+                      :finished="list[0].finished"
+                      :offset="10"
+                      :immediate-check="false"
+                      @load="onLoad(0)"
+                    >
+                      <ul>
+                        <li class="user flex" v-for="item in list[0].items">
+                          <div class="user-hd">No{{ item.rankNo }}</div>
+                          <div class="user-bd flex flex-1">
+                            <img class="avatar" :src="item.avatar" alt="" />
+                            <div class="user-info">
+                              <h5 class="text-ellipsis">{{ item.nick }}</h5>
+                              <span>浪漫值{{ item.value | formatTotal }}</span>
+                            </div>
                           </div>
-                        </div>
-                        <div class="user-ft" v-show="item.userRoomStatus">
-                          去找他->
-                        </div>
-                      </li>
-                    </ul>
-                  </van-list>
-                </van-tab>
-                <van-tab title="昨日榜单">
-                  <van-list
-                    v-model="list[1].loading"
-                    :finished="list[1].finished"
-                    :offset="10"
-                    :immediate-check="false"
-                    @load="onLoad(1)"
-                  >
-                    <ul>
-                      <li class="user flex" v-for="item in list[1].items">
-                        <div class="user-hd">No{{ item.rankNo }}</div>
-                        <div class="user-bd flex flex-1">
-                          <img class="avatar" :src="item.avatar" alt="" />
-                          <div class="user-info">
-                            <h5 class="text-ellipsis">{{ item.nick }}</h5>
-                            <span>浪漫值{{ item.value | formatTotal }}</span>
+                          <div
+                            class="user-ft"
+                            v-show="item.userRoomStatus"
+                            @click="openRoom(item.uid)"
+                          >
+                            去找他
                           </div>
-                        </div>
-                        <div class="user-ft" v-show="item.userRoomStatus">
-                          去找他->
-                        </div>
-                      </li>
-                    </ul>
-                  </van-list>
-                </van-tab>
-              </van-tabs>
+                        </li>
+                      </ul>
+                    </van-list>
+                  </van-tab>
+                  <van-tab title="昨日榜单">
+                    <van-list
+                      v-model="list[1].loading"
+                      :finished="list[1].finished"
+                      :offset="10"
+                      :immediate-check="false"
+                      @load="onLoad(1)"
+                    >
+                      <ul>
+                        <li class="user flex" v-for="item in list[1].items">
+                          <div class="user-hd">No{{ item.rankNo }}</div>
+                          <div class="user-bd flex flex-1">
+                            <img class="avatar" :src="item.avatar" alt="" />
+                            <div class="user-info">
+                              <h5 class="text-ellipsis">{{ item.nick }}</h5>
+                              <span>浪漫值{{ item.value | formatTotal }}</span>
+                            </div>
+                          </div>
+                          <div
+                            class="user-ft"
+                            v-show="item.userRoomStatus"
+                            @click="openRoom(item.uid)"
+                          >
+                            去找他
+                          </div>
+                        </li>
+                      </ul>
+                    </van-list>
+                  </van-tab>
+                </van-tabs>
+              </div>
             </div>
           </div>
         </van-tab>
@@ -92,7 +189,7 @@
             <p>每天榜单前十名可获得</p>
             <p>温馨头饰（3天）和深蓝小摩托（1天）</p>
             <div class="">
-              <van-tabs v-model="tabIndexs">
+              <van-tabs v-model="tabIndexs" line-width="0px" line-height="0px">
                 <van-tab title="今日榜单">
                   <van-list
                     v-model="list[2].loading"
@@ -111,8 +208,12 @@
                             <span>浪漫值{{ item.value | formatTotal }}</span>
                           </div>
                         </div>
-                        <div class="user-ft" v-show="item.userRoomStatus">
-                          去找他->
+                        <div
+                          class="user-ft"
+                          v-show="item.userRoomStatus"
+                          @click="openRoom(item.uid)"
+                        >
+                          去找他
                         </div>
                       </li>
                     </ul>
@@ -136,8 +237,12 @@
                             <span>浪漫值{{ item.value | formatTotal }}</span>
                           </div>
                         </div>
-                        <div class="user-ft" v-show="item.userRoomStatus">
-                          去找他->
+                        <div
+                          class="user-ft"
+                          v-show="item.userRoomStatus"
+                          @click="openRoom(item.uid)"
+                        >
+                          去找他
                         </div>
                       </li>
                     </ul>
@@ -169,8 +274,12 @@
                         <span>浪漫值{{ item.value | formatTotal }}</span>
                       </div>
                     </div>
-                    <div class="user-ft" v-show="item.userRoomStatus">
-                      去找他->
+                    <div
+                      class="user-ft"
+                      v-show="item.userRoomStatus"
+                      @click="openRoom(item.uid)"
+                    >
+                      去找他
                     </div>
                   </li>
                 </ul>
@@ -201,8 +310,12 @@
                         <span>浪漫值{{ item.value | formatTotal }}</span>
                       </div>
                     </div>
-                    <div class="user-ft" v-show="item.userRoomStatus">
-                      去找他->
+                    <div
+                      class="user-ft"
+                      v-show="item.userRoomStatus"
+                      @click="openRoom(item.uid)"
+                    >
+                      去找他
                     </div>
                   </li>
                 </ul>
@@ -262,7 +375,7 @@ export default {
       list: [
         {
           items: [],
-          actId: 1,
+          actId: getQueryString().actId,
           giftType: 1,
           rankType: 1,
           date: dateFormat(new Date(), "yyyy-MM-dd"), //查询时间
@@ -275,10 +388,13 @@ export default {
         },
         {
           items: [],
-          actId: 1,
+          actId: getQueryString().actId,
           giftType: 1,
           rankType: 1,
-          date: "2020-04-13", //查询时间
+          date: dateFormat(
+            new Date().getTime() - 24 * 60 * 60 * 1000,
+            "yyyy-MM-dd"
+          ), //查询时间
           dimension: 1,
           giftId: "",
           page: 1,
@@ -288,7 +404,7 @@ export default {
         },
         {
           items: [],
-          actId: 1,
+          actId: getQueryString().actId,
           giftType: 2,
           rankType: 1,
           date: dateFormat(new Date(), "yyyy-MM-dd"), //查询时间
@@ -301,10 +417,13 @@ export default {
         },
         {
           items: [],
-          actId: 1,
+          actId: getQueryString().actId,
           giftType: 2,
           rankType: 1,
-          date: dateFormat(new Date(), "yyyy-MM-dd"), //查询时间
+          date: dateFormat(
+            new Date().getTime() - 24 * 60 * 60 * 1000,
+            "yyyy-MM-dd"
+          ), //查询时间
           dimension: 1,
           giftId: "",
           page: 1,
@@ -314,7 +433,7 @@ export default {
         },
         {
           items: [],
-          actId: 1,
+          actId: getQueryString().actId,
           giftType: 1,
           rankType: 1,
           date: dateFormat(new Date(), "yyyy-MM-dd"), //查询时间
@@ -327,7 +446,7 @@ export default {
         },
         {
           items: [],
-          actId: 1,
+          actId: getQueryString().actId,
           giftType: 2,
           rankType: 1,
           date: dateFormat(new Date(), "yyyy-MM-dd"), //查询时间
@@ -357,24 +476,39 @@ export default {
   methods: {
     init() {
       //todo...
-      this.getUserRank(0);
-      for (let i = 0; i <= 5; i++) {
-        this.getData(i);
-      }
-      //this.labouractStatus(this.querySearch.actId);
+      // for (let i = 0; i <= 1; i++) {
+      //   this.getData(i);
+      // }
+      this.labouractStatus(this.querySearch.actId);
     },
     tabsChange(index, title) {
-      let i = index - 1;
+      console.log(index);
+      switch (index) {
+        case 1:
+          this.getData(0);
+          break;
+        case 2:
+          this.getData(2);
+          break;
+        case 3:
+          this.getData(4);
+          break;
+        case 4:
+          this.getData(5);
+          break;
+      }
+    },
+    tabsLmChange(index, title) {
+      this.getUserRank(index);
     },
     //打开房间
-    openRoom(params = {}) {
-      console.log(params);
+    openRoom(uid) {
+      openRoom(uid);
     },
     onLoad(index) {
       const obj = this.list[index];
       obj.page += 1; //请求下一页
       let { items, loading, finished, ...args } = obj;
-      console.log(args);
       if (args.page > 10) {
         //设置请求完成
         obj.finished = true;
