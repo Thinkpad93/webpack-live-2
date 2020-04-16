@@ -4,13 +4,15 @@
       <div class="banner">
         <img src="./images/banner.png" alt="" />
       </div>
-      <div class="act-time text-center fs-16">4月27日-5月11日</div>
-      <div class="act-desc text-center">
-        <div class="act-desc-box fs-15 lh-2">
-          <p>爱情需要诺言更需要陪伴</p>
-          <p>陪伴是最长情的告白</p>
-          <p>在五一长假营造最浪漫的气氛。</p>
-          <p>五一有假，浪漫无价！</p>
+      <div class="act-notify">
+        <div class="act-time text-center fs-16">4月27日-5月11日</div>
+        <div class="act-desc text-center">
+          <div class="act-desc-box fs-15 lh-2">
+            <p>爱情需要诺言更需要陪伴</p>
+            <p>陪伴是最长情的告白</p>
+            <p>在五一长假营造最浪漫的气氛。</p>
+            <p>五一有假，浪漫无价！</p>
+          </div>
         </div>
       </div>
     </div>
@@ -128,68 +130,7 @@
                         :immediate-check="false"
                         @load="onLoad(0)"
                       >
-                        <user :data="list[0].items" @on-click="onUserClick"/>
-                        <!-- <ul>
-                          <li
-                            class="user flex"
-                            :class="{
-                              no1: item.rankNo == 1,
-                              no2: item.rankNo == 2,
-                              no3: item.rankNo == 3,
-                            }"
-                            v-for="item in list[0].items"
-                          >
-                            <div class="user-hd">
-                              <template v-if="item.rankNo == 1">
-                                <img
-                                  src="./images/ic-1st.png"
-                                  alt=""
-                                  width="16.5"
-                                  height="21"
-                                />
-                              </template>
-                              <template v-else-if="item.rankNo == 2">
-                                <img
-                                  src="./images/ic-2st.png"
-                                  alt=""
-                                  width="16.5"
-                                  height="21"
-                                />
-                              </template>
-                              <template v-else-if="item.rankNo == 3">
-                                <img
-                                  src="./images/ic-3st.png"
-                                  alt=""
-                                  width="16.5"
-                                  height="21"
-                                />
-                              </template>
-                              <template v-else>
-                                {{ item.rankNo }}
-                              </template>
-                            </div>
-                            <div class="user-bd flex flex-1">
-                              <div class="figure flex">
-                                <img class="avatar" :src="item.avatar" alt="" />
-                              </div>
-                              <div class="user-info">
-                                <h5 class="text-ellipsis">{{ item.nick }}</h5>
-                                <span
-                                  >浪漫值{{ item.value | formatTotal }}</span
-                                >
-                              </div>
-                            </div>
-                            <div
-                              class="user-ft flex"
-                              v-show="item.userRoomStatus"
-                              @click="openRoom(item.uid)"
-                            >
-                              <div class="go text-center">
-                                去找TA
-                              </div>
-                            </div>
-                          </li>
-                        </ul> -->
+                        <user :data="list[0].items" @on-click="onUserClick" />
                       </van-list>
                     </van-tab>
                     <van-tab title="昨日榜单">
@@ -200,40 +141,7 @@
                         :immediate-check="false"
                         @load="onLoad(1)"
                       >
-                      <user :data="list[1].items" @on-click="onUserClick"/>
-                        <!-- <ul>
-                          <li
-                            class="user flex"
-                            :class="{
-                              no1: item.rankNo == 1,
-                              no2: item.rankNo == 2,
-                              no3: item.rankNo == 3,
-                            }"
-                            v-for="item in list[1].items"
-                          >
-                            <div class="user-hd">{{ item.rankNo }}</div>
-                            <div class="user-bd flex flex-1">
-                              <div class="figure flex">
-                                <img class="avatar" :src="item.avatar" alt="" />
-                              </div>
-                              <div class="user-info">
-                                <h5 class="text-ellipsis">{{ item.nick }}</h5>
-                                <span
-                                  >浪漫值{{ item.value | formatTotal }}</span
-                                >
-                              </div>
-                            </div>
-                            <div
-                              class="user-ft flex"
-                              v-show="item.userRoomStatus"
-                              @click="openRoom(item.uid)"
-                            >
-                              <div class="go text-center">
-                                去找TA
-                              </div>
-                            </div>
-                          </li>
-                        </ul> -->
+                        <user :data="list[1].items" @on-click="onUserClick" />
                       </van-list>
                     </van-tab>
                   </van-tabs>
@@ -268,6 +176,7 @@
                     line-width="50%"
                     line-height="2px"
                     :border="false"
+                    @change="tabswxChange"
                   >
                     <van-tab title="今日榜单">
                       <van-list
@@ -277,40 +186,11 @@
                         :immediate-check="false"
                         @load="onLoad(2)"
                       >
-                      <user :data="list[2].items" :textType="2" @on-click="onUserClick"/>
-                        <!-- <ul>
-                          <li
-                            class="user flex"
-                            :class="{
-                              no1: item.rankNo == 1,
-                              no2: item.rankNo == 2,
-                              no3: item.rankNo == 3,
-                            }"
-                            v-for="item in list[2].items"
-                          >
-                            <div class="user-hd">{{ item.rankNo }}</div>
-                            <div class="user-bd flex flex-1">
-                              <div class="figure flex">
-                                <img class="avatar" :src="item.avatar" alt="" />
-                              </div>
-                              <div class="user-info">
-                                <h5 class="text-ellipsis">{{ item.nick }}</h5>
-                                <span
-                                  >浪漫值{{ item.value | formatTotal }}</span
-                                >
-                              </div>
-                            </div>
-                            <div
-                              class="user-ft flex"
-                              v-show="item.userRoomStatus"
-                              @click="openRoom(item.uid)"
-                            >
-                              <div class="go text-center">
-                                去找TA
-                              </div>
-                            </div>
-                          </li>
-                        </ul> -->
+                        <user
+                          :data="list[2].items"
+                          :textType="2"
+                          @on-click="onUserClick"
+                        />
                       </van-list>
                     </van-tab>
                     <van-tab title="昨日榜单">
@@ -321,40 +201,11 @@
                         :immediate-check="false"
                         @load="onLoad(3)"
                       >
-                        <user :data="list[2].items" :textType="2" @on-click="onUserClick"/>
-                        <!-- <ul>
-                          <li
-                            class="user flex"
-                            :class="{
-                              no1: item.rankNo == 1,
-                              no2: item.rankNo == 2,
-                              no3: item.rankNo == 3,
-                            }"
-                            v-for="item in list[3].items"
-                          >
-                            <div class="user-hd">{{ item.rankNo }}</div>
-                            <div class="user-bd flex flex-1">
-                              <div class="figure flex">
-                                <img class="avatar" :src="item.avatar" alt="" />
-                              </div>
-                              <div class="user-info">
-                                <h5 class="text-ellipsis">{{ item.nick }}</h5>
-                                <span
-                                  >浪漫值{{ item.value | formatTotal }}</span
-                                >
-                              </div>
-                            </div>
-                            <div
-                              class="user-ft flex"
-                              v-show="item.userRoomStatus"
-                              @click="openRoom(item.uid)"
-                            >
-                              <div class="go text-center">
-                                去找TA
-                              </div>
-                            </div>
-                          </li>
-                        </ul> -->
+                        <user
+                          :data="list[2].items"
+                          :textType="2"
+                          @on-click="onUserClick"
+                        />
                       </van-list>
                     </van-tab>
                   </van-tabs>
@@ -378,7 +229,7 @@
                     <!-- 1活动运行 2活动结束 -->
                     <p v-if="actObj.actStatus == 1" style="color: #cf3650;">
                       距离活动结束时间：
-                      <van-count-down :time="time" format="DD天HH时mm分ss秒" />
+                      <van-count-down :time="time" format="DD天HH时mm分ss秒" style="color: #cf3650;"/>
                     </p>
                     <p v-else style="color: #999;">活动已结束</p>
                   </div>
@@ -389,66 +240,7 @@
                     :immediate-check="false"
                     @load="onLoad(4)"
                   >
-                  <user :data="list[4].items" @on-click="onUserClick"/>
-                    <!-- <ul>
-                      <li
-                        class="user flex"
-                        :class="{
-                          no1: item.rankNo == 1,
-                          no2: item.rankNo == 2,
-                          no3: item.rankNo == 3,
-                        }"
-                        v-for="item in list[4].items"
-                      >
-                        <div class="user-hd">
-                          <template v-if="item.rankNo == 1">
-                            <img
-                              src="./images/ic-1st.png"
-                              alt=""
-                              width="16.5"
-                              height="21"
-                            />
-                          </template>
-                          <template v-else-if="item.rankNo == 2">
-                            <img
-                              src="./images/ic-2st.png"
-                              alt=""
-                              width="16.5"
-                              height="21"
-                            />
-                          </template>
-                          <template v-else-if="item.rankNo == 3">
-                            <img
-                              src="./images/ic-3st.png"
-                              alt=""
-                              width="16.5"
-                              height="21"
-                            />
-                          </template>
-                          <template v-else>
-                            {{ item.rankNo }}
-                          </template>
-                        </div>
-                        <div class="user-bd flex flex-1">
-                          <div class="figure flex">
-                            <img class="avatar" :src="item.avatar" alt="" />
-                          </div>
-                          <div class="user-info">
-                            <h5 class="text-ellipsis">{{ item.nick }}</h5>
-                            <span>浪漫值{{ item.value | formatTotal }}</span>
-                          </div>
-                        </div>
-                        <div
-                          class="user-ft flex"
-                          v-show="item.userRoomStatus"
-                          @click="openRoom(item.uid)"
-                        >
-                          <div class="go text-center">
-                            去找TA
-                          </div>
-                        </div>
-                      </li>
-                    </ul> -->
+                    <user :data="list[4].items" @on-click="onUserClick" />
                   </van-list>
                 </div>
               </div>
@@ -467,9 +259,10 @@
               <div class="mod-box">
                 <div class="">
                   <div class="act-endTime flex fs-16">
-                    <div v-if="actObj.actStatus == 1" style="color: #cf3650;">
-                      距离活动结束时间：
-                      <van-count-down :time="time" format="DD天HH时mm分ss秒" />
+                    <!-- 1活动运行 2活动结束 -->
+                    <div class="flex" v-if="actObj.actStatus == 1" style="color: #cf3650;">
+                      <p>距离活动结束时间：</p>
+                      <van-count-down :time="time" format="DD天HH时mm分ss秒" style="color: #cf3650;"/>
                     </div>
                     <p v-else style="color: #999;">活动已结束</p>
                   </div>
@@ -480,66 +273,11 @@
                     :immediate-check="false"
                     @load="onLoad(5)"
                   >
-                  <user :data="list[5].items":textType="2" @on-click="onUserClick"/>
-                    <!-- <ul class="user-list">
-                      <li
-                        class="user flex"
-                        :class="{
-                          no1: item.rankNo == 1,
-                          no2: item.rankNo == 2,
-                          no3: item.rankNo == 3,
-                        }"
-                        v-for="item in list[5].items"
-                      >
-                        <div class="user-hd">
-                          <template v-if="item.rankNo == 1">
-                            <img
-                              src="./images/ic-1st.png"
-                              alt=""
-                              width="16.5"
-                              height="21"
-                            />
-                          </template>
-                          <template v-else-if="item.rankNo == 2">
-                            <img
-                              src="./images/ic-2st.png"
-                              alt=""
-                              width="16.5"
-                              height="21"
-                            />
-                          </template>
-                          <template v-else-if="item.rankNo == 3">
-                            <img
-                              src="./images/ic-3st.png"
-                              alt=""
-                              width="16.5"
-                              height="21"
-                            />
-                          </template>
-                          <template v-else>
-                            {{ item.rankNo }}
-                          </template>
-                        </div>
-                        <div class="user-bd flex flex-1">
-                          <div class="figure flex">
-                            <img class="avatar" :src="item.avatar" alt="" />
-                          </div>
-                          <div class="user-info">
-                            <h5 class="text-ellipsis">{{ item.nick }}</h5>
-                            <span>浪漫值{{ item.value | formatTotal }}</span>
-                          </div>
-                        </div>
-                        <div
-                          class="user-ft flex"
-                          v-show="item.userRoomStatus"
-                          @click="openRoom(item.uid)"
-                        >
-                          <div class="go text-center">
-                            去找TA
-                          </div>
-                        </div>
-                      </li>
-                    </ul> -->
+                    <user
+                      :data="list[5].items"
+                      :textType="2"
+                      @on-click="onUserClick"
+                    />
                   </van-list>
                 </div>
               </div>
@@ -551,7 +289,8 @@
     <div class="page-ft fixed" v-show="active != 0">
       <div class="person flex fs-16">
         <div class="person-hd fs-14">
-          {{ user.rankNo == 0 ? "未上榜" : user.rankNo }}
+          <span v-if="user.rankNo == 0" style="color: #999;">未上榜</span>
+          <span v-else style="color: #f15a76;">{{ user.rankNo }}</span>
         </div>
         <div class="person-bd flex flex-1">
           <img class="avatar" :src="user.avatar" alt="" />
@@ -562,7 +301,7 @@
         <div class="persion-ft">
           <div class="flex">
             <img src="./images/ic-flower.png" alt="" width="12" height="10" />
-            <span>浪漫值</span>
+            <span style="color: #999;">浪漫值</span>
           </div>
           <span class="amount">{{ user.value | formatTotal }}</span>
         </div>
@@ -587,20 +326,19 @@ import mixins from "@/mixins/page";
 
 import user from "./components/User";
 
-
 export default {
   name: "51day",
   mixins: [mixins],
   components: {
-    user
+    user,
   },
   data() {
     return {
       active: 0,
       tabIndex: 0,
       tabIndesx: 0,
-      time: "",
-      uid: getUid() || cookies.get("uid") || "90293701", //获取uid
+      time: "108000000",
+      uid: getUid() || cookies.get("uid") || "90296268", //获取uid
       user: {}, //用户信息
       actObj: {}, //活动对象
       actStatus: "", //活动状态 1运行 2结束
@@ -697,16 +435,6 @@ export default {
   mounted() {
     this.init();
   },
-  filters: {
-    formatTotal: function(val) {
-      if (val > 10000) {
-        var r = (val / 10000).toFixed(1);
-        return r + "w";
-      } else {
-        return val;
-      }
-    },
-  },
   methods: {
     init() {
       //todo...
@@ -718,33 +446,33 @@ export default {
     },
     tabsChange(index, title) {
       console.log(index);
-      // switch (index) {
-      //   case 1:
-      //     this.getData(0);
-      //     break;
-      //   case 2:
-      //     this.getData(2);
-      //     break;
-      //   case 3:
-      //     this.getData(4);
-      //     break;
-      //   case 4:
-      //     this.getData(5);
-      //     break;
-      // }
+      switch (index) {
+        case 1:
+          this.getUserRank(0);
+          break;
+        case 2:
+          this.getUserRank(2);
+          break;
+        case 3:
+          this.getUserRank(4);
+          break;
+        case 4:
+          this.getUserRank(5);
+          break;
+      }
     },
     tabsLmChange(index, title) {
-      this.getUserRank(index);
+      return index == 0 ? this.getUserRank(0) : this.getUserRank(1);
+    },
+    tabswxChange(index, title) {
+      return index == 0 ? this.getUserRank(2) : this.getUserRank(3);
     },
     //打开房间
     onUserClick(uid) {
       openRoom(uid);
       console.log(uid);
     },
-    //打开房间
-    openRoom(uid) {
-      openRoom(uid);
-    },
+    //加载更多数据
     onLoad(index) {
       const obj = this.list[index];
       obj.page += 1; //请求下一页
@@ -780,9 +508,8 @@ export default {
           }
         }
       });
-      //请求个人榜单值
-      //this.getUserRank(args);
     },
+    //个人榜单数据
     getUserRank(index) {
       let { items, page, pageSize, loading, finished, ...args } = this.list[
         index

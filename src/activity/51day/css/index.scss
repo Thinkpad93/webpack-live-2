@@ -3,8 +3,8 @@
 }
 
 html {
-  --COLOR-eb: #ffe7eb;
-  --COLOR-aa: #ceacaa;
+  --color-eb: #ffe7eb;
+  --color-aa: #ceacaa;
 }
 
 body {
@@ -17,6 +17,14 @@ body {
 
 .page-hd {
   position: relative;
+  margin-bottom: px2rem(306);
+  .act-notify {
+    position: absolute;
+    left: 0;
+    bottom: -24%;
+    width: 100%;
+    z-index: 10;
+  }
   .act-time {
     margin: 0 auto;
     width: 172px;
@@ -27,17 +35,30 @@ body {
     background-size: 100%;
   }
   .act-desc {
-    margin: 0 14px;
+    margin: px2rem(40) 14px 0 14px;
     padding: 9px;
     border: 1px solid #ceadb0;
     border-radius: 5px;
     background-color: #fff;
     &-box {
+      position: relative;
       background-color: #fef9f9;
       border: 2px solid #f4e3ea;
+      &::before {
+        content: "";
+        position: absolute;
+        right: -3%;
+        bottom: -8%;
+        z-index: 10;
+        width: 25px;
+        height: 30px;
+        background-image: url(./images/xin.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
     }
     p {
-      color: #580f21;
+      color: #ce193b;
     }
   }
 }
@@ -165,7 +186,7 @@ body {
 
 .award {
   border-radius: 10px;
-  border: 1px solid var(--COLOR-aa);
+  border: 1px solid var(--color-aa);
   min-height: 200px;
   position: relative;
 }

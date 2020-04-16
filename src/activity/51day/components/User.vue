@@ -45,7 +45,9 @@
   </ul>
 </template>
 <script>
+import mixins from "@/mixins/page";
 export default {
+  mixins: [mixins],
   props: {
     data: {
       type: Array,
@@ -64,16 +66,6 @@ export default {
   computed: {
     textStyleIf() {
       return this.textType == 1 ? "浪漫值" : "温馨值";
-    },
-  },
-  filters: {
-    formatTotal: function(val) {
-      if (val > 10000) {
-        var r = (val / 10000).toFixed(1);
-        return r + "w";
-      } else {
-        return val;
-      }
     },
   },
   methods: {
@@ -123,7 +115,7 @@ export default {
       color: #fff;
       width: px2rem(132);
       padding: 4px 0;
-      border: 1px solid #fff;
+      border: px2rem(2) solid #fff;
       border-radius: px2rem(22);
       background: linear-gradient(
         0deg,
