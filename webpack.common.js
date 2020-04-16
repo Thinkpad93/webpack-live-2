@@ -70,6 +70,7 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
+              limit: 10000,
               esModule: false,
               name: "[name].[ext]",
               outputPath: "images/"
