@@ -49,20 +49,18 @@
             <div class="mod mod-skin mb-16">
               <div class="mod-box text-center fs-14 lh-2 pd-10">
                 <img src="./images/title2.png" alt="" width="218" height="35" />
-                <p style="color: #cb1d3d;">活动期间上架<b>3款劳动节限时礼物!</b></p>
+                <p style="color: #cb1d3d;">
+                  活动期间上架<b>3款劳动节限时礼物!</b>
+                </p>
                 <p style="color: #cb1d3d;">
                   收到赠送的限时礼物可获得相对应的<b>浪漫值</b>；
                 </p>
                 <p style="color: #cb1d3d;">
                   送出限时礼物可获得相对应的<b>温馨值</b>；
                 </p>
-                <p>
-                  赠送礼物 可获得限时背景<b>（1天）</b>
-                </p>
-                <p>赠送礼物 可获得限时背景<b>（2天）</b></p> 
-                <p>
-                  赠送礼物 可获得限时背景<b>（3天）</b>
-                </p>
+                <p>赠送礼物 可获得限时背景<b>（1天）</b></p>
+                <p>赠送礼物 可获得限时背景<b>（2天）</b></p>
+                <p>赠送礼物 可获得限时背景<b>（3天）</b></p>
               </div>
             </div>
             <div class="mod mod-skin mb-16">
@@ -101,12 +99,7 @@
               </div>
             </div>
             <div class="mod text-center fs-14 lh-2">
-              <img
-              src="./images/qrcode.jpg"
-                alt=""
-                width="150"
-                height="150"
-              />
+              <img src="./images/qrcode.jpg" alt="" width="150" height="150" />
               <p>
                 bibi约玩微信公众号
               </p>
@@ -250,7 +243,10 @@
             <div class="mod mod-skin mb-20">
               <div class="mod-box">
                 <div class="">
-                  <div class="act-endTime flex fs-16" v-if="actStatus">
+                  <div
+                    class="act-endTime flex fs-16"
+                    v-if="actObj.actStatus == 1"
+                  >
                     <!-- 1活动运行 2活动结束 -->
                     <div class="flex" v-if="actStatus" style="color: #cf3650;">
                       <p>距离活动结束时间：</p>
@@ -260,10 +256,16 @@
                         style="color: #cf3650;"
                       />
                     </div>
-                    <p v-else style="color: #999;">活动已结束</p>
                   </div>
+                  <p
+                    class="act-endTime flex fs-16"
+                    style="color: #999;"
+                    v-if="actObj.actStatus == 2"
+                  >
+                    {{ tipText }}
+                  </p>
                   <van-list
-                    v-if="actStatus"
+                    v-if="actStatus || actObj.actStatus == 2"
                     v-model="list[4].loading"
                     :finished="list[4].finished"
                     loading-text=""
@@ -299,7 +301,10 @@
             <div class="mod mod-skin mb-20">
               <div class="mod-box">
                 <div class="">
-                  <div class="act-endTime flex fs-16" v-if="actStatus">
+                  <div
+                    class="act-endTime flex fs-16"
+                    v-if="actObj.actStatus == 1"
+                  >
                     <!-- 1活动运行 2活动结束 -->
                     <div class="flex" v-if="actStatus" style="color: #cf3650;">
                       <p>距离活动结束时间：</p>
@@ -309,10 +314,16 @@
                         style="color: #cf3650;"
                       />
                     </div>
-                    <p v-else style="color: #999;">{{ tipText }}</p>
                   </div>
+                  <p
+                    class="act-endTime flex fs-16"
+                    style="color: #999;"
+                    v-if="actObj.actStatus == 2"
+                  >
+                    {{ tipText }}
+                  </p>
                   <van-list
-                    v-if="actStatus"
+                    v-if="actStatus || actObj.actStatus == 2"
                     v-model="list[5].loading"
                     :finished="list[5].finished"
                     loading-text=""
@@ -377,7 +388,7 @@
               >
             </div>
             <span class="amount">
-              <template v-if="actStatus">
+              <template v-if="actObj.actStatus == 1">
                 {{ user.value | formatTotal }}
               </template>
               <template v-else>
@@ -529,7 +540,7 @@ export default {
       if (title.includes("温馨")) {
         this.giftType = 2;
       }
-      if (this.actStatus) {
+      if (this.actStatus && this.actObj.actStatus == 1) {
         switch (index) {
           case 1:
             this.getUserRank(0);
