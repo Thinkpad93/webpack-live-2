@@ -14,20 +14,20 @@ const $obj = require("./config");
 module.exports = {
   entry: {
     // 入口文件
-    index: `./src/${$obj.targets}/${$obj.dirName}/js/index.js`
+    index: `./src/${$obj.targets}/${$obj.dirName}/js/index.js`,
     //help: `./src/modules/${HtmlName}/js/help.js`
   },
   output: {
     // 打包多出口文件
     filename: "js/[name].js",
     path: path.resolve(__dirname, `dist/${$obj.targets}/${$obj.dirName}/`),
-    publicPath: ""
+    publicPath: "",
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        use: ["vue-loader"]
+        use: ["vue-loader"],
       },
       {
         test: /\.js$/,
@@ -41,10 +41,10 @@ module.exports = {
             options: {
               //因为新版本的babel更新 原配置修改如下
               presets: ["@babel/preset-env"],
-              plugins: ["@babel/plugin-transform-runtime"]
-            }
-          }
-        ]
+              plugins: ["@babel/plugin-transform-runtime"],
+            },
+          },
+        ],
       },
       {
         test: /\.(css|scss|sass)$/,
@@ -55,14 +55,14 @@ module.exports = {
                 options: {
                   esModule: true,
                   publicPath: "../",
-                  hmr: process.env.NODE_ENV === "development"
-                }
+                  hmr: process.env.NODE_ENV === "development",
+                },
               }
             : "style-loader",
           "css-loader",
           "postcss-loader",
-          "sass-loader"
-        ]
+          "sass-loader",
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -73,16 +73,16 @@ module.exports = {
               limit: 10000,
               esModule: false,
               name: "[name].[ext]",
-              outputPath: "images/"
-            }
+              outputPath: "images/",
+            },
           },
-          {
-            loader: "image-webpack-loader",
-            options: {
-              bypassOnDebug: true,
-            }
-          }
-        ]
+          // {
+          //   loader: "image-webpack-loader",
+          //   options: {
+          //     bypassOnDebug: true,
+          //   }
+          // }
+        ],
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
@@ -94,25 +94,25 @@ module.exports = {
               limit: 10000,
               name: "[name].[ext]",
               //outputPath: "media/"
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         test: /\.html$/,
-        use: ["html-loader"]
-      }
-    ]
+        use: ["html-loader"],
+      },
+    ],
   },
   resolve: {
-    extensions: [".js", ".scss", ".css", ".json"]
+    extensions: [".js", ".scss", ".css", ".json"],
   },
   plugins: [
     // 告诉 Webpack 使用动态链接库
     // 引用对应的动态链接库的manifest.json文件
     new webpack.DllReferencePlugin({
       context: path.join(__dirname),
-      manifest: require("./manifest.json")
+      manifest: require("./manifest.json"),
     }),
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
@@ -124,7 +124,7 @@ module.exports = {
       hash: false,
       //favicon: "./ic-app.png",
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
-      chunks: ["commons", "index"]
+      chunks: ["commons", "index"],
     }),
     // new HtmlWebpackPlugin({
     //   template: __dirname + `/src/index.html`,
@@ -135,29 +135,36 @@ module.exports = {
     //   chunks: ["commons", "help"]
     // }),
     new MiniCssExtractPlugin({
-      filename: "css/[name].css"
-    })
+      filename: "css/[name].css",
+    }),
   ],
   //配置模块如何解析
   resolve: {
     extensions: [".js", ".vue", ".json"],
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "assets": path.resolve(__dirname, "src/assets")
-    }
+      assets: path.resolve(__dirname, "src/assets"),
+    },
   },
   //抽取第三方模块
   optimization: {
     splitChunks: {
       cacheGroups: {
+        // vendor: {
+        //   name: "vendor",
+        //   test: /[\\/]node_modules[\\/]/,
+        //   chunks: "all",
+        //   priority: 10, // 优先级
+        // },
         //抽取公共模块
         commons: {
-          chunks: "initial",
           name: "commons",
-          minSize: 0,
-          minChunks: 2 //至少引用2次，才打包出commons文件
-        }
-      }
-    }
-  }
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "all",
+          //minSize: 0,
+          //minChunks: 2, //至少引用2次，才打包出commons文件
+        },
+      },
+    },
+  },
 };

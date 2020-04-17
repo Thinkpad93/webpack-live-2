@@ -5,6 +5,9 @@
 html {
   --color-eb: #ffe7eb;
   --color-aa: #ceacaa;
+  --color-3d: #cb1d3d;
+  --color-ff: #fff;
+  --color-99: #999;
 }
 
 body {
@@ -39,7 +42,7 @@ body {
     padding: 9px;
     border: 1px solid #ceadb0;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: var(--color-ff);;
     &-box {
       position: relative;
       background-color: #fef9f9;
@@ -58,9 +61,15 @@ body {
       }
     }
     p {
-      color: #ce193b;
+      color: var(--color-3d);
     }
   }
+}
+
+.page-bd {
+  background-image: url(./images/bg.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .page-ft {
@@ -117,6 +126,7 @@ body {
       }
       .van-tab--active {
         opacity: 1;
+        font-weight: bold;
       }
     }
   }
@@ -131,7 +141,7 @@ body {
 }
 
 .mod-skin {
-  border: 1px solid #fff;
+  border: 1px solid var(--color-ff);
   border-radius: 10px;
   width: 100%;
   padding: 10px;
@@ -149,10 +159,9 @@ body {
     filter: blur(0.5px);
   }
   .mod-box {
-    // padding: 20px 10px 20px 10px;
     min-height: 200px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: var(--color-ff);;
   }
 }
 
@@ -162,6 +171,14 @@ body {
 
 .mb-20 {
   margin-bottom: 20px;
+}
+
+.pd-10 {
+  padding: 10px;
+}
+
+.color-1 {
+  color: var(--color-3d);
 }
 
 .lg-1 {
@@ -228,9 +245,9 @@ body {
   padding: 0 px2rem(30);
   border-radius: px2rem(50) px2rem(50) 0 0;
   box-shadow: 0 0 16px 1px rgba(140, 140, 140, .2);
-  background-color: #fff;
+  background-color: var(--color-ff);
   &-hd {
-    color: #999;
+    color: var(--color-99);
   }
   &-bd {
     padding-left: 6px;
@@ -240,7 +257,7 @@ body {
     padding-left: 6px;
   }
   .amount {
-    color: #d54a64;
+    color: var(--color-3d);
   }
 }
 
@@ -309,7 +326,7 @@ body {
 
 .default {
   font-size: 14px;
-  color: #999;
+  color: var(--color-99);
   padding: 60px 0;
   p {
     margin-top: 10px;
