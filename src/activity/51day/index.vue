@@ -276,7 +276,10 @@
                     <user :data="list[4].items" @on-click="onUserClick" />
                   </van-list>
                   <!-- 没有数据 -->
-                  <div class="default text-center" v-if="!actStatus">
+                  <div
+                    class="default text-center"
+                    v-if="!actStatus && actObj.actStatus == 1"
+                  >
                     <img
                       src="./images/default.png"
                       alt=""
@@ -338,7 +341,10 @@
                     />
                   </van-list>
                   <!-- 没有数据 -->
-                  <div class="default text-center" v-if="!actStatus">
+                  <div
+                    class="default text-center"
+                    v-if="!actStatus && actObj.actStatus == 1"
+                  >
                     <img
                       src="./images/default.png"
                       alt=""
@@ -387,8 +393,13 @@
                 >{{ giftType == 1 ? "浪漫" : "温馨" }}值</span
               >
             </div>
-            <span class="amount">
-              <template v-if="actObj.actStatus == 1">
+            <span class="amount" v-if="actObj.actStatus == 2">
+              <template v-if="!actStatus">
+                {{ user.value | formatTotal }}
+              </template>
+            </span>
+            <span class="amount" v-if="actObj.actStatus == 1">
+              <template v-if="actStatus">
                 {{ user.value | formatTotal }}
               </template>
               <template v-else>
@@ -534,11 +545,21 @@ export default {
       this.getUserRank(0);
     },
     tabsChange(index, title) {
+      let { actStatus } = this.actObj;
       if (title.includes("浪漫")) {
         this.giftType = 1;
       }
       if (title.includes("温馨")) {
         this.giftType = 2;
+      }
+      //活动结束,只显示总榜数据
+      if (actStatus === 2) {
+        if (index === 3) {
+          this.getUserRank(4);
+        }
+        if (index === 4) {
+          this.getUserRank(5);
+        }
       }
       if (this.actStatus && this.actObj.actStatus == 1) {
         switch (index) {
