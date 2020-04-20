@@ -5,7 +5,7 @@
         <img src="./images/banner.png" alt="" />
       </div>
       <div class="act-notify">
-        <div class="act-time text-center fs-16">4月27日-5月11日</div>
+        <div class="act-time text-center fs-16">4月28日-5月11日</div>
         <div class="act-desc text-center">
           <div class="act-desc-box fs-15 lh-2">
             <p>爱情需要诺言更需要陪伴</p>
@@ -123,7 +123,7 @@
                 <div class="">
                   <van-tabs
                     v-model="tabIndex"
-                    line-width="50%"
+                    line-width="46%"
                     line-height="2px"
                     :border="false"
                     @change="tabsLmChange"
@@ -184,7 +184,7 @@
                 <div class="">
                   <van-tabs
                     v-model="tabIndexs"
-                    line-width="50%"
+                    line-width="46%"
                     line-height="2px"
                     :border="false"
                     @change="tabswxChange"
@@ -215,7 +215,7 @@
                         @load="onLoad(3)"
                       >
                         <user
-                          :data="list[2].items"
+                          :data="list[3].items"
                           :textType="2"
                           @on-click="onUserClick"
                         />
@@ -444,9 +444,9 @@ export default {
     return {
       active: 0,
       tabIndex: 0,
-      tabIndesx: 0,
+      tabIndesx: 1,
       time: "", //倒计时
-      uid: getUid() || cookies.get("uid") || "90296268", //获取uid
+      uid: getUid() || cookies.get("uid") || "90296507", //获取uid
       user: {}, //用户信息
       actObj: {}, //活动对象
       tipText: "",
@@ -584,33 +584,53 @@ export default {
       }
     },
     tabsLmChange(index, title) {
-      console.log("============");
-      // let { actStatus } = this.actObj;
-      // if (actStatus == 1) {
-      //   if (index == 0) {
-      //     this.getUserRank(0);
-      //     this.getData(0);
-      //   } else {
-      //     this.getUserRank(1);
-      //     this.getData(1);
-      //   }
+      let { actStatus } = this.actObj;
+      let indexOf;
+      if (actStatus == 1) {
+        let indexOf = index == 0 ? 0 : 1;
+        //if (index == 0) {
+          //indexOf = 0;
+          // this.list[0].page = 1;
+          // this.list[0].finished = false;
+          // this.getUserRank(0);
+          // this.getData(0);
+        //} else {
+          //indexOf = 1;
+          // this.list[1].page = 1;
+          // this.list[1].finished = false;
+          // this.getUserRank(1);
+          // this.getData(1);
+        //}
+        this.list[indexOf].page = 1;
+        this.list[indexOf].finished = false;
+        this.getUserRank(indexOf);
+        this.getData(indexOf);
         //return index == 0 ? this.getUserRank(0) : this.getUserRank(1);
-      //}
+      }
     },
     tabswxChange(index, title) {
-      console.log("============10");
-      // let { actStatus } = this.actObj;
-      // if (actStatus == 1) {
-      //   if (index == 0) {
-      //     this.list[2].page = 1;
-      //     this.getUserRank(2);
-      //     this.getData(2);
-      //   } else {
-      //     this.list[3].page = 1;
-      //     this.getUserRank(3);
-      //     this.getData(3);
-      //   }
-      // }
+      let { actStatus } = this.actObj;
+      //let indexOf;
+      if (actStatus == 1) {
+        let indexOf = index == 0 ? 2 : 3;
+        //if (index == 0) {
+          //indexOf = 2;
+          //this.list[2].page = 1;
+          //this.list[2].finished = false;
+          //this.getUserRank(2);
+          //this.getData(2);
+        //} else {
+          //indexOf = 3;
+          //this.list[3].page = 1;
+          //this.list[3].finished = false;
+          //this.getUserRank(3);
+          //this.getData(3);
+        //}
+        this.list[indexOf].page = 1;
+        this.list[indexOf].finished = false;
+        this.getUserRank(indexOf);
+        this.getData(indexOf);
+      }
       //return index == 0 ? this.getUserRank(2) : this.getUserRank(3);
     },
     //打开房间
@@ -651,6 +671,8 @@ export default {
           if (result.length) {
             this.list[index].items = result;
           } else {
+            //console.log("内容为空了10110");
+            //console.log(index);
             //console.log("内容为空了");
             //this.list[index].items = [];
             //this.list[index].page = 1;
@@ -665,7 +687,6 @@ export default {
         index
       ];
       let params = Object.assign({}, { uid: this.uid }, args);
-      console.log(params);
       service.labouractRankingByUid(serializeData(params)).then((res) => {
         if (res.data.code === 200) {
           let result = res.data.data;

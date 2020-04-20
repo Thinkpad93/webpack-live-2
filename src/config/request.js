@@ -14,7 +14,7 @@ const service = axios.create({
 //request
 service.interceptors.request.use(
   config => {
-    console.log(config);
+    //console.log(config);
     return config;
   },
   error => {
@@ -25,7 +25,7 @@ service.interceptors.request.use(
 //response
 service.interceptors.response.use(
   response => {
-    console.log(response);
+    //console.log(response);
     return response;
   },
   error => {
