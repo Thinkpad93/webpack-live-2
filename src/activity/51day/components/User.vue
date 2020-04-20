@@ -34,7 +34,7 @@
       </div>
       <div
         class="user-ft flex"
-        v-show="item.userRoomStatus"
+        v-show="item.userRoomStatus && item.uid != uid"
         @click="handleClick(item.uid)"
       >
         <div class="go text-center">
@@ -54,6 +54,9 @@ export default {
       default: function() {
         return [];
       },
+    },
+    uid: {
+      type: Number,
     },
     textType: {
       type: Number,

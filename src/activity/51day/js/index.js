@@ -7,7 +7,7 @@ import "@/assets/css/site.scss";
 //测试或正式环境判断
 import { envChenk } from "@/assets/js/utils";
 // 只有是开发环境和
-if (process.env.NODE_ENV === "development" && envChenk() === "beta") {
+if (envChenk() === "beta") {
   new VConsole();
 }
 

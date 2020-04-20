@@ -159,7 +159,6 @@ body {
     filter: blur(0.5px);
   }
   .mod-box {
-    min-height: 200px;
     border-radius: 10px;
     background-color: var(--color-ff);;
   }
@@ -240,6 +239,9 @@ body {
   }
   &-info {
     padding-left: 6px;
+    p {
+      max-width: px2rem(240);
+    }
   }
   .amount {
     color: var(--color-3d);
@@ -322,4 +324,10 @@ body {
   align-items: center;
   justify-content: center;
   min-height: px2rem(90);
+}
+
+.copyright {
+  p {
+    margin-top: px2rem(40);
+  }
 }

@@ -32,7 +32,13 @@
           <div class="container">
             <div class="mod mod-skin mb-16">
               <div class="mod-box text-center pd-10">
-                <img src="./images/title.png" alt="" width="308" height="35" />
+                <img
+                  src="./images/title.png"
+                  alt=""
+                  width="308"
+                  height="35"
+                  style="margin-bottom: 16px;"
+                />
                 <div class="mod flex flex-wrap" style="margin: 0 -4px;">
                   <div class="col" style="width: 33.3333%;">
                     <div class="award"></div>
@@ -67,7 +73,10 @@
               </div>
             </div>
             <div class="mod mod-skin mb-16">
-              <div class="mod-box text-center fs-14 pd-10">
+              <div
+                class="mod-box text-center fs-14"
+                style="padding: 20px 10px 20px 10px;"
+              >
                 <img src="./images/title3.png" alt="" width="308" height="35" />
                 <p>
                   每天获得浪漫值或温馨值日榜前10名的可获得相对应的头饰奖励以及座驾奖励
@@ -101,12 +110,19 @@
                 </div>
               </div>
             </div>
-            <div class="mod text-center fs-14 lh-2">
-              <img src="./images/qrcode.jpg" alt="" width="150" height="150" />
-              <p>
-                bibi约玩微信公众号
-              </p>
-              <p>本活动最终解释权归bibi约玩所有</p>
+            <div class="mod">
+              <div class="copyright text-center fs-14">
+                <img
+                  src="./images/qrcode.jpg"
+                  alt=""
+                  width="150"
+                  height="150"
+                />
+                <p>
+                  bibi约玩微信公众号
+                </p>
+                <p>本活动最终解释权归bibi约玩所有</p>
+              </div>
             </div>
           </div>
         </van-tab>
@@ -137,7 +153,11 @@
                         :immediate-check="false"
                         @load="onLoad(0)"
                       >
-                        <user :data="list[0].items" @on-click="onUserClick" />
+                        <user
+                          :uid="user.uid"
+                          :data="list[0].items"
+                          @on-click="onUserClick"
+                        />
                       </van-list>
                     </van-tab>
                     <van-tab title="昨日榜单">
@@ -149,7 +169,11 @@
                         :immediate-check="false"
                         @load="onLoad(1)"
                       >
-                        <user :data="list[1].items" @on-click="onUserClick" />
+                        <user
+                          :uid="user.uid"
+                          :data="list[1].items"
+                          @on-click="onUserClick"
+                        />
                       </van-list>
                     </van-tab>
                   </van-tabs>
@@ -199,6 +223,7 @@
                         @load="onLoad(2)"
                       >
                         <user
+                          :uid="user.uid"
                           :data="list[2].items"
                           :textType="2"
                           @on-click="onUserClick"
@@ -215,6 +240,7 @@
                         @load="onLoad(3)"
                       >
                         <user
+                          :uid="user.uid"
                           :data="list[3].items"
                           :textType="2"
                           @on-click="onUserClick"
@@ -278,7 +304,11 @@
                     :immediate-check="false"
                     @load="onLoad(4)"
                   >
-                    <user :data="list[4].items" @on-click="onUserClick" />
+                    <user
+                      :uid="user.uid"
+                      :data="list[4].items"
+                      @on-click="onUserClick"
+                    />
                   </van-list>
                   <!-- 没有数据 -->
                   <div
@@ -340,6 +370,7 @@
                     @load="onLoad(5)"
                   >
                     <user
+                      :uid="user.uid"
                       :data="list[5].items"
                       :textType="2"
                       @on-click="onUserClick"
@@ -446,7 +477,7 @@ export default {
       tabIndex: 0,
       tabIndesx: 1,
       time: "", //倒计时
-      uid: getUid() || cookies.get("uid") || "90296507", //获取uid
+      uid: getUid() || cookies.get("uid") || "90295936", //获取uid
       user: {}, //用户信息
       actObj: {}, //活动对象
       tipText: "",
@@ -551,12 +582,7 @@ export default {
     },
     tabsChange(index, title) {
       let { actStatus } = this.actObj;
-      if (title.includes("浪漫")) {
-        this.giftType = 1;
-      }
-      if (title.includes("温馨")) {
-        this.giftType = 2;
-      }
+      title.includes("浪漫") ? (this.giftType = 1) : (this.giftType = 2);
       //活动结束,只显示总榜数据
       if (actStatus === 2) {
         if (index === 3) {
@@ -566,7 +592,7 @@ export default {
           this.getUserRank(5);
         }
       }
-      if (this.actStatus && this.actObj.actStatus == 1) {
+      if (this.actStatus && actStatus == 1) {
         switch (index) {
           case 1:
             this.getUserRank(0);
@@ -588,50 +614,21 @@ export default {
       let indexOf;
       if (actStatus == 1) {
         let indexOf = index == 0 ? 0 : 1;
-        //if (index == 0) {
-          //indexOf = 0;
-          // this.list[0].page = 1;
-          // this.list[0].finished = false;
-          // this.getUserRank(0);
-          // this.getData(0);
-        //} else {
-          //indexOf = 1;
-          // this.list[1].page = 1;
-          // this.list[1].finished = false;
-          // this.getUserRank(1);
-          // this.getData(1);
-        //}
         this.list[indexOf].page = 1;
-        this.list[indexOf].finished = false;
+        this.list[indexOf].finished = false; //设置请求没完成
         this.getUserRank(indexOf);
         this.getData(indexOf);
-        //return index == 0 ? this.getUserRank(0) : this.getUserRank(1);
       }
     },
     tabswxChange(index, title) {
       let { actStatus } = this.actObj;
-      //let indexOf;
       if (actStatus == 1) {
         let indexOf = index == 0 ? 2 : 3;
-        //if (index == 0) {
-          //indexOf = 2;
-          //this.list[2].page = 1;
-          //this.list[2].finished = false;
-          //this.getUserRank(2);
-          //this.getData(2);
-        //} else {
-          //indexOf = 3;
-          //this.list[3].page = 1;
-          //this.list[3].finished = false;
-          //this.getUserRank(3);
-          //this.getData(3);
-        //}
         this.list[indexOf].page = 1;
         this.list[indexOf].finished = false;
         this.getUserRank(indexOf);
         this.getData(indexOf);
       }
-      //return index == 0 ? this.getUserRank(2) : this.getUserRank(3);
     },
     //打开房间
     onUserClick(uid) {
@@ -710,10 +707,10 @@ export default {
           this.getData(4);
           this.getData(5);
         }
-        //活动运行
+        //活动运行中
         if (data.actStatus === 1) {
           //当前时间
-          let currentTime = Date.now();
+          let currentTime = +new Date();
           //开始时间
           let startTime = new Date(parseInt(data.actStartDate));
           //结束时间
