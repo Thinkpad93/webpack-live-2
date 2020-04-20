@@ -12,7 +12,7 @@ module.exports = {
   // 要打包的第三方模块
   entry: {
     // 将模块作为入口编译成动态链接库
-    main: ["vue", "vue-router", "axios"]
+    main: ["vue", "axios"]
   },
   output: {
     // 指定文件名

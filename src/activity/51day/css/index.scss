@@ -219,21 +219,6 @@ body {
   transform: translate(-50%, 0);
 }
 
-.circle-1 {
-  width: 12px;
-  height: 12px;
-  border: 2px solid;
-  border-radius: 50%;
-  border-image: linear-gradient(
-    0deg,
-    rgba(237, 182, 57, 1),
-    rgba(255, 239, 125, 1),
-    rgba(237, 182, 57, 1),
-    rgba(253, 242, 126, 1)
-  );
-  background-color: #edb639;
-}
-
 .lh-2 {
   line-height: 2;
 }

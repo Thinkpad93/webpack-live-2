@@ -36,12 +36,15 @@
                 <div class="mod flex flex-wrap" style="margin: 0 -4px;">
                   <div class="col" style="width: 33.3333%;">
                     <div class="award"></div>
+                    <p>5200金豆</p>
                   </div>
                   <div class="col" style="width: 33.3333%;">
                     <div class="award"></div>
+                    <p>13140金豆</p>
                   </div>
                   <div class="col" style="width: 33.3333%;">
                     <div class="award"></div>
+                    <p>38800金豆</p>
                   </div>
                 </div>
               </div>
@@ -66,7 +69,7 @@
             <div class="mod mod-skin mb-16">
               <div class="mod-box text-center fs-14 pd-10">
                 <img src="./images/title3.png" alt="" width="308" height="35" />
-                <p class="lh-2">
+                <p>
                   每天获得浪漫值或温馨值日榜前10名的可获得相对应的头饰奖励以及座驾奖励
                 </p>
                 <div class="mod flex flex-wrap" style="margin: 0 -4px;">
@@ -81,7 +84,7 @@
                     </div>
                   </div>
                 </div>
-                <p class="lh-2">
+                <p>
                   在活动结束后浪漫榜第一和温馨榜第一更能获得玛莎拉蒂座驾
                 </p>
                 <div class="mod flex flex-wrap" style="margin: 0 -4px;">
@@ -112,8 +115,7 @@
             <div class="mod mod-skin mb-20">
               <div class="mod-box color-1">
                 <p>每天榜单前十名可获得</p>
-                <p>浪漫头饰（3天）和浪漫驯鹿（1天）</p>
-                <div class="circle-1"></div>
+                <p><b> 浪漫头饰（3天）和浪漫驯鹿（1天）</b></p>
               </div>
             </div>
             <div class="mod mod-skin mb-20">
@@ -126,7 +128,7 @@
                     :border="false"
                     @change="tabsLmChange"
                   >
-                    <van-tab title="今日榜单" :disabled="!actStatus">
+                    <van-tab title="今日榜单">
                       <van-list
                         v-if="actStatus"
                         v-model="list[0].loading"
@@ -138,7 +140,7 @@
                         <user :data="list[0].items" @on-click="onUserClick" />
                       </van-list>
                     </van-tab>
-                    <van-tab title="昨日榜单" :disabled="!actStatus">
+                    <van-tab title="昨日榜单">
                       <van-list
                         v-if="actStatus"
                         v-model="list[1].loading"
@@ -152,7 +154,10 @@
                     </van-tab>
                   </van-tabs>
                   <!-- 没有数据 -->
-                  <div class="default text-center" v-if="!actStatus">
+                  <div
+                    class="default text-center"
+                    v-if="!actStatus || !list[0].items.length"
+                  >
                     <img
                       src="./images/default.png"
                       alt=""
@@ -171,7 +176,7 @@
             <div class="mod mod-skin mb-20">
               <div class="mod-box color-1">
                 <p>每天榜单前十名可获得</p>
-                <p>温馨头饰（3天）和温馨天马（1天）</p>
+                <p><b>温馨头饰（3天）和温馨天马（1天）</b></p>
               </div>
             </div>
             <div class="mod mod-skin mb-20">
@@ -184,7 +189,7 @@
                     :border="false"
                     @change="tabswxChange"
                   >
-                    <van-tab title="今日榜单" :disabled="!actStatus">
+                    <van-tab title="今日榜单">
                       <van-list
                         v-if="actStatus"
                         v-model="list[2].loading"
@@ -200,7 +205,7 @@
                         />
                       </van-list>
                     </van-tab>
-                    <van-tab title="昨日榜单" :disabled="!actStatus">
+                    <van-tab title="昨日榜单">
                       <van-list
                         v-if="actStatus"
                         v-model="list[3].loading"
@@ -237,7 +242,7 @@
             <div class="mod mod-skin mb-20">
               <div class="mod-box color-1">
                 <p>活动结束后榜单第十名可获得</p>
-                <p>最佳浪漫头饰（30天）、浪漫鹿车（30天）</p>
+                <p><b> 最佳浪漫头饰（30天）、浪漫鹿车（30天）</b></p>
               </div>
             </div>
             <div class="mod mod-skin mb-20">
@@ -298,7 +303,7 @@
             <div class="mod mod-skin mb-20">
               <div class="mod-box color-1">
                 <p>活动结束后榜单第十名可获得</p>
-                <p>最佳温馨头饰（30天）、温馨马车（30天）</p>
+                <p><b>最佳温馨头饰（30天）、温馨马车（30天）</b></p>
               </div>
             </div>
             <div class="mod mod-skin mb-20">
@@ -440,7 +445,7 @@ export default {
       active: 0,
       tabIndex: 0,
       tabIndesx: 0,
-      time: "51022595",
+      time: "", //倒计时
       uid: getUid() || cookies.get("uid") || "90296268", //获取uid
       user: {}, //用户信息
       actObj: {}, //活动对象
@@ -579,10 +584,34 @@ export default {
       }
     },
     tabsLmChange(index, title) {
-      return index == 0 ? this.getUserRank(0) : this.getUserRank(1);
+      console.log("============");
+      // let { actStatus } = this.actObj;
+      // if (actStatus == 1) {
+      //   if (index == 0) {
+      //     this.getUserRank(0);
+      //     this.getData(0);
+      //   } else {
+      //     this.getUserRank(1);
+      //     this.getData(1);
+      //   }
+        //return index == 0 ? this.getUserRank(0) : this.getUserRank(1);
+      //}
     },
     tabswxChange(index, title) {
-      return index == 0 ? this.getUserRank(2) : this.getUserRank(3);
+      console.log("============10");
+      // let { actStatus } = this.actObj;
+      // if (actStatus == 1) {
+      //   if (index == 0) {
+      //     this.list[2].page = 1;
+      //     this.getUserRank(2);
+      //     this.getData(2);
+      //   } else {
+      //     this.list[3].page = 1;
+      //     this.getUserRank(3);
+      //     this.getData(3);
+      //   }
+      // }
+      //return index == 0 ? this.getUserRank(2) : this.getUserRank(3);
     },
     //打开房间
     onUserClick(uid) {
@@ -621,6 +650,11 @@ export default {
           let result = res.data.data;
           if (result.length) {
             this.list[index].items = result;
+          } else {
+            //console.log("内容为空了");
+            //this.list[index].items = [];
+            //this.list[index].page = 1;
+            //this.tipText = "活动已经开启啦";
           }
         }
       });
@@ -645,6 +679,8 @@ export default {
       if (result.data.code === 200) {
         let data = result.data.data;
         this.actObj = Object.assign({}, data);
+        //设置标题
+        document.title = data.actTitle || "";
         //活动结束
         if (data.actStatus === 2) {
           this.actStatus = false;

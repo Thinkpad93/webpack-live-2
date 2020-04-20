@@ -7,6 +7,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // vue-loader 插件
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 //const manifest = require("./manifest.json");
 
 const $obj = require("./config");
@@ -108,11 +110,12 @@ module.exports = {
     extensions: [".js", ".scss", ".css", ".json"],
   },
   plugins: [
+    //new BundleAnalyzerPlugin(),
     // 告诉 Webpack 使用动态链接库
     // 引用对应的动态链接库的manifest.json文件
     new webpack.DllReferencePlugin({
       context: path.join(__dirname),
-      manifest: require("./manifest.json"),
+      manifest: require("./dist/dll/manifest.json"),
     }),
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
@@ -161,7 +164,7 @@ module.exports = {
           name: "commons",
           test: /[\\/]node_modules[\\/]/,
           chunks: "all",
-          //minSize: 0,
+          minSize: 0,
           //minChunks: 2, //至少引用2次，才打包出commons文件
         },
       },
