@@ -457,9 +457,9 @@ Vue.use(List)
   .use(CountDown);
 
 import service from "@/api";
-import { getQueryString, serializeData, dateFormat } from "assets/js/utils";
-import { getUid, openRoom } from "assets/js/appNativeFun";
-import cookies from "assets/js/cookies";
+import { getQueryString, serializeData, dateFormat } from "@/utils";
+import { getUid, openRoom } from "@/utils/appNativeFun";
+import cookies from "@/utils/cookies";
 
 import mixins from "@/mixins/page";
 

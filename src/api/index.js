@@ -1,4 +1,4 @@
-import request from "@/config/request";
+import request from "@/utils/request";
 const isDev = process.env.NODE_ENV === "development" ? "/api" : "";
 
 export default {

@@ -1,0 +1,23 @@
+.animation {
+  animation-duration: 0.3s; //检索或设置对象动画的持续时间
+  animation-fill-mode: both; //设置对象状态为动画结束或开始的状态
+}
+
+.anim-scalespring {
+  animation-name: scale-spring; //检索或设置对象所应用的动画名称
+}
+
+@keyframes scale-spring {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.5);
+  }
+  80% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

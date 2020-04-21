@@ -1,11 +1,11 @@
 import Vue from "vue";
 import index from "../index";
 //引入rem支持
-import "@/assets/js/flexible";
+import "@/utils/flexible";
 //引入公共样式
-import "@/assets/css/site.scss";
+import "@/styles/site.scss";
 //测试或正式环境判断
-import { envChenk } from "@/assets/js/utils";
+import { envChenk } from "@/utils";
 // 只有是开发环境和
 if (envChenk() === "beta") {
   new VConsole();

@@ -1,0 +1,64 @@
+.text-center {
+  text-align: center;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.input {
+  height: 40px;
+  line-height: 20px;
+  outline: none;
+  font-size: 14px;
+  padding: 9px 8px;
+  border-radius: 4px;
+  border: 1px solid #d0d0d5;
+  background-color: #fff;
+  transition: border-color 0.15s, background-color 0.15s;
+  &:hover {
+    border-color: #ababaf;
+  }
+  &:focus {
+    border-color: #2a80eb;
+  }
+}
+
+.textarea {
+  line-height: 20px;
+  padding: 9px 8px;
+  border: 1px solid #d0d0d5;
+  border-radius: 4px;
+  background-color: #fff;
+  outline: none;
+  color: #4c5161;
+  font-size: 14px;
+  transition: border-color 0.15s, background-color 0.15s;
+  word-break: break-all;
+  vertical-align: top;
+  box-sizing: border-box;
+  resize: none;
+  overflow: auto;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.empty {
+  color: #8c8c8c;
+  margin: 20px auto;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
