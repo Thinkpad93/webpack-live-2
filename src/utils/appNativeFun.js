@@ -1,3 +1,5 @@
+import cookies from "./cookies";
+
 export function checkVersion() {
   const u = navigator.userAgent;
   return {
@@ -18,7 +20,7 @@ export function checkVersion() {
 }
 //打开分享
 export function openSharePage() {
-  var browser = checkVersion();
+  let browser = checkVersion();
   if (browser.app) {
     if (browser.ios) {
       window.webkit.messageHandlers.openSharePage.postMessage(null);
@@ -61,7 +63,7 @@ export function openPersonPage(uid) {
 }
 //根据uid打开房间
 export function openRoom(uid) {
-  var browser = checkVersion();
+  let browser = checkVersion();
   if (browser.app) {
     if (browser.ios) {
       window.webkit.messageHandlers.openRoom.postMessage(uid);
@@ -76,7 +78,7 @@ export function openRoom(uid) {
 
 //根据routerType跳转到对应的页面
 export function jumpAppointPage(obj) {
-  var browser = checkVersion();
+  let browser = checkVersion();
   if (browser.app) {
     if (browser.ios) {
       window.webkit.messageHandlers.jumpAppointPage.postMessage(obj);
@@ -90,9 +92,12 @@ export function jumpAppointPage(obj) {
 }
 //获取Uid
 export function getUid() {
-  var browser = checkVersion();
-  var uid = null;
+  let browser = checkVersion();
+  let uid = null;
   if (browser.app) {
+    if (browser.ios) {
+      uid = cookies.get("uid");
+    }
     if (browser.android) {
       if (androidJsObj && typeof androidJsObj === "object") {
         uid = parseInt(window.androidJsObj.getUid());
@@ -103,8 +108,8 @@ export function getUid() {
 }
 //获取Ticket
 export function getTicket() {
-  var browser = checkVersion();
-  var ticket = null;
+  let browser = checkVersion();
+  let ticket = null;
   if (browser.app) {
     if (browser.ios) {
       window.webkit.messageHandlers.getTicket.postMessage(null);

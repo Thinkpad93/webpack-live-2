@@ -477,7 +477,7 @@ export default {
       tabIndex: 0,
       tabIndesx: 1,
       time: "", //倒计时
-      uid: getUid() || cookies.get("uid") || "90296093", //获取uid
+      uid: getUid() || "90296093", //获取uid
       user: {}, //用户信息
       actObj: {}, //活动对象
       tipText: "",
