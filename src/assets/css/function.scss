@@ -1,7 +1,0 @@
-@function px2rem($px, $base: 75) {
-  @return $px / $base + rem;
-}
-
-@function to($px) {
-  @return $px / 2 + px;
-}
