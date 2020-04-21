@@ -477,7 +477,7 @@ export default {
       tabIndex: 0,
       tabIndesx: 1,
       time: "", //倒计时
-      uid: getUid() || cookies.get("uid") || "90295936", //获取uid
+      uid: getUid() || cookies.get("uid") || "90296093", //获取uid
       user: {}, //用户信息
       actObj: {}, //活动对象
       tipText: "",
@@ -583,29 +583,29 @@ export default {
     tabsChange(index, title) {
       let { actStatus } = this.actObj;
       title.includes("浪漫") ? (this.giftType = 1) : (this.giftType = 2);
-      //活动结束,只显示总榜数据
-      if (actStatus === 2) {
+      if (actStatus === 1) {
+        if (this.actStatus) {
+          switch (index) {
+            case 1:
+              this.getUserRank(0);
+              break;
+            case 2:
+              this.getUserRank(2);
+              break;
+            case 3:
+              this.getUserRank(4);
+              break;
+            case 4:
+              this.getUserRank(5);
+              break;
+          }
+        }
+      } else if (actStatus === 2) {
         if (index === 3) {
           this.getUserRank(4);
         }
         if (index === 4) {
           this.getUserRank(5);
-        }
-      }
-      if (this.actStatus && actStatus == 1) {
-        switch (index) {
-          case 1:
-            this.getUserRank(0);
-            break;
-          case 2:
-            this.getUserRank(2);
-            break;
-          case 3:
-            this.getUserRank(4);
-            break;
-          case 4:
-            this.getUserRank(5);
-            break;
         }
       }
     },
@@ -631,7 +631,9 @@ export default {
       }
     },
     //打开房间
-    onUserClick(uid) {
+    onUserClick(userInRoomVo) {
+      console.log(userInRoomVo);
+      let { uid } = userInRoomVo;
       openRoom(uid);
     },
     //加载更多数据
@@ -645,10 +647,10 @@ export default {
         return;
       }
       service.labouractRanking(serializeData(args)).then((res) => {
-        if (res.data.code === 200) {
+        if (res.code === 200) {
           // 加载状态结束
           obj.loading = false;
-          let result = res.data.data;
+          let result = res.data;
           if (result.length) {
             for (let i = 0; i < result.length; i++) {
               obj.items.push(result[i]);
@@ -663,8 +665,8 @@ export default {
     getData(index) {
       let { items, loading, finished, ...args } = this.list[index];
       service.labouractRanking(serializeData(args)).then((res) => {
-        if (res.data.code === 200) {
-          let result = res.data.data;
+        if (res.code === 200) {
+          let result = res.data;
           if (result.length) {
             this.list[index].items = result;
           } else {
@@ -685,8 +687,8 @@ export default {
       ];
       let params = Object.assign({}, { uid: this.uid }, args);
       service.labouractRankingByUid(serializeData(params)).then((res) => {
-        if (res.data.code === 200) {
-          let result = res.data.data;
+        if (res.code === 200) {
+          let result = res.data;
           this.user = Object.assign({}, result);
         }
       });
@@ -694,21 +696,14 @@ export default {
     //获取活动状态
     async getActStatus(actId) {
       let result = await service.labouractStatus({ actId });
-      if (result.data.code === 200) {
-        let data = result.data.data;
+      let data = result.data;
+      if (result.code === 200) {
         this.actObj = Object.assign({}, data);
+        let { actStatus } = data;
         //设置标题
         document.title = data.actTitle || "";
-        //活动结束
-        if (data.actStatus === 2) {
-          this.actStatus = false;
-          this.tipText = "活动已结束";
-          //只展示总榜数据
-          this.getData(4);
-          this.getData(5);
-        }
-        //活动运行中
-        if (data.actStatus === 1) {
+        //活动运行
+        if (actStatus === 1) {
           //当前时间
           let currentTime = +new Date();
           //开始时间
@@ -716,7 +711,6 @@ export default {
           //结束时间
           let endTime = new Date(parseInt(data.actEndDate));
           //判断活动是否开始
-          //活动还没开始
           if (currentTime < startTime) {
             this.actStatus = false;
             this.tipText = "活动暂未开启，敬请期待";
@@ -729,6 +723,12 @@ export default {
               this.getData(i);
             }
           }
+        } else if (actStatus === 2) {
+          this.actStatus = false;
+          this.tipText = "活动已结束";
+          //只展示总榜数据
+          this.getData(4);
+          this.getData(5);
         }
       }
     },

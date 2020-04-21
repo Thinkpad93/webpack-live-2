@@ -34,8 +34,8 @@
       </div>
       <div
         class="user-ft flex"
-        v-show="item.userRoomStatus && item.uid != uid"
-        @click="handleClick(item.uid)"
+        v-show="item.userInRoomVo.uid && item.uid != uid"
+        @click="handleClick(item.userInRoomVo)"
       >
         <div class="go text-center">
           去找TA
@@ -72,8 +72,8 @@ export default {
     },
   },
   methods: {
-    handleClick(uid) {
-      this.$emit("on-click", uid);
+    handleClick(userInRoomVo) {
+      this.$emit("on-click", userInRoomVo);
     },
   },
 };
