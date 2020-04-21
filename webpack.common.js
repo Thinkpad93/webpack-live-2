@@ -7,7 +7,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // vue-loader 插件
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
+
+const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin");
+
+const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 
 //const manifest = require("./manifest.json");
 
@@ -129,6 +134,29 @@ module.exports = {
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
       chunks: ["commons", "index"],
     }),
+    //动态插入CDN资源
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          module: "wx",
+          entry: "http://res2.wx.qq.com/open/js/jweixin-1.6.0.js",
+          global: "wx",
+        },
+        {
+          module: "linkedme",
+          entry: "https://static.lkme.cc/linkedme.min.js",
+          global: "linkedme",          
+        },
+        {
+          module: "vConsole",
+          entry: "https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js",
+          global: "vConsole",          
+        }        
+      ],
+    }),
+    // new AddAssetHtmlPlugin({
+    //   filepath: path.resolve(__dirname, "./dist/dll/main.dll.js"),
+    // }),
     // new HtmlWebpackPlugin({
     //   template: __dirname + `/src/index.html`,
     //   filename: "help.html",

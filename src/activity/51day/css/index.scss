@@ -90,24 +90,21 @@ body {
       flex-wrap: wrap;
       background-color: transparent;
       .van-tab {
-        min-width: 100px;
+        min-width: px2rem(200);
         line-height: 35px;
         overflow: visible;
         margin: 0 10px 10px 10px;
         opacity: 0.8;
         position: relative;
+        padding: 1px;
         border-radius: px2rem(35);
         border: 1px solid rgba(216, 112, 14, 1);
-        background: linear-gradient(
-          0deg,
-          rgba(251, 184, 54, 1) 0%,
-          rgba(254, 240, 100, 1) 100%
-        );
         &::before {
           content: "";
           position: absolute;
           left: -5px;
           top: 50%;
+          z-index: 10;
           width: 10px;
           height: 10px;
           background-color: #a34400;
@@ -118,6 +115,7 @@ body {
           position: absolute;
           right: -5px;
           top: 50%;
+          z-index: 10;
           width: 10px;
           height: 10px;
           background-color: #a34400;
@@ -128,6 +126,15 @@ body {
         opacity: 1;
         font-weight: bold;
       }
+    }
+    .van-tab__text {
+      display: block;
+      border-radius: px2rem(35);
+      background: linear-gradient(
+        0deg,
+        rgba(251, 184, 54, 1) 0%,
+        rgba(254, 240, 100, 1) 100%
+      );
     }
   }
 }
