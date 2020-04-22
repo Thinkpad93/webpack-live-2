@@ -18,6 +18,8 @@ const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 
 const $obj = require("./config");
 
+const isDev = process.env.NODE_ENV === "development" ? true : false;
+
 module.exports = {
   entry: {
     // 入口文件
@@ -26,7 +28,7 @@ module.exports = {
   },
   output: {
     // 打包多出口文件
-    filename: "js/[name].js",
+    filename: isDev ? "js/[name].[hash].js" : "js/[name].[chunkhash].js",
     path: path.resolve(__dirname, `dist/${$obj.targets}/${$obj.dirName}/`),
     publicPath: "",
   },
@@ -56,16 +58,16 @@ module.exports = {
       {
         test: /\.(css|scss|sass)$/,
         use: [
-          process.env.NODE_ENV === "production"
-            ? {
+          isDev
+            ? "style-loader"
+            : {
                 loader: MiniCssExtractPlugin.loader,
                 options: {
                   esModule: true,
                   publicPath: "../",
                   hmr: process.env.NODE_ENV === "development",
                 },
-              }
-            : "style-loader",
+              },
           "css-loader",
           "postcss-loader",
           "sass-loader",
@@ -79,7 +81,7 @@ module.exports = {
             options: {
               limit: 10000,
               esModule: false,
-              name: "[name].[ext]",
+              name: "[name].[hash:7].[ext]",
               outputPath: "images/",
             },
           },
@@ -145,13 +147,13 @@ module.exports = {
         {
           module: "linkedme",
           entry: "https://static.lkme.cc/linkedme.min.js",
-          global: "linkedme",          
+          global: "linkedme",
         },
         {
           module: "vConsole",
           entry: "https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js",
-          global: "vConsole",          
-        }        
+          global: "vConsole",
+        },
       ],
     }),
     // new AddAssetHtmlPlugin({
@@ -166,7 +168,7 @@ module.exports = {
     //   chunks: ["commons", "help"]
     // }),
     new MiniCssExtractPlugin({
-      filename: "css/[name].css",
+      filename: "css/[name].[contenthash].css",
     }),
   ],
   //配置模块如何解析
