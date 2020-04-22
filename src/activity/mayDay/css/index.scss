@@ -42,22 +42,18 @@ body {
     padding: 9px;
     border: 1px solid #ceadb0;
     border-radius: 5px;
-    background-color: var(--color-ff);;
+    background-color: var(--color-ff);
     &-box {
       position: relative;
       background-color: #fef9f9;
       border: 2px solid #f4e3ea;
-      &::before {
-        content: "";
+      > img {
         position: absolute;
         right: -3%;
         bottom: -8%;
         z-index: 10;
         width: 25px;
         height: 30px;
-        background-image: url(./images/xin.png);
-        background-repeat: no-repeat;
-        background-size: 100%;
       }
     }
     p {
@@ -94,7 +90,7 @@ body {
         line-height: 35px;
         overflow: visible;
         margin: 0 10px 10px 10px;
-        opacity: 0.8;
+        opacity: 0.6;
         position: relative;
         padding: 1px;
         border-radius: px2rem(35);
@@ -167,7 +163,7 @@ body {
   }
   .mod-box {
     border-radius: 10px;
-    background-color: var(--color-ff);;
+    background-color: var(--color-ff);
   }
 }
 
@@ -210,12 +206,44 @@ body {
 .award {
   border-radius: 10px;
   border: 1px solid var(--color-aa);
-  min-height: 200px;
   position: relative;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  img {
+    width: px2rem(190);
+    height: px2rem(190);
+  }
+}
+
+.card {
+  &-bd {
+    margin-bottom: 8px;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid var(--color-aa);
+  }
+  > p {
+    color: var(--color-3d);
+  }
+}
+
+.tag {
+  position: absolute;
+  left: -4%;
+  bottom: -4%;
+  z-index: 10;
+  padding: 2px;
+  border-radius: 2px;
+  color: var(--color-ff);
+  background: linear-gradient(
+    -24deg,
+    rgba(255, 98, 125, 1),
+    rgba(238, 88, 116, 1)
+  );
 }
 
 .rank {
-  color: #fff;
+  color: var(--color-ff);
   width: px2rem(183);
   padding: 8px 0;
   border-radius: 5px;
@@ -225,17 +253,12 @@ body {
   transform: translate(-50%, 0);
 }
 
-.lh-2 {
-  line-height: 2;
-}
-
-
 .person {
   align-items: center;
   min-height: px2rem(150);
   padding: 0 px2rem(30);
   border-radius: px2rem(50) px2rem(50) 0 0;
-  box-shadow: 0 0 16px 1px rgba(140, 140, 140, .2);
+  box-shadow: 0 0 16px 1px rgba(140, 140, 140, 0.2);
   background-color: var(--color-ff);
   &-hd {
     color: var(--color-99);
@@ -334,7 +357,23 @@ body {
 }
 
 .copyright {
+  > img {
+    margin-bottom: px2rem(35);
+  }
   p {
-    margin-top: px2rem(40);
+    margin-bottom: 8px;
+  }
+}
+
+.gift-box {
+  padding: 10px 0 20px 0;
+  text-align: center;
+  p {
+    margin-top: 12px;
+  }
+  img {
+    width: px2rem(230);
+    height: px2rem(230);
+    margin: 0 px2rem(30);
   }
 }

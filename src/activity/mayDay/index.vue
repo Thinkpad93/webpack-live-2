@@ -12,6 +12,7 @@
             <p>陪伴是最长情的告白</p>
             <p>在五一长假营造最浪漫的气氛。</p>
             <p>五一有假，浪漫无价！</p>
+            <img src="./images/xin.png" alt="" />
           </div>
         </div>
       </div>
@@ -27,6 +28,7 @@
         title-inactive-color="#6d2d00"
         :border="false"
         @change="tabsChange"
+        @rendered="tabsRendered"
       >
         <van-tab title="活动规则">
           <div class="container">
@@ -41,23 +43,47 @@
                 />
                 <div class="mod flex flex-wrap" style="margin: 0 -4px;">
                   <div class="col" style="width: 33.3333%;">
-                    <div class="award"></div>
-                    <p>5200金豆</p>
+                    <div class="card">
+                      <div class="card-bd">
+                        <div class="tag">心心相印</div>
+                        <img src="./images/gift-1.png" alt="" />
+                      </div>
+                      <p class="card-ft">5200金豆</p>
+                    </div>
                   </div>
                   <div class="col" style="width: 33.3333%;">
-                    <div class="award"></div>
-                    <p>13140金豆</p>
+                    <div class="card">
+                      <div class="card-bd">
+                        <div class="tag">爱的告白</div>
+                        <img src="./images/gift-2.png" alt="" />
+                      </div>
+                      <p class="card-ft">13140金豆</p>
+                    </div>
                   </div>
                   <div class="col" style="width: 33.3333%;">
-                    <div class="award"></div>
-                    <p>38800金豆</p>
+                    <div class="card">
+                      <div class="card-bd">
+                        <div class="tag">浪漫满屋</div>
+                        <img src="./images/gift-3.png" alt="" />
+                      </div>
+                      <p class="card-ft">38800金豆</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="mod mod-skin mb-16">
-              <div class="mod-box text-center fs-14 lh-2 pd-10">
-                <img src="./images/title2.png" alt="" width="218" height="35" />
+              <div
+                class="mod-box text-center fs-14 lh-2"
+                style="padding: 20px 10px 20px 10px;"
+              >
+                <img
+                  src="./images/title2.png"
+                  alt=""
+                  width="218"
+                  height="35"
+                  style="margin-bottom: 20px;"
+                />
                 <p style="color: #cb1d3d;">
                   活动期间上架<b>3款劳动节限时礼物!</b>
                 </p>
@@ -67,9 +93,33 @@
                 <p style="color: #cb1d3d;">
                   送出限时礼物可获得相对应的<b>温馨值</b>；
                 </p>
-                <p>赠送礼物 可获得限时背景<b>（1天）</b></p>
-                <p>赠送礼物 可获得限时背景<b>（2天）</b></p>
-                <p>赠送礼物 可获得限时背景<b>（3天）</b></p>
+                <div style="margin: 20px 0 20px 0;">
+                  <img src="./images/img.png" alt="" width="195" height="305" />
+                </div>
+                <p class="flex j-c-c a-i-c">
+                  赠送礼物<img
+                    src="./images/1440.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />可获得限时背景<b>（1天）</b>
+                </p>
+                <p class="flex j-c-c a-i-c">
+                  赠送礼物<img
+                    src="./images/1441.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />可获得限时背景<b>（2天）</b>
+                </p>
+                <p class="flex j-c-c a-i-c">
+                  赠送礼物<img
+                    src="./images/1442.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />可获得限时背景<b>（3天）</b>
+                </p>
               </div>
             </div>
             <div class="mod mod-skin mb-16">
@@ -77,34 +127,56 @@
                 class="mod-box text-center fs-14"
                 style="padding: 20px 10px 20px 10px;"
               >
-                <img src="./images/title3.png" alt="" width="308" height="35" />
-                <p>
+                <img
+                  src="./images/title3.png"
+                  alt=""
+                  width="308"
+                  height="35"
+                  style="margin-bottom: 25px;"
+                />
+                <p class="lh-2" style="margin-bottom: 30px;">
                   每天获得浪漫值或温馨值日榜前10名的可获得相对应的头饰奖励以及座驾奖励
                 </p>
                 <div class="mod flex flex-wrap" style="margin: 0 -4px;">
                   <div class="col">
                     <div class="award">
                       <div class="lg-1 rank">日榜浪漫奖励</div>
+                      <img class="gift" src="./images/ic-lm.png" alt="" />
+                      <img class="gift" src="./images/ic-lm-car.png" alt="" />
                     </div>
                   </div>
                   <div class="col">
                     <div class="award">
                       <div class="lg-2 rank">日榜温馨奖励</div>
+                      <img class="gift" src="./images/ic-wx.png" alt="" />
+                      <img class="gift" src="./images/ic-wx-car.png" alt="" />
                     </div>
                   </div>
                 </div>
-                <p>
+                <p class="lh-2" style="margin: 30px 0;">
                   在活动结束后浪漫榜第一和温馨榜第一更能获得玛莎拉蒂座驾
                 </p>
                 <div class="mod flex flex-wrap" style="margin: 0 -4px;">
                   <div class="col">
                     <div class="award">
                       <div class="lg-1 rank">总榜浪漫奖励</div>
+                      <img class="gift" src="./images/ic-lm-hot.png" alt="" />
+                      <img
+                        class="gift"
+                        src="./images/ic-lm-car-hot.png"
+                        alt=""
+                      />
                     </div>
                   </div>
                   <div class="col">
                     <div class="award">
                       <div class="lg-2 rank">总榜温馨奖励</div>
+                      <img class="gift" src="./images/ic-wx-hot.png" alt="" />
+                      <img
+                        class="gift"
+                        src="./images/ic-wx-car-hot.png"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>
@@ -130,8 +202,12 @@
           <div class="container">
             <div class="mod mod-skin mb-20">
               <div class="mod-box color-1">
-                <p>每天榜单前十名可获得</p>
-                <p><b> 浪漫头饰（3天）和浪漫驯鹿（1天）</b></p>
+                <div class="gift-box">
+                  <img class="gift" src="./images/ic-lm.png" alt="" />
+                  <img class="gift" src="./images/ic-lm-car.png" alt="" />
+                  <p>每天榜单前十名可获得</p>
+                  <p><b> 浪漫头饰（3天）和浪漫驯鹿（1天）</b></p>
+                </div>
               </div>
             </div>
             <div class="mod mod-skin mb-20">
@@ -180,7 +256,7 @@
                   <!-- 没有数据 -->
                   <div
                     class="default text-center"
-                    v-if="!actStatus || !list[0].items.length"
+                    v-if="!list[0].items.length || !list[1].items.length"
                   >
                     <img
                       src="./images/default.png"
@@ -199,8 +275,12 @@
           <div class="container">
             <div class="mod mod-skin mb-20">
               <div class="mod-box color-1">
-                <p>每天榜单前十名可获得</p>
-                <p><b>温馨头饰（3天）和温馨天马（1天）</b></p>
+                <div class="gift-box">
+                  <img class="gift" src="./images/ic-wx.png" alt="" />
+                  <img class="gift" src="./images/ic-wx-car.png" alt="" />
+                  <p>每天榜单前十名可获得</p>
+                  <p><b>温馨头饰（3天）和温馨天马（1天）</b></p>
+                </div>
               </div>
             </div>
             <div class="mod mod-skin mb-20">
@@ -249,7 +329,10 @@
                     </van-tab>
                   </van-tabs>
                   <!-- 没有数据 -->
-                  <div class="default text-center" v-if="!actStatus">
+                  <div
+                    class="default text-center"
+                    v-if="!list[2].items.length || !list[3].items.length"
+                  >
                     <img
                       src="./images/default.png"
                       alt=""
@@ -267,19 +350,20 @@
           <div class="container">
             <div class="mod mod-skin mb-20">
               <div class="mod-box color-1">
-                <p>活动结束后榜单第十名可获得</p>
-                <p><b> 最佳浪漫头饰（30天）、浪漫鹿车（30天）</b></p>
+                <div class="gift-box">
+                  <img class="gift" src="./images/ic-lm-hot.png" alt="" />
+                  <img class="gift" src="./images/ic-lm-car-hot.png" alt="" />
+                  <p>活动结束后榜单第十名可获得</p>
+                  <p><b> 最佳浪漫头饰（30天）、浪漫鹿车（30天）</b></p>
+                </div>
               </div>
             </div>
             <div class="mod mod-skin mb-20">
               <div class="mod-box">
                 <div class="">
-                  <div
-                    class="act-endTime flex fs-16"
-                    v-if="actObj.actStatus == 1"
-                  >
+                  <div class="act-endTime flex fs-16" v-if="actStatus">
                     <!-- 1活动运行 2活动结束 -->
-                    <div class="flex" v-if="actStatus" style="color: #cf3650;">
+                    <div class="flex" style="color: #cf3650;">
                       <p>距离活动结束时间：</p>
                       <van-count-down
                         :time="time"
@@ -311,10 +395,7 @@
                     />
                   </van-list>
                   <!-- 没有数据 -->
-                  <div
-                    class="default text-center"
-                    v-if="!actStatus && actObj.actStatus == 1"
-                  >
+                  <div class="default text-center" v-if="!list[5].items.length">
                     <img
                       src="./images/default.png"
                       alt=""
@@ -332,19 +413,20 @@
           <div class="container">
             <div class="mod mod-skin mb-20">
               <div class="mod-box color-1">
-                <p>活动结束后榜单第十名可获得</p>
-                <p><b>最佳温馨头饰（30天）、温馨马车（30天）</b></p>
+                <div class="gift-box">
+                  <img class="gift" src="./images/ic-wx-hot.png" alt="" />
+                  <img class="gift" src="./images/ic-wx-car-hot.png" alt="" />
+                  <p>活动结束后榜单第十名可获得</p>
+                  <p><b>最佳温馨头饰（30天）、温馨马车（30天）</b></p>
+                </div>
               </div>
             </div>
             <div class="mod mod-skin mb-20">
               <div class="mod-box">
                 <div class="">
-                  <div
-                    class="act-endTime flex fs-16"
-                    v-if="actObj.actStatus == 1"
-                  >
+                  <div class="act-endTime flex fs-16" v-if="actStatus">
                     <!-- 1活动运行 2活动结束 -->
-                    <div class="flex" v-if="actStatus" style="color: #cf3650;">
+                    <div class="flex" style="color: #cf3650;">
                       <p>距离活动结束时间：</p>
                       <van-count-down
                         :time="time"
@@ -377,10 +459,7 @@
                     />
                   </van-list>
                   <!-- 没有数据 -->
-                  <div
-                    class="default text-center"
-                    v-if="!actStatus && actObj.actStatus == 1"
-                  >
+                  <div class="default text-center" v-if="!list[5].items.length">
                     <img
                       src="./images/default.png"
                       alt=""
@@ -430,6 +509,22 @@
               >
             </div>
             <span class="amount" v-if="actObj.actStatus == 2">
+              <template v-if="active == 3 || active == 4">
+                {{ user.value | formatTotal }}
+              </template>
+              <template v-else>
+                0
+              </template>
+            </span>
+            <span class="amount" v-if="actObj.actStatus == 1">
+              <template v-if="actStatus">
+                {{ user.value | formatTotal }}
+              </template>
+              <template v-else>
+                0
+              </template>              
+            </span>
+            <!-- <span class="amount" v-if="actObj.actStatus == 2">
               <template v-if="!actStatus">
                 {{ user.value | formatTotal }}
               </template>
@@ -441,7 +536,7 @@
               <template v-else>
                 0
               </template>
-            </span>
+            </span> -->
           </div>
         </div>
       </template>
@@ -476,13 +571,13 @@ export default {
       active: 0,
       tabIndex: 0,
       tabIndesx: 1,
-      time: "", //倒计时
-      uid: getUid() || "90296093", //获取uid
-      user: {}, //用户信息
-      actObj: {}, //活动对象
+      time: "", // 倒计时
+      uid: getUid() || "90293701", // 获取uid
+      user: {}, // 用户信息
+      actObj: {}, // 活动对象
       tipText: "",
-      giftType: 1, //收礼类型
-      actStatus: false, //活动状态
+      giftType: 1, // 收礼类型
+      actStatus: false, // 活动状态
       querySearch: getQueryString(),
       list: [
         {
@@ -580,6 +675,22 @@ export default {
       this.getActStatus(this.querySearch.actId);
       this.getUserRank(0);
     },
+    // 标签内容首次渲染时触发
+    tabsRendered(index, title) {
+      let { actStartDate, actEndDate } = this.actObj;
+      // 当前时间
+      let currentTime = +new Date();
+      // 开始时间
+      let startTime = new Date(parseInt(actStartDate));
+      // 结束时间
+      let endTime = new Date(parseInt(actEndDate));
+
+      if (this.actStatus) {
+        console.log(title + "=========");
+        let number = endTime - currentTime;
+        this.time = number; // 设置倒计时
+      }
+    },
     tabsChange(index, title) {
       let { actStatus } = this.actObj;
       title.includes("浪漫") ? (this.giftType = 1) : (this.giftType = 2);
@@ -611,38 +722,36 @@ export default {
     },
     tabsLmChange(index, title) {
       let { actStatus } = this.actObj;
-      let indexOf;
-      if (actStatus == 1) {
+      if (this.actStatus) {
         let indexOf = index == 0 ? 0 : 1;
-        this.list[indexOf].page = 1;
-        this.list[indexOf].finished = false; //设置请求没完成
-        this.getUserRank(indexOf);
-        this.getData(indexOf);
+        this.loadRankData(indexOf);
       }
     },
     tabswxChange(index, title) {
       let { actStatus } = this.actObj;
-      if (actStatus == 1) {
+      if (this.actStatus) {
         let indexOf = index == 0 ? 2 : 3;
-        this.list[indexOf].page = 1;
-        this.list[indexOf].finished = false;
-        this.getUserRank(indexOf);
-        this.getData(indexOf);
+        this.loadRankData(indexOf);
       }
     },
-    //打开房间
+    // 打开房间
     onUserClick(userInRoomVo) {
-      console.log(userInRoomVo);
       let { uid } = userInRoomVo;
       openRoom(uid);
     },
-    //加载更多数据
+    loadRankData(indexOf) {
+      this.list[indexOf].page = 1;
+      this.list[indexOf].finished = false; // 设置请求没完成
+      this.getUserRank(indexOf);
+      this.getData(indexOf);
+    },
+    // 加载更多数据
     onLoad(index) {
       const obj = this.list[index];
-      obj.page += 1; //请求下一页
+      obj.page += 1; // 请求下一页
       let { items, loading, finished, ...args } = obj;
       if (args.page > 10) {
-        //设置请求完成
+        // 设置请求完成
         obj.finished = true;
         return;
       }
@@ -661,7 +770,7 @@ export default {
         }
       });
     },
-    //请求榜单数据
+    // 请求榜单数据
     getData(index) {
       let { items, loading, finished, ...args } = this.list[index];
       service.labouractRanking(serializeData(args)).then((res) => {
@@ -680,7 +789,7 @@ export default {
         }
       });
     },
-    //个人榜单数据
+    // 个人榜单数据
     getUserRank(index) {
       let { items, page, pageSize, loading, finished, ...args } = this.list[
         index
@@ -693,32 +802,33 @@ export default {
         }
       });
     },
-    //获取活动状态
+    // 获取活动状态
     async getActStatus(actId) {
       let result = await service.labouractStatus({ actId });
       let data = result.data;
       if (result.code === 200) {
         this.actObj = Object.assign({}, data);
         let { actStatus } = data;
-        //设置标题
+        // 设置活动标题
         document.title = data.actTitle || "";
-        //活动运行
+        // 活动运行
         if (actStatus === 1) {
-          //当前时间
+          // 当前时间
           let currentTime = +new Date();
-          //开始时间
+          // 开始时间
           let startTime = new Date(parseInt(data.actStartDate));
-          //结束时间
-          let endTime = new Date(parseInt(data.actEndDate));
-          //判断活动是否开始
+          // 结束时间
+          //let endTime = new Date(parseInt(data.actEndDate));
+          // 判断活动是否开始
           if (currentTime < startTime) {
             this.actStatus = false;
             this.tipText = "活动暂未开启，敬请期待";
           } else {
+            this.tipText = "活动已经开启啦";
             this.actStatus = true;
-            let number = endTime - currentTime;
-            this.time = number; //设置倒计时
-            //请求数据
+            //let number = endTime - currentTime;
+            //this.time = number; // 设置倒计时
+            // 请求数据
             for (let i = 0; i <= 5; i++) {
               this.getData(i);
             }
@@ -726,7 +836,7 @@ export default {
         } else if (actStatus === 2) {
           this.actStatus = false;
           this.tipText = "活动已结束";
-          //只展示总榜数据
+          // 只展示总榜数据
           this.getData(4);
           this.getData(5);
         }

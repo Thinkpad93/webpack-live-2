@@ -1,29 +1,20 @@
 ```javascript
 
-var start = 1491789600000;//2017-4-10 10:00
-var end = 1494381600000;//2017-5-10 10:00
-
 //一天时间是 24小时(h)，每小时有60分钟(m)，每分钟有60秒(s)，每秒有1000毫秒(ms)
-
 const SECOND = 1000; 
 const MINUTE = 60 * SECOND; // 60 * 1000
 const HOUR = 60 * MINUTE;  // 60 * 60 * 1000
 const DAY = 24 * HOUR; // 24 * 60 * 60 * 1000
-
-
 var utc = end - start;
-
 var day = utc / (24 * 60 * 60 * 1000);
-
 var h = utc / (60 * 60 * 1000);
-
 var m = utc / (60 * 1000);
 
 //https://blog.csdn.net/qq_29132907/article/details/83787402
 //http://www.imooc.com/article/256463
 //https://www.cnblogs.com/laosunlaiye/p/9395327.html
 ```
-##### 活动还没开始
+##### 活动没开始
 actStatus = 1;
 1.当前时间小于活动开始时间，各榜单提示活动暂未开启，敬请期待
 2.不可请求各榜单数据
@@ -42,3 +33,4 @@ actStatus = 2;
 3.除了日榜，个人总榜单数据还是要展示出来
 
 > 用户上榜后，则不展示去Ta房间
+> 活动结束后，个人榜单数据则不更新

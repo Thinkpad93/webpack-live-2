@@ -63,9 +63,6 @@ export default {
       default: 1,
     },
   },
-  mounted() {
-    console.log("生命周期");
-  },
   computed: {
     textStyleIf() {
       return this.textType == 1 ? "浪漫值" : "温馨值";
