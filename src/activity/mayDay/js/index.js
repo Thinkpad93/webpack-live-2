@@ -10,6 +10,8 @@ import { envChenk } from "@/utils";
 if (envChenk() === "beta") {
   new VConsole();
 }
+// 引入阿里云日志
+//import "@/utils/log";
 
 //实例化操作
 new Vue({

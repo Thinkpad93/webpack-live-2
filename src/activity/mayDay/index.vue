@@ -522,7 +522,7 @@
               </template>
               <template v-else>
                 0
-              </template>              
+              </template>
             </span>
             <!-- <span class="amount" v-if="actObj.actStatus == 2">
               <template v-if="!actStatus">
@@ -675,6 +675,8 @@ export default {
       this.getActStatus(this.querySearch.actId);
       this.getUserRank(0);
     },
+    //
+    batterLog() {},
     // 标签内容首次渲染时触发
     tabsRendered(index, title) {
       let { actStartDate, actEndDate } = this.actObj;
@@ -686,12 +688,18 @@ export default {
       let endTime = new Date(parseInt(actEndDate));
 
       if (this.actStatus) {
-        console.log(title + "=========");
         let number = endTime - currentTime;
         this.time = number; // 设置倒计时
       }
     },
     tabsChange(index, title) {
+      window.logger.post([
+        {
+          __topic__: "batter-log",
+          path: location.href,
+          remark: title,
+        },
+      ]);
       let { actStatus } = this.actObj;
       title.includes("浪漫") ? (this.giftType = 1) : (this.giftType = 2);
       if (actStatus === 1) {
