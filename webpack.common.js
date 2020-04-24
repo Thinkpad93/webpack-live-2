@@ -14,11 +14,10 @@ const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin");
 
 const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 
-//const manifest = require("./manifest.json");
-
 const $obj = require("./config");
 
 const isDev = process.env.NODE_ENV === "development" ? true : false;
+const isBeta = isDev ? "beta": "beta";
 
 module.exports = {
   entry: {
@@ -65,7 +64,7 @@ module.exports = {
                 options: {
                   esModule: true,
                   publicPath: "../",
-                  hmr: process.env.NODE_ENV === "development",
+                  hmr: isDev
                 },
               },
           "css-loader",
@@ -117,13 +116,6 @@ module.exports = {
     extensions: [".js", ".scss", ".css", ".json"],
   },
   plugins: [
-    //new BundleAnalyzerPlugin(),
-    // 告诉 Webpack 使用动态链接库
-    // 引用对应的动态链接库的manifest.json文件
-    new webpack.DllReferencePlugin({
-      context: path.join(__dirname),
-      manifest: require("./dist/dll/manifest.json"),
-    }),
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
@@ -134,20 +126,15 @@ module.exports = {
       hash: false,
       //favicon: "./ic-app.png",
       //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
-      chunks: ["commons", "index"],
+      chunks: ["manifest", "vendor", "commons", "index"],
     }),
     //动态插入CDN资源
     new HtmlWebpackExternalsPlugin({
       externals: [
         {
-          module: "wx",
-          entry: "http://res2.wx.qq.com/open/js/jweixin-1.6.0.js",
-          global: "wx",
-        },
-        {
-          module: "linkedme",
-          entry: "https://static.lkme.cc/linkedme.min.js",
-          global: "linkedme",
+          module: "logger",
+          entry: `http://${isBeta}.whddd666.com/bibi/common/js/log.js`,
+          global: "logger",
         },
         {
           module: "vConsole",
@@ -156,17 +143,6 @@ module.exports = {
         },
       ],
     }),
-    // new AddAssetHtmlPlugin({
-    //   filepath: path.resolve(__dirname, "./dist/dll/main.dll.js"),
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: __dirname + `/src/index.html`,
-    //   filename: "help.html",
-    //   minify: false,
-    //   hash: false,
-    //   favicon: "./ic-app.png",
-    //   chunks: ["commons", "help"]
-    // }),
     new MiniCssExtractPlugin({
       filename: "css/[name].[contenthash].css",
     }),
@@ -181,22 +157,27 @@ module.exports = {
   },
   //抽取第三方模块
   optimization: {
+    runtimeChunk: {
+      name: "manifest",
+    },
     splitChunks: {
+      minChunks: 1,
+      name: true,
+      minSize: 30000, 
       cacheGroups: {
-        // vendor: {
-        //   name: "vendor",
-        //   test: /[\\/]node_modules[\\/]/,
-        //   chunks: "all",
-        //   priority: 10, // 优先级
-        // },
-        //抽取公共模块
-        commons: {
-          name: "commons",
+        vendor: {
+          name: "vendor",
           test: /[\\/]node_modules[\\/]/,
-          chunks: "all",
-          minSize: 0,
-          //minChunks: 2, //至少引用2次，才打包出commons文件
+          chunks: "initial",
+          priority: 10, // 优先级
         },
+        //抽取公共模块
+        // commons: {
+        //   name: "commons",
+        //   chunks: "all",
+        //   minChunks: 1, //至少引用2次，才打包出commons文件
+        //   //priority: 20, // 优先级
+        // },
       },
     },
   },

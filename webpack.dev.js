@@ -1,4 +1,3 @@
-const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const common = require("./webpack.common.js");
@@ -13,12 +12,6 @@ module.exports = merge(common, {
     port: 1993, //端口
     historyApiFallback: true,
     compress: true, //启用gzip 压缩
-    // proxy: {
-    //   "/api": {
-    //     target: "http://localhost:8033",
-    //     pathRewrite: { "^/api": "" }
-    //   }
-    // }
     proxy: {
       "/api": {
         target: "http://beta.whddd666.com",

@@ -212,7 +212,7 @@
             </div>
             <div class="mod mod-skin mb-20">
               <div class="mod-box">
-                <div class="">
+                <div class="min-h250">
                   <van-tabs
                     v-model="tabIndex"
                     line-width="46%"
@@ -285,7 +285,7 @@
             </div>
             <div class="mod mod-skin mb-20">
               <div class="mod-box">
-                <div class="">
+                <div class="min-h250">
                   <van-tabs
                     v-model="tabIndexs"
                     line-width="46%"
@@ -305,7 +305,7 @@
                         <user
                           :uid="user.uid"
                           :data="list[2].items"
-                          :textType="2"
+                          :text-type="2"
                           @on-click="onUserClick"
                         />
                       </van-list>
@@ -322,7 +322,7 @@
                         <user
                           :uid="user.uid"
                           :data="list[3].items"
-                          :textType="2"
+                          :text-type="2"
                           @on-click="onUserClick"
                         />
                       </van-list>
@@ -360,7 +360,7 @@
             </div>
             <div class="mod mod-skin mb-20">
               <div class="mod-box">
-                <div class="">
+                <div class="min-h250">
                   <div class="act-endTime flex fs-16" v-if="actStatus">
                     <!-- 1活动运行 2活动结束 -->
                     <div class="flex" style="color: #cf3650;">
@@ -423,7 +423,7 @@
             </div>
             <div class="mod mod-skin mb-20">
               <div class="mod-box">
-                <div class="">
+                <div class="min-h250">
                   <div class="act-endTime flex fs-16" v-if="actStatus">
                     <!-- 1活动运行 2活动结束 -->
                     <div class="flex" style="color: #cf3650;">
@@ -454,7 +454,7 @@
                     <user
                       :uid="user.uid"
                       :data="list[5].items"
-                      :textType="2"
+                      :text-type="2"
                       @on-click="onUserClick"
                     />
                   </van-list>
@@ -524,19 +524,6 @@
                 0
               </template>
             </span>
-            <!-- <span class="amount" v-if="actObj.actStatus == 2">
-              <template v-if="!actStatus">
-                {{ user.value | formatTotal }}
-              </template>
-            </span>
-            <span class="amount" v-if="actObj.actStatus == 1">
-              <template v-if="actStatus">
-                {{ user.value | formatTotal }}
-              </template>
-              <template v-else>
-                0
-              </template>
-            </span> -->
           </div>
         </div>
       </template>
@@ -545,11 +532,12 @@
 </template>
 <script>
 import Vue from "vue";
-import { List, Tab, Tabs, CountDown } from "vant";
+import { List, Tab, Tabs, CountDown, Toast } from "vant";
 Vue.use(List)
   .use(Tab)
   .use(Tabs)
-  .use(CountDown);
+  .use(CountDown)
+  .use(Toast);
 
 import service from "@/api";
 import { getQueryString, serializeData, dateFormat } from "@/utils";
@@ -561,7 +549,7 @@ import mixins from "@/mixins/page";
 import user from "./components/User";
 
 export default {
-  name: "51day",
+  name: "mayDay",
   mixins: [mixins],
   components: {
     user,
@@ -570,9 +558,9 @@ export default {
     return {
       active: 0,
       tabIndex: 0,
-      tabIndesx: 1,
+      tabIndexs: 1,
       time: "", // 倒计时
-      uid: getUid() || "90293701", // 获取uid
+      uid: getUid() || "90293691", // 获取uid
       user: {}, // 用户信息
       actObj: {}, // 活动对象
       tipText: "",
@@ -693,7 +681,7 @@ export default {
       }
     },
     tabsChange(index, title) {
-      window.logger.post([
+      window.logger.track([
         {
           __topic__: "batter-log",
           path: location.href,
@@ -744,8 +732,18 @@ export default {
     },
     // 打开房间
     onUserClick(userInRoomVo) {
-      let { uid } = userInRoomVo;
-      openRoom(uid);
+      let { isFollowInRoom, userInRoom } = userInRoomVo;
+      // 是否允许别人跟随进入房间(1-允许,0-不允许)
+      if (isFollowInRoom === 1) {
+        // 在房间内
+        if (Object.keys(userInRoom).length) {
+          openRoom(userInRoom.uid);
+        } else {
+          this.$toast("该用户不在房间");
+        }
+      } else {
+        this.$toast("该用户暂时无法跟随");
+      }
     },
     loadRankData(indexOf) {
       this.list[indexOf].page = 1;
@@ -787,12 +785,6 @@ export default {
           if (result.length) {
             this.list[index].items = result;
           } else {
-            //console.log("内容为空了10110");
-            //console.log(index);
-            //console.log("内容为空了");
-            //this.list[index].items = [];
-            //this.list[index].page = 1;
-            //this.tipText = "活动已经开启啦";
           }
         }
       });

@@ -34,10 +34,11 @@
       </div>
       <div
         class="user-ft flex"
-        v-show="item.userInRoomVo.uid && item.uid != uid"
+        v-show="item.userInRoomVo.userInRoom && item.uid != uid"
         @click="handleClick(item.userInRoomVo)"
       >
         <div class="go text-center">
+          <img src="../images/ic-cat.png" alt="" width="13" height="13">
           去找TA
         </div>
       </div>
@@ -101,7 +102,7 @@ export default {
   }
 
   &-ft {
-    align-items: center;
+    /* align-items: center;
     justify-content: center;
     width: px2rem(145);
     height: px2rem(55);
@@ -110,13 +111,13 @@ export default {
       0deg,
       rgba(255, 98, 125, 1),
       rgba(238, 88, 116, 1)
-    );
+    ); */
     .go {
       color: #fff;
-      width: px2rem(132);
-      padding: 4px 0;
+      width: auto;
+      padding: 6px 5px;
       border: px2rem(2) solid #fff;
-      border-radius: px2rem(22);
+      border-radius: px2rem(26);
       background: linear-gradient(
         0deg,
         rgba(255, 98, 125, 1),
