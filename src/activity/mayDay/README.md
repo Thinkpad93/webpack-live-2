@@ -10,9 +10,6 @@ var day = utc / (24 * 60 * 60 * 1000);
 var h = utc / (60 * 60 * 1000);
 var m = utc / (60 * 1000);
 
-//https://blog.csdn.net/qq_29132907/article/details/83787402
-//http://www.imooc.com/article/256463
-//https://www.cnblogs.com/laosunlaiye/p/9395327.html
 ```
 ##### 活动没开始
 actStatus = 1;
@@ -32,5 +29,6 @@ actStatus = 2;
 2.提示活动已结束
 3.除了日榜，个人总榜单数据还是要展示出来
 
-> 用户上榜后，则不展示去Ta房间
-> 活动结束后，个人榜单数据则不更新
+用户上榜后，则不展示去Ta房间
+活动结束后，个人榜单数据则不更新
+如果用户开启不允许跟随进入房间（isFollowInRoom === 1），则提示该用户暂时无法跟随

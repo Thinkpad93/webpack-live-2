@@ -102,16 +102,6 @@ export default {
   }
 
   &-ft {
-    /* align-items: center;
-    justify-content: center;
-    width: px2rem(145);
-    height: px2rem(55);
-    border-radius: px2rem(28);
-    background: linear-gradient(
-      0deg,
-      rgba(255, 98, 125, 1),
-      rgba(238, 88, 116, 1)
-    ); */
     .go {
       color: #fff;
       width: auto;

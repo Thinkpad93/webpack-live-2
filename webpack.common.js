@@ -143,9 +143,6 @@ module.exports = {
         },
       ],
     }),
-    new MiniCssExtractPlugin({
-      filename: "css/[name].[contenthash].css",
-    }),
   ],
   //配置模块如何解析
   resolve: {
