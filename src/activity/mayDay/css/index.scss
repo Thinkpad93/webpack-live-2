@@ -290,51 +290,21 @@ body {
   position: relative;
 }
 
-.no1 {
-  .figure {
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 10;
-      width: 100%;
-      height: 100%;
-      background-image: url(./images/ic-avatar-1.png);
-      background-repeat: no-repeat;
-      background-size: 100%;
-    }
-  }
-}
-.no2 {
-  .figure {
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 10;
-      width: 100%;
-      height: 100%;
-      background-image: url(./images/ic-avatar-3.png);
-      background-repeat: no-repeat;
-      background-size: 100%;
-    }
-  }
-}
-.no3 {
-  .figure {
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 10;
-      width: 100%;
-      height: 100%;
-      background-image: url(./images/ic-avatar-3.png);
-      background-repeat: no-repeat;
-      background-size: 100%;
+@for $i from 1 to 4 {
+  .no#{$i} {
+    .figure {
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        background-image: url(./images/ic-avatar-#{$i}.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
     }
   }
 }

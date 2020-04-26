@@ -152,6 +152,10 @@ module.exports = {
       assets: path.resolve(__dirname, "src/assets"),
     },
   },
+  // externals: {
+  //   'vue': 'Vue',
+  //   'axios': 'axios'
+  // },
   //抽取第三方模块
   optimization: {
     runtimeChunk: {

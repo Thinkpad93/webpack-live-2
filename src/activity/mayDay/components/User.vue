@@ -1,49 +1,56 @@
 <template>
-  <ul class="user-list">
-    <li
-      class="user flex"
-      :class="{
-        no1: item.rankNo == 1,
-        no2: item.rankNo == 2,
-        no3: item.rankNo == 3,
-      }"
-      v-for="item in data"
-    >
-      <div class="user-hd">
-        <template v-if="item.rankNo == 1">
-          <img src="../images/ic-1st.png" alt="" width="16.5" height="21" />
-        </template>
-        <template v-else-if="item.rankNo == 2">
-          <img src="../images/ic-2st.png" alt="" width="16.5" height="21" />
-        </template>
-        <template v-else-if="item.rankNo == 3">
-          <img src="../images/ic-3st.png" alt="" width="16.5" height="21" />
-        </template>
-        <template v-else>
-          {{ item.rankNo }}
-        </template>
-      </div>
-      <div class="user-bd flex flex-1">
-        <div class="figure flex">
-          <img class="avatar" :src="item.avatar" alt="" />
-        </div>
-        <div class="user-info">
-          <h5 class="text-ellipsis">{{ item.nick }}</h5>
-          <span>{{ textStyleIf }}{{ item.value | formatTotal }}</span>
-        </div>
-      </div>
-      <div
-        class="user-ft flex"
-        v-show="item.userInRoomVo.userInRoom && item.uid != uid"
-        @click="handleClick(item.userInRoomVo)"
+  <div class="">
+    <ul class="user-list">
+      <li
+        class="user flex"
+        :class="{
+          no1: item.rankNo == 1,
+          no2: item.rankNo == 2,
+          no3: item.rankNo == 3,
+        }"
+        v-for="item in data"
       >
-        <div class="go text-center">
-          <img src="../images/ic-cat.png" alt="" width="13" height="13">
-          去找TA
+        <div class="user-hd">
+          <template v-if="item.rankNo == 1">
+            <img src="../images/ic-1st.png" alt="" width="16.5" height="21" />
+          </template>
+          <template v-else-if="item.rankNo == 2">
+            <img src="../images/ic-2st.png" alt="" width="16.5" height="21" />
+          </template>
+          <template v-else-if="item.rankNo == 3">
+            <img src="../images/ic-3st.png" alt="" width="16.5" height="21" />
+          </template>
+          <template v-else>
+            {{ item.rankNo }}
+          </template>
         </div>
-      </div>
-    </li>
-  </ul>
+        <div class="user-bd flex flex-1">
+          <div class="figure flex">
+            <img class="avatar" :src="item.avatar" alt="" />
+          </div>
+          <div class="user-info">
+            <h5 class="text-ellipsis">{{ item.nick }}</h5>
+            <span>{{ textStyleIf }}{{ item.value | formatTotal }}</span>
+          </div>
+        </div>
+        <div
+          class="user-ft flex"
+          v-show="item.userInRoomVo.userInRoom && item.uid != uid"
+          @click="handleClick(item.userInRoomVo)"
+        >
+          <div class="go text-center">
+            <img src="../images/ic-cat.png" alt="" width="13" height="13" />
+            去找TA
+          </div>
+        </div>
+      </li>
+    </ul>
+    <!--  -->
+    <div class="default text-center" v-if="!data.length">
+      <img src="../images/default.png" alt="" width="118" height="118" />
+      <p>{{ tipText }}</p>
+    </div>
+  </div>
 </template>
 <script>
 import mixins from "@/mixins/page";
@@ -63,6 +70,7 @@ export default {
       type: Number,
       default: 1,
     },
+    tipText: String
   },
   computed: {
     textStyleIf() {

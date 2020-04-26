@@ -98,7 +98,7 @@
                 </div>
                 <p class="flex j-c-c a-i-c">
                   赠送礼物<img
-                    src="./images/1440.png"
+                    src="./images/1442.png"
                     alt=""
                     width="20"
                     height="20"
@@ -106,7 +106,7 @@
                 </p>
                 <p class="flex j-c-c a-i-c">
                   赠送礼物<img
-                    src="./images/1441.png"
+                    src="./images/1440.png"
                     alt=""
                     width="20"
                     height="20"
@@ -114,7 +114,7 @@
                 </p>
                 <p class="flex j-c-c a-i-c">
                   赠送礼物<img
-                    src="./images/1442.png"
+                    src="./images/1441.png"
                     alt=""
                     width="20"
                     height="20"
@@ -232,6 +232,7 @@
                         <user
                           :uid="user.uid"
                           :data="list[0].items"
+                          :tip-text="tipText"
                           @on-click="onUserClick"
                         />
                       </van-list>
@@ -248,13 +249,14 @@
                         <user
                           :uid="user.uid"
                           :data="list[1].items"
+                          :tip-text="tipText"
                           @on-click="onUserClick"
                         />
                       </van-list>
                     </van-tab>
                   </van-tabs>
                   <!-- 没有数据 -->
-                  <div
+                  <!-- <div
                     class="default text-center"
                     v-if="!list[0].items.length || !list[1].items.length"
                   >
@@ -265,7 +267,7 @@
                       height="118"
                     />
                     <p>{{ tipText }}</p>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -306,6 +308,7 @@
                           :uid="user.uid"
                           :data="list[2].items"
                           :text-type="2"
+                          :tip-text="tipText"
                           @on-click="onUserClick"
                         />
                       </van-list>
@@ -323,13 +326,14 @@
                           :uid="user.uid"
                           :data="list[3].items"
                           :text-type="2"
+                          :tip-text="tipText"
                           @on-click="onUserClick"
                         />
                       </van-list>
                     </van-tab>
                   </van-tabs>
                   <!-- 没有数据 -->
-                  <div
+                  <!-- <div
                     class="default text-center"
                     v-if="!list[2].items.length || !list[3].items.length"
                   >
@@ -340,7 +344,7 @@
                       height="118"
                     />
                     <p>{{ tipText }}</p>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -391,11 +395,12 @@
                     <user
                       :uid="user.uid"
                       :data="list[4].items"
+                      :tip-text="tipText"
                       @on-click="onUserClick"
                     />
                   </van-list>
                   <!-- 没有数据 -->
-                  <div class="default text-center" v-if="!list[5].items.length">
+                  <!-- <div class="default text-center" v-if="!list[5].items.length">
                     <img
                       src="./images/default.png"
                       alt=""
@@ -403,7 +408,7 @@
                       height="118"
                     />
                     <p>{{ tipText }}</p>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -455,11 +460,12 @@
                       :uid="user.uid"
                       :data="list[5].items"
                       :text-type="2"
+                      :tip-text="tipText"
                       @on-click="onUserClick"
                     />
                   </van-list>
                   <!-- 没有数据 -->
-                  <div class="default text-center" v-if="!list[5].items.length">
+                  <!-- <div class="default text-center" v-if="!list[5].items.length">
                     <img
                       src="./images/default.png"
                       alt=""
@@ -467,7 +473,7 @@
                       height="118"
                     />
                     <p>{{ tipText }}</p>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -681,13 +687,11 @@ export default {
       }
     },
     tabsChange(index, title) {
-      window.logger.track([
-        {
-          __topic__: "batter-log",
-          path: location.href,
-          remark: title,
-        },
-      ]);
+      window.logger.track({
+        __topic__: "batter-log",
+        path: location.href,
+        remark: title,
+      });
       let { actStatus } = this.actObj;
       title.includes("浪漫") ? (this.giftType = 1) : (this.giftType = 2);
       if (actStatus === 1) {
@@ -783,8 +787,10 @@ export default {
         if (res.code === 200) {
           let result = res.data;
           if (result.length) {
+            console.log("有长度");
             this.list[index].items = result;
           } else {
+            console.log("无长度");
           }
         }
       });
