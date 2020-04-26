@@ -255,19 +255,6 @@
                       </van-list>
                     </van-tab>
                   </van-tabs>
-                  <!-- 没有数据 -->
-                  <!-- <div
-                    class="default text-center"
-                    v-if="!list[0].items.length || !list[1].items.length"
-                  >
-                    <img
-                      src="./images/default.png"
-                      alt=""
-                      width="118"
-                      height="118"
-                    />
-                    <p>{{ tipText }}</p>
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -332,19 +319,6 @@
                       </van-list>
                     </van-tab>
                   </van-tabs>
-                  <!-- 没有数据 -->
-                  <!-- <div
-                    class="default text-center"
-                    v-if="!list[2].items.length || !list[3].items.length"
-                  >
-                    <img
-                      src="./images/default.png"
-                      alt=""
-                      width="118"
-                      height="118"
-                    />
-                    <p>{{ tipText }}</p>
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -399,16 +373,6 @@
                       @on-click="onUserClick"
                     />
                   </van-list>
-                  <!-- 没有数据 -->
-                  <!-- <div class="default text-center" v-if="!list[5].items.length">
-                    <img
-                      src="./images/default.png"
-                      alt=""
-                      width="118"
-                      height="118"
-                    />
-                    <p>{{ tipText }}</p>
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -464,16 +428,6 @@
                       @on-click="onUserClick"
                     />
                   </van-list>
-                  <!-- 没有数据 -->
-                  <!-- <div class="default text-center" v-if="!list[5].items.length">
-                    <img
-                      src="./images/default.png"
-                      alt=""
-                      width="118"
-                      height="118"
-                    />
-                    <p>{{ tipText }}</p>
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -787,10 +741,8 @@ export default {
         if (res.code === 200) {
           let result = res.data;
           if (result.length) {
-            console.log("有长度");
             this.list[index].items = result;
           } else {
-            console.log("无长度");
           }
         }
       });
