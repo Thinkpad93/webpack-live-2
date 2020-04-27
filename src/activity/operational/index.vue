@@ -8,18 +8,26 @@
   </div>
 </template>
 <script>
+  import { getQueryString, serializeData } from "@/utils";
 import service from "@/api";
 export default {
   data() {
     return {
       imgSrc: "",
+      query: {
+        id: "",
+      },
     };
   },
   mounted() {
     this.init();
   },
   methods: {
-    init() {},
+    init() {
+      service.operationGet(serializeData(this.query)).then(res => {
+        
+      });
+    },
   },
 };
 </script>

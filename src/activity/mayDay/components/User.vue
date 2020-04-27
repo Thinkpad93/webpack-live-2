@@ -53,7 +53,7 @@
   </div>
 </template>
 <script>
-import mixins from "@/mixins/page";
+import mixins from '@/mixins/page';
 export default {
   mixins: [mixins],
   props: {
@@ -74,12 +74,12 @@ export default {
   },
   computed: {
     textStyleIf() {
-      return this.textType == 1 ? "浪漫值" : "温馨值";
+      return this.textType == 1 ? '浪漫值' : '温馨值';
     },
   },
   methods: {
     handleClick(userInRoomVo) {
-      this.$emit("on-click", userInRoomVo);
+      this.$emit('on-click', userInRoomVo);
     },
   },
 };

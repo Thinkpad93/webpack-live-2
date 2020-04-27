@@ -255,6 +255,12 @@
                       </van-list>
                     </van-tab>
                   </van-tabs>
+                  <!-- empty -->
+                  <empty
+                    :act-obj="actObj"
+                    :tip-text="tipText"
+                    :status="actStatus"
+                  />
                 </div>
               </div>
             </div>
@@ -319,6 +325,12 @@
                       </van-list>
                     </van-tab>
                   </van-tabs>
+                  <!-- empty -->
+                  <empty
+                    :act-obj="actObj"
+                    :tip-text="tipText"
+                    :status="actStatus"
+                  />
                 </div>
               </div>
             </div>
@@ -373,6 +385,12 @@
                       @on-click="onUserClick"
                     />
                   </van-list>
+                  <!-- empty -->
+                  <!-- <empty
+                    :act-obj="actObj"
+                    :tip-text="tipText"
+                    :status="actStatus"
+                  /> -->
                 </div>
               </div>
             </div>
@@ -428,6 +446,12 @@
                       @on-click="onUserClick"
                     />
                   </van-list>
+                  <!-- empty -->
+                  <!-- <empty
+                    :act-obj="actObj"
+                    :tip-text="tipText"
+                    :status="actStatus"
+                  /> -->
                 </div>
               </div>
             </div>
@@ -465,7 +489,7 @@
                 v-else
               />
               <span style="color: #999;margin-left: 4px"
-                >{{ giftType == 1 ? "浪漫" : "温馨" }}值</span
+                >{{ giftType == 1 ? '浪漫' : '温馨' }}值</span
               >
             </div>
             <span class="amount" v-if="actObj.actStatus == 2">
@@ -491,39 +515,41 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { List, Tab, Tabs, CountDown, Toast } from "vant";
+import Vue from 'vue';
+import { List, Tab, Tabs, CountDown, Toast } from 'vant';
 Vue.use(List)
   .use(Tab)
   .use(Tabs)
   .use(CountDown)
   .use(Toast);
 
-import service from "@/api";
-import { getQueryString, serializeData, dateFormat } from "@/utils";
-import { getUid, openRoom } from "@/utils/appNativeFun";
-import cookies from "@/utils/cookies";
+import service from '@/api';
+import { getQueryString, serializeData, dateFormat } from '@/utils';
+import { getUid, openRoom } from '@/utils/appNativeFun';
+import cookies from '@/utils/cookies';
 
-import mixins from "@/mixins/page";
+import mixins from '@/mixins/page';
 
-import user from "./components/User";
+import user from './components/User';
+import empty from './components/Empty';
 
 export default {
-  name: "mayDay",
+  name: 'mayDay',
   mixins: [mixins],
   components: {
     user,
+    empty,
   },
   data() {
     return {
       active: 0,
       tabIndex: 0,
       tabIndexs: 1,
-      time: "", // 倒计时
-      uid: getUid() || "90293691", // 获取uid
+      time: '', // 倒计时
+      uid: getUid() || '90293691', // 获取uid
       user: {}, // 用户信息
       actObj: {}, // 活动对象
-      tipText: "",
+      tipText: '',
       giftType: 1, // 收礼类型
       actStatus: false, // 活动状态
       querySearch: getQueryString(),
@@ -533,9 +559,9 @@ export default {
           actId: getQueryString().actId,
           giftType: 1,
           rankType: 1,
-          date: dateFormat(new Date(), "yyyy-MM-dd"), //查询时间
+          date: dateFormat(new Date(), 'yyyy-MM-dd'), //查询时间
           dimension: 1,
-          giftId: "",
+          giftId: '',
           page: 1,
           pageSize: 10,
           loading: false,
@@ -548,10 +574,10 @@ export default {
           rankType: 1,
           date: dateFormat(
             new Date().getTime() - 24 * 60 * 60 * 1000,
-            "yyyy-MM-dd"
+            'yyyy-MM-dd'
           ), //查询时间
           dimension: 1,
-          giftId: "",
+          giftId: '',
           page: 1,
           pageSize: 10,
           loading: false,
@@ -562,9 +588,9 @@ export default {
           actId: getQueryString().actId,
           giftType: 2,
           rankType: 1,
-          date: dateFormat(new Date(), "yyyy-MM-dd"), //查询时间
+          date: dateFormat(new Date(), 'yyyy-MM-dd'), //查询时间
           dimension: 1,
-          giftId: "",
+          giftId: '',
           page: 1,
           pageSize: 10,
           loading: false,
@@ -577,10 +603,10 @@ export default {
           rankType: 1,
           date: dateFormat(
             new Date().getTime() - 24 * 60 * 60 * 1000,
-            "yyyy-MM-dd"
+            'yyyy-MM-dd'
           ), //查询时间
           dimension: 1,
-          giftId: "",
+          giftId: '',
           page: 1,
           pageSize: 10,
           loading: false,
@@ -591,9 +617,9 @@ export default {
           actId: getQueryString().actId,
           giftType: 1,
           rankType: 1,
-          date: dateFormat(new Date(), "yyyy-MM-dd"), //查询时间
+          date: dateFormat(new Date(), 'yyyy-MM-dd'), //查询时间
           dimension: 4,
-          giftId: "",
+          giftId: '',
           page: 1,
           pageSize: 10,
           loading: false,
@@ -604,9 +630,9 @@ export default {
           actId: getQueryString().actId,
           giftType: 2,
           rankType: 1,
-          date: dateFormat(new Date(), "yyyy-MM-dd"), //查询时间
+          date: dateFormat(new Date(), 'yyyy-MM-dd'), //查询时间
           dimension: 4,
-          giftId: "",
+          giftId: '',
           page: 1,
           pageSize: 10,
           loading: false,
@@ -641,13 +667,8 @@ export default {
       }
     },
     tabsChange(index, title) {
-      window.logger.track({
-        __topic__: "batter-log",
-        path: location.href,
-        remark: title,
-      });
       let { actStatus } = this.actObj;
-      title.includes("浪漫") ? (this.giftType = 1) : (this.giftType = 2);
+      title.includes('浪漫') ? (this.giftType = 1) : (this.giftType = 2);
       if (actStatus === 1) {
         if (this.actStatus) {
           switch (index) {
@@ -673,6 +694,12 @@ export default {
           this.getUserRank(5);
         }
       }
+      // 
+      window.logger.track({
+        __topic__: 'batter-log',
+        path: location.href,
+        remark: title,
+      });
     },
     tabsLmChange(index, title) {
       let { actStatus } = this.actObj;
@@ -697,10 +724,10 @@ export default {
         if (Object.keys(userInRoom).length) {
           openRoom(userInRoom.uid);
         } else {
-          this.$toast("该用户不在房间");
+          this.$toast('该用户不在房间');
         }
       } else {
-        this.$toast("该用户暂时无法跟随");
+        this.$toast('该用户暂时无法跟随');
       }
     },
     loadRankData(indexOf) {
@@ -768,24 +795,20 @@ export default {
         this.actObj = Object.assign({}, data);
         let { actStatus } = data;
         // 设置活动标题
-        document.title = data.actTitle || "";
+        document.title = data.actTitle || '';
         // 活动运行
         if (actStatus === 1) {
           // 当前时间
           let currentTime = +new Date();
           // 开始时间
           let startTime = new Date(parseInt(data.actStartDate));
-          // 结束时间
-          //let endTime = new Date(parseInt(data.actEndDate));
           // 判断活动是否开始
           if (currentTime < startTime) {
             this.actStatus = false;
-            this.tipText = "活动暂未开启，敬请期待";
+            this.tipText = '活动暂未开启，敬请期待';
           } else {
-            this.tipText = "活动已经开启啦";
+            this.tipText = '活动已经开启啦';
             this.actStatus = true;
-            //let number = endTime - currentTime;
-            //this.time = number; // 设置倒计时
             // 请求数据
             for (let i = 0; i <= 5; i++) {
               this.getData(i);
@@ -793,7 +816,7 @@ export default {
           }
         } else if (actStatus === 2) {
           this.actStatus = false;
-          this.tipText = "活动已结束";
+          this.tipText = '活动已结束';
           // 只展示总榜数据
           this.getData(4);
           this.getData(5);
@@ -804,5 +827,5 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "./css/index";
+@import './css/index';
 </style>
