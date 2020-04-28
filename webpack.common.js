@@ -17,7 +17,7 @@ const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 const $obj = require('./config');
 
 const isDev = process.env.NODE_ENV === 'development' ? true : false;
-const isBeta = isDev ? 'beta' : 'beta';
+const isBeta = isDev ? 'beta' : 'www';
 
 module.exports = {
   entry: {

@@ -14,6 +14,17 @@ body {
   background-color: #efefff;
 }
 
+@mixin _position($width, $height, $top, $right, $bottom, $left, $zIndex) {
+  position: absolute;
+  width: $width;
+  height: $height;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  z-index: $zIndex;
+}
+
 .page {
   margin-bottom: 60px;
 }
@@ -48,12 +59,7 @@ body {
       background-color: #fef9f9;
       border: 2px solid #f4e3ea;
       > img {
-        position: absolute;
-        right: -3%;
-        bottom: -8%;
-        z-index: 10;
-        width: 25px;
-        height: 30px;
+        @include _position(25px, 30px, null, -3%, -8%, null, 10);
       }
     }
     p {
@@ -69,10 +75,7 @@ body {
 }
 
 .page-ft {
-  left: 0;
-  bottom: 0;
-  z-index: 9527;
-  width: 100%;
+  @include _position(100%, null, null, null, 0, 0, 9527);
   text-align: right;
 }
 
@@ -96,24 +99,14 @@ body {
         border-radius: px2rem(35);
         border: 1px solid rgba(216, 112, 14, 1);
         &::before {
-          content: "";
-          position: absolute;
-          left: -5px;
-          top: 50%;
-          z-index: 10;
-          width: 10px;
-          height: 10px;
+          content: '';
+          @include _position(10px, 10px, 50%, null, null, -5px, 10);
           background-color: #a34400;
           transform: translateY(-50%) rotate(45deg);
         }
         &::after {
-          content: "";
-          position: absolute;
-          right: -5px;
-          top: 50%;
-          z-index: 10;
-          width: 10px;
-          height: 10px;
+          content: '';
+          @include _position(10px, 10px, 50%, -5px, null, null, 10);
           background-color: #a34400;
           transform: translateY(-50%) rotate(45deg);
         }
@@ -155,13 +148,8 @@ body {
   overflow: hidden;
   position: relative;
   &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
+    content: '';
+    @include _position(100%, 100%, 0, null, null, 0, -1);
     background-color: rgba(255, 255, 255, 0.3);
     filter: blur(0.5px);
   }
@@ -232,10 +220,7 @@ body {
 }
 
 .tag {
-  position: absolute;
-  left: -4%;
-  bottom: -4%;
-  z-index: 10;
+  @include _position(null, null, null, null, -4%, -4%, 10);
   padding: 2px;
   border-radius: 2px;
   color: var(--color-ff);
@@ -251,9 +236,7 @@ body {
   width: px2rem(183);
   padding: 8px 0;
   border-radius: 5px;
-  position: absolute;
-  left: 50%;
-  top: -16px;
+  @include _position(null, null, -16px, null, null, 50%, null);
   transform: translate(-50%, 0);
 }
 
@@ -294,13 +277,8 @@ body {
   .no#{$i} {
     .figure {
       &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 10;
-        width: 100%;
-        height: 100%;
+        content: '';
+        @include _position(100%, 100%, 0, null, null, 0, 10);
         background-image: url(./images/ic-avatar-#{$i}.png);
         background-repeat: no-repeat;
         background-size: 100%;
