@@ -343,7 +343,7 @@
                 <div class="gift-box">
                   <img class="gift" src="./images/ic-lm-hot.png" alt="" />
                   <img class="gift" src="./images/ic-lm-car-hot.png" alt="" />
-                  <p>活动结束后榜单第十名可获得</p>
+                  <p>活动结束后榜单前十名可获得</p>
                   <p><b> 最佳浪漫头饰（30天）、浪漫鹿车（30天）</b></p>
                 </div>
               </div>
@@ -403,7 +403,7 @@
                 <div class="gift-box">
                   <img class="gift" src="./images/ic-wx-hot.png" alt="" />
                   <img class="gift" src="./images/ic-wx-car-hot.png" alt="" />
-                  <p>活动结束后榜单第十名可获得</p>
+                  <p>活动结束后榜单前十名可获得</p>
                   <p><b>最佳温馨头饰（30天）、温馨马车（30天）</b></p>
                 </div>
               </div>
@@ -544,7 +544,7 @@ export default {
     return {
       active: 0,
       tabIndex: 0,
-      tabIndexs: 1,
+      tabIndexs: 0,
       time: '', // 倒计时
       uid: getUid() || '90293691', // 获取uid
       user: {}, // 用户信息
