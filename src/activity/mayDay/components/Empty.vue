@@ -12,7 +12,12 @@
 export default {
   name: 'empty',
   props: {
-    actObj: Object,
+    actObj: {
+      type: Object,
+      default: function() {
+        return {}
+      }
+    },
     tipText: String,
     status: Boolean,
   },
