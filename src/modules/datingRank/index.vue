@@ -1,12 +1,24 @@
 <template>
   <div class="page">
+    <div class="page-hd">
+      <img src="./images/7c_hd.jpg" alt="">
+    </div>
     <div class="page-bd">
       <div class="">
-        <van-list :offset="10" :immediate-check="false">
+        <van-list :offset="50" :immediate-check="false">
           <ul class="list">
             <li class="item" v-for="item in list">
               <div class="hd"></div>
-              <div class="bd"></div>
+              <div class="bd">
+                <div class="">
+                  <img :src="item.loverUser.avatar" alt="" class="avatar">
+                  <p>{{ item.loverUser.nick }}</p>
+                </div>
+                <div class="">
+                  <img :src="item.user.avatar" alt="" class="avatar">
+                  <p>{{ item.user.nick }}</p>
+                </div>
+              </div>
               <div class="ft"></div>
             </li>
           </ul>
@@ -67,5 +79,10 @@ body {
     margin-bottom: 10px;
     background-color: #fff;
   }
+}
+.avatar {
+  width: px2rem(100);
+  height: px2rem(100);
+  border-radius: 50%;
 }
 </style>
