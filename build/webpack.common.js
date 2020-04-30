@@ -105,7 +105,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DllReferencePlugin({
-      context: path.join(__dirname),
+      //context: path.join(__dirname),
       manifest: require('../dist/dll/manifest.json')
       //manifest: require(PATHS.dist + '/dll/manifest.json')
     }),
@@ -117,7 +117,7 @@ module.exports = {
       filename: 'index.html',
       minify: false,
       hash: false,
-      chunks: ['index'],
+      chunks: ['commons','index'],
     }),
     //动态插入CDN资源
     new HtmlWebpackExternalsPlugin({
@@ -136,22 +136,20 @@ module.exports = {
     }),
   ],
   // 抽取第三方模块
-  // optimization: {
-  //   // runtimeChunk: {
-  //   //   name: 'manifest',
-  //   // },
-  //   splitChunks: {
-  //     minChunks: 1,
-  //     name: true,
-  //     minSize: 30000,
-  //     cacheGroups: {
-  //       vendor: {
-  //         name: 'vendor',
-  //         test: /[\\/]node_modules[\\/]/,
-  //         chunks: 'initial',
-  //         priority: 10, // 优先级
-  //       },
-  //     },
-  //   },
-  // },
+  optimization: {
+    splitChunks: {
+      // minChunks: 1,
+      // name: true,
+      // minSize: 30000,
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          //chunks: 'initial',
+          //priority: 10, // 优先级
+        },
+      },
+    },
+  },
 };
