@@ -107,7 +107,6 @@ module.exports = {
     new webpack.DllReferencePlugin({
       //context: path.join(__dirname),
       manifest: require('../dist/dll/manifest.json')
-      //manifest: require(PATHS.dist + '/dll/manifest.json')
     }),
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
