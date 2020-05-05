@@ -184,7 +184,7 @@
             </div>
             <div class="mod">
               <div class="copyright text-center fs-14">
-                <img
+                <!-- <img
                   src="./images/qrcode.jpg"
                   alt=""
                   width="150"
@@ -192,8 +192,10 @@
                 />
                 <p>
                   bibi约玩微信公众号
-                </p>
-                <p>本活动最终解释权归bibi约玩所有</p>
+                </p> -->
+                <p></p>
+                <p>本活动最终解释权归官方所有</p>
+                <p>本活动及提供奖品均与苹果公司无关</p>
               </div>
             </div>
           </div>
@@ -649,8 +651,6 @@ export default {
       this.getActStatus(this.querySearch.actId);
       this.getUserRank(0);
     },
-    //
-    batterLog() {},
     // 标签内容首次渲染时触发
     tabsRendered(index, title) {
       let { actStartDate, actEndDate } = this.actObj;
