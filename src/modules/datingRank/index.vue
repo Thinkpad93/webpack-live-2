@@ -26,7 +26,10 @@
               >
                 <div class="hd">
                   <div class="text-center">
-                    <div class="header">
+                    <div
+                      class="header"
+                      @click="handlePersonPage(item.user.uid)"
+                    >
                       <template v-if="item.user.userHeadwear">
                         <div
                           class="header-wear"
@@ -67,7 +70,19 @@
                 </div>
                 <div class="ft">
                   <div class="text-center">
-                    <div>
+                    <div
+                      class="header"
+                      @click="handlePersonPage(item.loverUser.uid)"
+                    >
+                      <template v-if="item.loverUser.userHeadwear">
+                        <div
+                          class="header-wear"
+                          :style="{
+                            backgroundImage:
+                              'url(' + item.loverUser.userHeadwear.pic + ')',
+                          }"
+                        ></div>
+                      </template>
                       <img :src="item.loverUser.avatar" alt="" class="avatar" />
                     </div>
                     <div class="user-info flex j-c-c a-i-c">
@@ -107,6 +122,8 @@ import { List } from 'vant';
 Vue.use(List);
 
 import service from '@/api';
+import { openPersonPage } from '@/utils/appNativeFun';
+
 export default {
   name: 'datingRank',
   data() {
@@ -139,6 +156,10 @@ export default {
     },
   },
   methods: {
+    handlePersonPage(uid) {
+      console.log(uid);
+      openPersonPage(uid);
+    },
     // 加载更多数据
     onLoad() {
       this.query.pageNum++; // 请求下一页
