@@ -74,7 +74,7 @@ module.exports = {
                 loader: MiniCssExtractPlugin.loader,
                 options: {
                   esModule: true,
-                  publicPath: '../',
+                  publicPath: '',
                   hmr: isDev,
                 },
               },
@@ -105,7 +105,6 @@ module.exports = {
   },
   plugins: [
     new webpack.DllReferencePlugin({
-      //context: path.join(__dirname),
       manifest: require('../dist/dll/manifest.json')
     }),
     // 请确保引入这个插件来施展魔法
@@ -137,10 +136,16 @@ module.exports = {
   // 抽取第三方模块
   optimization: {
     splitChunks: {
-      // minChunks: 1,
-      // name: true,
-      // minSize: 30000,
+      minChunks: 1,
+      name: true,
+      minSize: 30000,
       cacheGroups: {
+        // vendor: {
+        //   name: 'vendor',
+        //   test: /[\\/]node_modules[\\/]/,
+        //   chunks: 'initial',
+        //   priority: 10, // 优先级
+        // },
         commons: {
           name: 'commons',
           test: /[\\/]node_modules[\\/]/,

@@ -76,25 +76,5 @@ export default {
 };
 </script>
 <style lang="scss">
-@function px2rem($px, $rem: 75) {
-  @return $px / $rem + rem;
-}
-body {
-  background-color: #f0f0f0;
-}
-.page-bd {
-  padding: px2rem(30);
-}
-.list {
-  li {
-    min-height: 160px;
-    margin-bottom: 10px;
-    background-color: #fff;
-  }
-}
-.avatar {
-  width: px2rem(100);
-  height: px2rem(100);
-  border-radius: 50%;
-}
+@import './css/index';
 </style>
