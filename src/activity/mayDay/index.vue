@@ -154,7 +154,7 @@
                   </div>
                 </div>
                 <p class="lh-2" style="margin: 30px 0;">
-                  在活动结束后浪漫榜第一和温馨榜第一更能获得玛莎拉蒂座驾
+                  在活动结束后浪漫榜第一和温馨榜第一更能获得榜单特别座驾
                 </p>
                 <div class="mod flex flex-wrap" style="margin: 0 -4px;">
                   <div class="col">
