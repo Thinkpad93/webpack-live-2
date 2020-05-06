@@ -1,0 +1,89 @@
+@function px2rem($px, $rem: 75) {
+  @return $px / $rem + rem;
+}
+
+body {
+  background-color: #ffc7cc;
+}
+.page-bd {
+  padding: px2rem(30);
+}
+.container {
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #ffe1d5;
+}
+.avatar {
+  width: px2rem(100);
+  height: px2rem(100);
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.header {
+  position: relative;
+}
+.header-wear {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 10;
+  width: px2rem(120);
+  height: px2rem(120);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+}
+.love-value {
+  span {
+    display: inline-block;
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+.user-info {
+  padding-top: 4px;
+  img {
+    margin-left: 4px;
+  }
+}
+.list {
+  padding: 20px 12px;
+  background-color: #ffeae2;
+  .box {
+    border-radius: 4px;
+    min-height: 114px;
+    overflow-x: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  li {
+    color: #fff;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    .hd {
+      width: 90px;
+      min-width: 90px;
+      overflow: hidden;
+    }
+    .ft {
+      width: 90px;
+      max-width: 90px;
+      overflow: hidden;
+    }
+  }
+}
+
+.left-fixed {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  z-index: 9527;
+}
+.bottom-fixed {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 9527;
+}
