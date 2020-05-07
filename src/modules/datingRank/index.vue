@@ -128,7 +128,6 @@ export default {
   name: 'datingRank',
   data() {
     return {
-      nums: 1000000,
       query: {
         pageNum: 1,
         pageSize: 10,
@@ -156,14 +155,13 @@ export default {
     },
   },
   methods: {
+    // 打开个人中心
     handlePersonPage(uid) {
-      console.log(uid);
       openPersonPage(uid);
     },
     // 加载更多数据
     onLoad() {
       this.query.pageNum++; // 请求下一页
-      console.log('请求下一页');
       service.datingRank(this.query).then((res) => {
         if (res.code === 200) {
           // 加载状态结束
@@ -184,7 +182,6 @@ export default {
       // 获取真爱榜数据
       service.datingRank(this.query).then((res) => {
         if (res.code === 200) {
-          console.log(res);
           let result = res.data;
           if (result.length) {
             this.list = result;

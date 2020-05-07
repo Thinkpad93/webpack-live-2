@@ -49,19 +49,23 @@ body {
   }
 }
 .list {
+  border-radius: 8px;
   padding: 20px 12px;
   background-color: #ffeae2;
   .box {
     border-radius: 4px;
-    min-height: 114px;
+    min-height: 103px;
     overflow-x: hidden;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
   }
   li {
     color: #fff;
     border-radius: 4px;
     margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
     .hd {
       width: 90px;
       min-width: 90px;
