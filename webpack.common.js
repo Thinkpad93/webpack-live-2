@@ -7,11 +7,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // vue-loader 插件
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
-
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
-
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 
 const $obj = require('./config');
@@ -19,15 +14,20 @@ const $obj = require('./config');
 const isDev = process.env.NODE_ENV === 'development' ? true : false;
 const isBeta = isDev ? 'beta' : 'beta';
 
+const PATHS = {
+  src: path.join(__dirname, './src'),
+  dist: path.join(__dirname, './dist'),
+};
+
 module.exports = {
   entry: {
     // 入口文件
-    index: `./src/${$obj.targets}/${$obj.dirName}/js/index.js`,
+    index: PATHS.src + `/${$obj.targets}/${$obj.dirName}/js/index.js`,
   },
   output: {
-    // 打包多出口文件
+    // 打包出口文件
     filename: isDev ? 'js/[name].[hash].js' : 'js/[name].[chunkhash].js',
-    path: path.resolve(__dirname, `dist/${$obj.targets}/${$obj.dirName}/`),
+    path: PATHS.dist + `/${$obj.targets}/${$obj.dirName}/`,
     publicPath: '',
   },
   module: {
@@ -112,13 +112,12 @@ module.exports = {
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      title: '',
+      title: '真爱榜',
       template: __dirname + `/src/index.html`,
       filename: 'index.html',
       minify: false,
       hash: false,
       //favicon: "./ic-app.png",
-      //只有写chunks才会把自己的js加载进来，不然会把所有js加载进来
       chunks: ['manifest', 'vendor', 'commons', 'index'],
     }),
     //动态插入CDN资源
@@ -128,11 +127,6 @@ module.exports = {
           module: 'logger',
           entry: `http://${isBeta}.whddd666.com/bibi/common/js/log.js`,
           global: 'logger',
-        },
-        {
-          module: 'vConsole',
-          entry: 'https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js',
-          global: 'vConsole',
         },
       ],
     }),

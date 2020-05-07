@@ -9,8 +9,10 @@ body {
   padding: px2rem(30);
 }
 .container {
+  position: relative;
   padding: 12px;
   border-radius: 8px;
+  border-image: url(./images/big-bg.png) 10 10 10 10 repeat;
   border: 2px solid #ffe1d5;
 }
 .avatar {
