@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="page-hd">
+    <div class="page-hd" @click="bus">
       <img src="./images/banner.png" alt="" />
     </div>
     <div class="page-bd">
@@ -120,6 +120,10 @@
         </van-list>
       </div>
     </div>
+    <downLoadBar position="bottom">
+      <p>BiBi约玩</p>
+      <span>约喜欢的人做有趣的事</span>
+    </downLoadBar>
   </div>
 </template>
 <script>
@@ -129,11 +133,17 @@ Vue.use(List);
 
 import service from '@/api';
 import { openPersonPage } from '@/utils/appNativeFun';
+import { EventBus } from '@/eventBus';
+import downLoadBar from '@/components/downloadBar';
 
 export default {
   name: 'datingRank',
+  components: {
+    downLoadBar,
+  },
   data() {
     return {
+      clickCount: 0,
       query: {
         pageNum: 1,
         pageSize: 10,
@@ -147,7 +157,7 @@ export default {
     this.init();
   },
   filters: {
-    formatTotal: function(val) {
+    formatTotal(val) {
       if (val <= 1000000) {
         return val;
       }
@@ -161,9 +171,27 @@ export default {
     },
   },
   methods: {
+    init() {
+      this.getData();
+    },
+    bus() {
+      this.clickCount++;
+      EventBus.$emit('i-got-clicked', this.clickCount);
+    },
     // 打开个人中心
     handlePersonPage(uid) {
       openPersonPage(uid);
+    },
+    // 获取真爱榜数据
+    getData() {
+      service.datingRank(this.query).then((res) => {
+        if (res.code === 200) {
+          let result = res.data;
+          if (result.length) {
+            this.list = result;
+          }
+        }
+      });
     },
     // 加载更多数据
     onLoad() {
@@ -180,17 +208,6 @@ export default {
           } else {
             // 如果没有数据则设置加载完成
             this.finished = true;
-          }
-        }
-      });
-    },
-    init() {
-      // 获取真爱榜数据
-      service.datingRank(this.query).then((res) => {
-        if (res.code === 200) {
-          let result = res.data;
-          if (result.length) {
-            this.list = result;
           }
         }
       });

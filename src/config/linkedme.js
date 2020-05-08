@@ -1,8 +1,8 @@
 //深度链接配置
-const KEY = "934e2ee702a248ba59025e330bf36f93";
+const KEY = "57c0fa5c5dd1abfde1420ce1d514fef7";
 
-export function linkedmeInit(channel, tags) {
-  return new Promise(function(resolove, reject) {
+export function linkedmeInit (channel, tags) {
+  return new Promise(function (resolove, reject) {
     let linkData = {
       promotion_name: "",
       type: "live", //"live"表示使用线上模式,"test"表示测试模式.【可选】
@@ -14,7 +14,7 @@ export function linkedmeInit(channel, tags) {
     //创建深度链接
     linkedme.link(
       linkData,
-      function(err, response) {
+      function (err, response) {
         if (err) {
           reject(err);
           // 生成深度链接失败，返回错误对象err

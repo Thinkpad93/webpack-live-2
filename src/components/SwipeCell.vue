@@ -21,7 +21,7 @@
 </template>
 <script>
 export default {
-  name: "SwipeCell",
+  name: 'SwipeCell',
   data() {
     return {};
   },
@@ -29,9 +29,9 @@ export default {
     wrapperStyle() {
       return {
         transform: `translate3d(0%, 0, 0)`,
-        transitionDuration: "0.6s"
+        transitionDuration: '0.6s',
       };
-    }
+    },
   },
   methods: {
     touchstart(e) {
@@ -39,8 +39,8 @@ export default {
     },
     touchmove(e) {
       console.log(e);
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

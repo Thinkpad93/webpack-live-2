@@ -6,12 +6,12 @@
 </template>
 <script>
 export default {
-  name: "",
+  name: '',
   props: {
-    title: String
+    title: String,
   },
   data() {
     return {};
-  }
+  },
 };
 </script>

@@ -9,12 +9,12 @@
 </template>
 <script>
 export default {
-  name: "",
+  name: '',
   props: {
-    message: String
+    message: String,
   },
   data() {
     return {};
-  }
+  },
 };
 </script>

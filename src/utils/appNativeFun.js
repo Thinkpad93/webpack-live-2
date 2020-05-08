@@ -1,6 +1,6 @@
 import cookies from "./cookies";
 
-export function checkVersion() {
+export function checkVersion () {
   const u = navigator.userAgent;
   return {
     trident: u.indexOf("Trident") > -1, //IE内核
@@ -19,7 +19,7 @@ export function checkVersion() {
   };
 }
 //打开分享
-export function openSharePage() {
+export function openSharePage () {
   let browser = checkVersion();
   if (browser.app) {
     if (browser.ios) {
@@ -31,7 +31,7 @@ export function openSharePage() {
   }
 }
 //页面生成分享
-export function initNav(obj) {
+export function initNav (obj) {
   let browser = checkVersion();
   if (Object.keys(obj).length) {
     if (browser.app) {
@@ -48,7 +48,7 @@ export function initNav(obj) {
   }
 }
 //根据uid跳转到用户个人中心
-export function openPersonPage(uid) {
+export function openPersonPage (uid) {
   let browser = checkVersion();
   if (browser.app) {
     if (browser.ios) {
@@ -62,7 +62,7 @@ export function openPersonPage(uid) {
   }
 }
 //根据uid打开房间
-export function openRoom(uid) {
+export function openRoom (uid) {
   let browser = checkVersion();
   if (browser.app) {
     if (browser.ios) {
@@ -77,7 +77,7 @@ export function openRoom(uid) {
 }
 
 //根据routerType跳转到对应的页面
-export function jumpAppointPage(obj) {
+export function jumpAppointPage (obj) {
   let browser = checkVersion();
   if (browser.app) {
     if (browser.ios) {
@@ -91,7 +91,7 @@ export function jumpAppointPage(obj) {
   }
 }
 //获取Uid
-export function getUid() {
+export function getUid () {
   let browser = checkVersion();
   let uid = null;
   if (browser.app) {
@@ -107,7 +107,7 @@ export function getUid() {
   }
 }
 //获取Ticket
-export function getTicket() {
+export function getTicket () {
   let browser = checkVersion();
   let ticket = null;
   if (browser.app) {
