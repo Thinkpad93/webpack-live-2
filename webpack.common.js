@@ -113,11 +113,11 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       title: '真爱榜',
-      template: __dirname + `/src/index.html`,
+      template: __dirname + `/public/index.html`,
       filename: 'index.html',
       minify: false,
       hash: false,
-      //favicon: "./ic-app.png",
+      favicon: __dirname + "/public/favicon.ico",
       chunks: ['manifest', 'vendor', 'commons', 'index'],
     }),
     //动态插入CDN资源
