@@ -11,7 +11,13 @@
         <img src="./images/dians.png" alt="" width="76" height="28" />
       </div>
       <div class="container">
+        <!-- default -->
+        <div class="default text-center" v-if="!list.length">
+          <img src="./images/default.png" alt="" width="118" height="118" />
+          <p>空空如也~</p>
+        </div>
         <van-list
+          v-if="list.length > 1"
           v-model="loading"
           :finished="finished"
           :offset="10"

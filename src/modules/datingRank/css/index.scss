@@ -51,6 +51,7 @@ body {
   }
 }
 .list {
+  min-height: 250px;
   border-radius: 8px;
   padding: 20px 12px;
   background-color: #ffeae2;
@@ -92,4 +93,15 @@ body {
   left: 50%;
   bottom: 0;
   z-index: 9527;
+}
+
+.default {
+  font-size: 14px;
+  color: #222;
+  padding: 100px 0;
+  border-radius: 8px;
+  background-color: #ffeae2;
+  p {
+    margin-top: 10px;
+  }
 }
