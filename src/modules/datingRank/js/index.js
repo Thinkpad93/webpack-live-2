@@ -12,8 +12,6 @@ import { deBug } from '@/utils/debug';
 // 只有是开发环境和
 if (envChenk() === 'beta') {
   new VConsole();
-} else {
-  deBug() && new VConsole();
 }
 
 //实例化操作

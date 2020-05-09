@@ -4,9 +4,9 @@
   // 编辑器字体
   "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
 
-  "editor.fontSize": 14,
-  "editor.lineHeight": 20,
-  "editor.letterSpacing": 0.5,
+  "editor.fontSize": 15,
+  "editor.lineHeight": 18,
+  "editor.letterSpacing": 0.2,
   "editor.fontWeight": "400",
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 2,
@@ -20,7 +20,7 @@
   // 每行最大字符数(0 = 禁用)。
   "html.format.wrapLineLength": 70,
 
-  "editor.renderIndentGuides": false,
+  //"editor.renderIndentGuides": false,
   "explorer.confirmDelete": false,
   "window.zoomLevel": 0,
   "liveServer.settings.donotShowInfoMsg": true,
@@ -58,7 +58,7 @@
     "_.wxs": "javascript"
   },
   // 控制编辑器在空白字符上显示特殊符号的方式。
-  "editor.renderWhitespace": "all",
+  //"editor.renderWhitespace": "all",
   // 控制编辑器是否应呈现控制字符
   "editor.renderControlCharacters": false,
   // 控制在资源管理器内拖放移动文件或文件夹时是否进行确认。

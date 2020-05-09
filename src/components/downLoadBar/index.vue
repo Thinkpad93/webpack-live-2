@@ -3,7 +3,7 @@
     <div class="downloadbar flex" :class="[position]">
       <div class="downloadbar-bd flex">
         <img
-          src="@/assets/images/logo.png"
+          src="@/assets/logo.png"
           class="logo"
           alt=""
           width="40"
@@ -23,7 +23,6 @@
 import { checkVersion } from '@/utils/appNativeFun';
 import { linkedmeInit } from '@/config/linkedme';
 import { EventBus } from '@/eventBus';
-import { getQueryString } from '@/utils';
 
 export default {
   name: 'DownloadBar',
@@ -38,7 +37,7 @@ export default {
   },
   data() {
     return {
-      isDownload: false,
+      isDownload: false, // 默认不显示
     };
   },
   mounted() {
@@ -48,13 +47,10 @@ export default {
   },
   methods: {
     init() {
-      let searchParams = getQueryString(); // 获取地址栏参数
-      // 如果有download
-      if (searchParams.download === 'true') {
+      let info = checkVersion(); //浏览器版本
+      if (!info.app) {
         this.isDownload = true;
         this.linkedme();
-      } else {
-        this.isDownload = false;
       }
     },
     // 生成深度链接
@@ -92,6 +88,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.1);
   &.top {
     left: 0;
     top: 0;
