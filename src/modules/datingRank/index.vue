@@ -167,13 +167,8 @@ export default {
     init() {
       this.getData();
     },
-    toFixed(num, s) {
-      var times = Math.pow(10, s);
-      var des = num * times + 0.5;
-      des = parseInt(des, 10) / times;
-      return des + '';
-    },
     bus() {
+      this.$toast();
       this.clickCount++;
       EventBus.$emit('i-got-clicked', this.clickCount);
     },
