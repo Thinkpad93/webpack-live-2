@@ -71,7 +71,9 @@
                 <div class="bd text-center">
                   <img src="./images/obj.png" alt="" width="74" height="27" />
                   <div class="love-value">
-                    <span>{{ item.loveValue | formatTotal }}</span>
+                    <span :data-value="item.loveValue">{{
+                      item.loveValue | toTenThousand
+                    }}</span>
                   </div>
                 </div>
                 <div class="ft">
@@ -120,10 +122,6 @@
         </van-list>
       </div>
     </div>
-    <downLoadBar position="bottom">
-      <p>BiBi约玩</p>
-      <span>约喜欢的人做有趣的事</span>
-    </downLoadBar>
   </div>
 </template>
 <script>
@@ -138,12 +136,10 @@ import downLoadBar from '@/components/downloadBar';
 
 export default {
   name: 'datingRank',
-  components: {
-    downLoadBar,
-  },
   data() {
     return {
       clickCount: 0,
+      maxPage: 2,
       query: {
         pageNum: 1,
         pageSize: 10,
@@ -157,22 +153,25 @@ export default {
     this.init();
   },
   filters: {
-    formatTotal(val) {
-      if (val <= 1000000) {
-        return val;
+    toTenThousand(number) {
+      let num = String(number);
+      if (num.length >= 8) {
+        return '999W+';
+      } else if (num.length == 7) {
+        return num.slice(0, 3) + '.' + num.slice(3, 5) + 'W';
       }
-      if (val >= 1000000 && val < 10000000) {
-        var r = (val / 10000).toFixed(1);
-        return r + 'W';
-      }
-      if (val >= 10000000) {
-        return 999 + 'W+';
-      }
+      return number;
     },
   },
   methods: {
     init() {
       this.getData();
+    },
+    toFixed(num, s) {
+      var times = Math.pow(10, s);
+      var des = num * times + 0.5;
+      des = parseInt(des, 10) / times;
+      return des + '';
     },
     bus() {
       this.clickCount++;
@@ -196,6 +195,10 @@ export default {
     // 加载更多数据
     onLoad() {
       this.query.pageNum++; // 请求下一页
+      if (this.query.pageNum > this.maxPage) {
+        this.finished = true;
+        return;
+      }
       service.datingRank(this.query).then((res) => {
         if (res.code === 200) {
           // 加载状态结束

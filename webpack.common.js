@@ -59,13 +59,13 @@ module.exports = {
           isDev
             ? 'style-loader'
             : {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                  esModule: true,
-                  publicPath: '../',
-                  hmr: isDev,
-                },
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                esModule: true,
+                publicPath: '../',
+                hmr: isDev,
               },
+            },
           'css-loader',
           'postcss-loader',
           'sass-loader',
@@ -121,15 +121,15 @@ module.exports = {
       chunks: ['manifest', 'vendor', 'commons', 'index'],
     }),
     //动态插入CDN资源
-    new HtmlWebpackExternalsPlugin({
-      externals: [
-        {
-          module: 'logger',
-          entry: `http://${isBeta}.whddd666.com/bibi/common/js/log.js`,
-          global: 'logger',
-        },
-      ],
-    }),
+    // new HtmlWebpackExternalsPlugin({
+    //   externals: [
+    //     {
+    //       module: 'logger',
+    //       entry: `http://${isBeta}.whddd666.com/bibi/common/js/log.js`,
+    //       global: 'logger',
+    //     },
+    //   ],
+    // }),
   ],
   //配置模块如何解析
   resolve: {
