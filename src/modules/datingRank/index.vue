@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="page-hd" @click="bus">
+    <div class="page-hd">
       <img src="./images/banner.png" alt="" />
       <div class="title">
         <img src="./images/img-title.png" alt="" />
@@ -180,7 +180,6 @@ export default {
       this.getData();
     },
     bus() {
-      this.$toast();
       this.clickCount++;
       EventBus.$emit('i-got-clicked', this.clickCount);
     },

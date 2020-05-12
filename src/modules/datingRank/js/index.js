@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import index from '../index';
-import Toast from '@/components/toast';
+//import Toast from '@/components/toast';
 
-Vue.prototype.$toast = Toast;
+//Vue.prototype.$toast = Toast;
 
 //引入rem支持
 import '@/utils/flexible';
