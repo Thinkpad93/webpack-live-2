@@ -2,19 +2,31 @@
   <div class="page">
     <div class="page-hd" @click="bus">
       <img src="./images/banner.png" alt="" />
+      <div class="title">
+        <img src="./images/img-title.png" alt="" />
+      </div>
     </div>
     <div class="page-bd">
-      <div class="left-fixed">
-        <img src="./images/dian.png" alt="" width="33" height="45" />
-      </div>
-      <div class="bottom-fixed">
-        <img src="./images/dians.png" alt="" width="76" height="28" />
-      </div>
       <div class="container">
+        <div class="left-fixed">
+          <img src="./images/img-1.png" alt="" />
+        </div>
+        <div class="right-fixed">
+          <img src="./images/img-2.png" alt="" />
+        </div>
         <!-- default -->
         <div class="default text-center" v-if="!list.length">
           <img src="./images/default.png" alt="" width="118" height="118" />
-          <p>空空如也~</p>
+          <p>空空如也</p>
+        </div>
+        <div class="heart text-center" v-if="list.length > 1">
+          <img
+            src="./images/img-xin.png"
+            alt=""
+            v-for="item in 6"
+            width="14"
+            height="13"
+          />
         </div>
         <van-list
           v-if="list.length > 1"
