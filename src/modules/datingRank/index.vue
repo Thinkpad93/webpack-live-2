@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="page-hd">
-      <img src="./images/banner.png" alt="" />
+      <img src="./images/banner.png" alt="" @click="bus" />
       <div class="title">
         <img src="./images/img-title.png" alt="" />
       </div>
@@ -20,13 +20,16 @@
           <p>空空如也</p>
         </div>
         <div class="heart text-center" v-if="list.length > 1">
-          <img
-            src="./images/img-xin.png"
-            alt=""
+          <svg
+            style="width:16px; height:16px"
+            id="heart"
+            viewBox="0 0 100 100"
             v-for="item in 6"
-            width="14"
-            height="13"
-          />
+          >
+            <path
+              d="M85.24 2.67C72.29-3.08 55.75 2.67 50 14.9 44.25 2 27-3.8 14.76 2.67 1.1 9.14-5.37 25 5.42 44.38 13.33 58 27 68.11 50 86.81 73.73 68.11 87.39 58 94.58 44.38c10.79-18.7 4.32-35.24-9.34-41.71z"
+            ></path>
+          </svg>
         </div>
         <van-list
           v-if="list.length > 1"

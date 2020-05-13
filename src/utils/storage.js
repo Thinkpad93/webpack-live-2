@@ -1,30 +1,16 @@
-const storage = {
-  sessionSet(name, data) {
-    sessionStorage.removeItem(name);
-    sessionStorage.setItem(name, JSON.stringify(data));
-  },
-  // 获取缓存
-  sessionGet(name) {
-    return JSON.parse(sessionStorage.getItem(name));
-  },
-  // 清除缓存
-  sessionRemove(name) {
-    sessionStorage.removeItem(name);
-  },
-  // ==================localStorage设置缓存==================
-  // 设置缓存
-  localSet(name, data) {
-    localStorage.removeItem(name);
-    localStorage.setItem(name, JSON.stringify(data));
-  },
-  // 获取缓存
-  localGet(name) {
-    return JSON.parse(localStorage.getItem(name));
-  },
-  // 清除缓存
-  localRemove(name) {
-    localStorage.removeItem(name);
-  }
-};
-
-export default storage;
+// 把键值对添加到存储中，如果键名存在，则更新其对应的值
+export function setItem (storage, key, value) {
+  return storage.setItem(key, JSON.stringify(value));
+}
+// 返回键名对应的值
+export function getItem (storage, key) {
+  return JSON.parse(storage.getItem(key));
+}
+// 把该键名从存储中删除
+export function removeItem (storage, key) {
+  storage.removeItem(key);
+}
+// 调用该方法会清空存储中的所有键名
+export function clear (storage) {
+  storage.clear();
+}

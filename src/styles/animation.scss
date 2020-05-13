@@ -7,6 +7,15 @@
   animation-name: scale-spring; // 检索或设置对象所应用的动画名称
 }
 
+// 播放无限次
+.anim-infinite {
+  animation-name: go-infinite;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  animation-timing-function: linear;
+}
+
 @keyframes scale-spring {
   0% {
     opacity: 0.5;
@@ -41,5 +50,17 @@
   100% {
     opacity: 0;
     transform: translate3d(-50%, -50%, 0) scale(0.7);
+  }
+}
+
+@keyframes go-infinite {
+  from {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

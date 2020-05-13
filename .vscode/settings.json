@@ -5,6 +5,7 @@
   "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
 
   "editor.fontSize": 15,
+  "editor.foldingHighlight": false,
   "editor.lineHeight": 18,
   "editor.letterSpacing": 0.2,
   "editor.fontWeight": "400",
