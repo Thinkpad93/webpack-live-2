@@ -108,6 +108,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.scss', '.css', '.json'],
   },
+  externals: {
+    'axios': 'axios',
+    'vue': 'Vue',
+  },
   plugins: [
     // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
@@ -118,18 +122,8 @@ module.exports = {
       minify: false,
       hash: false,
       favicon: __dirname + "/public/favicon.ico",
-      chunks: ['manifest', 'vendor', 'commons', 'index'],
+      chunks: ['index'],
     }),
-    //动态插入CDN资源
-    // new HtmlWebpackExternalsPlugin({
-    //   externals: [
-    //     {
-    //       module: 'logger',
-    //       entry: `http://${isBeta}.whddd666.com/bibi/common/js/log.js`,
-    //       global: 'logger',
-    //     },
-    //   ],
-    // }),
   ],
   //配置模块如何解析
   resolve: {
@@ -137,36 +131,6 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, './src'),
       assets: path.resolve(__dirname, 'src/assets'),
-    },
-  },
-  // externals: {
-  //   'vue': 'Vue',
-  //   'axios': 'axios'
-  // },
-  //抽取第三方模块
-  optimization: {
-    runtimeChunk: {
-      name: 'manifest',
-    },
-    splitChunks: {
-      minChunks: 1,
-      name: true,
-      minSize: 30000,
-      cacheGroups: {
-        vendor: {
-          name: 'vendor',
-          test: /[\\/]node_modules[\\/]/,
-          chunks: 'initial',
-          priority: 10, // 优先级
-        },
-        //抽取公共模块
-        // commons: {
-        //   name: "commons",
-        //   chunks: "all",
-        //   minChunks: 1, //至少引用2次，才打包出commons文件
-        //   //priority: 20, // 优先级
-        // },
-      },
     },
   },
 };

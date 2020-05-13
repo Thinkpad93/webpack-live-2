@@ -137,10 +137,6 @@
   </div>
 </template>
 <script>
-import Vue from 'Vue';
-import { List } from 'vant';
-Vue.use(List);
-
 import service from '@/api';
 import { openPersonPage } from '@/utils/appNativeFun';
 import { EventBus } from '@/eventBus';
