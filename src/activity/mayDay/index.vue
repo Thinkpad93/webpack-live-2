@@ -525,7 +525,11 @@ Vue.use(List)
   .use(CountDown)
   .use(Toast);
 
-import service from '@/api';
+import {
+  labouractRanking,
+  labouractRankingByUid,
+  labouractStatus,
+} from '@/api';
 import { getQueryString, serializeData, dateFormat } from '@/utils';
 import { getUid, openRoom } from '@/utils/appNativeFun';
 import cookies from '@/utils/cookies';
@@ -694,7 +698,7 @@ export default {
           this.getUserRank(5);
         }
       }
-      // 
+      //
       window.logger.track({
         __topic__: 'batter-log',
         path: location.href,
@@ -746,7 +750,7 @@ export default {
         obj.finished = true;
         return;
       }
-      service.labouractRanking(serializeData(args)).then((res) => {
+      labouractRanking(serializeData(args)).then((res) => {
         if (res.code === 200) {
           // 加载状态结束
           obj.loading = false;
@@ -764,7 +768,7 @@ export default {
     // 请求榜单数据
     getData(index) {
       let { items, loading, finished, ...args } = this.list[index];
-      service.labouractRanking(serializeData(args)).then((res) => {
+      labouractRanking(serializeData(args)).then((res) => {
         if (res.code === 200) {
           let result = res.data;
           if (result.length) {
@@ -780,7 +784,7 @@ export default {
         index
       ];
       let params = Object.assign({}, { uid: this.uid }, args);
-      service.labouractRankingByUid(serializeData(params)).then((res) => {
+      labouractRankingByUid(serializeData(params)).then((res) => {
         if (res.code === 200) {
           let result = res.data;
           this.user = Object.assign({}, result);
@@ -789,7 +793,7 @@ export default {
     },
     // 获取活动状态
     async getActStatus(actId) {
-      let result = await service.labouractStatus({ actId });
+      let result = await labouractStatus({ actId });
       let data = result.data;
       if (result.code === 200) {
         this.actObj = Object.assign({}, data);

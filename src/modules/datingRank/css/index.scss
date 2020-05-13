@@ -11,7 +11,7 @@ body {
     position: absolute;
     left: 0;
     bottom: -5%;
-    z-index: 9530;
+    z-index: 300;
   }
 }
 .page-bd {
@@ -92,7 +92,7 @@ body {
   position: absolute;
   left: px2rem(-32);
   top: px2rem(-154);
-  z-index: 9527;
+  z-index: 270;
   img {
     width: px2rem(488);
     height: px2rem(288);
@@ -102,7 +102,7 @@ body {
   position: absolute;
   right: px2rem(-30);
   top: px2rem(-140);
-  z-index: 9527;
+  z-index: 270;
   img {
     width: px2rem(234);
     height: px2rem(308);

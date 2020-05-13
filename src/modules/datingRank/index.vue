@@ -137,7 +137,7 @@
   </div>
 </template>
 <script>
-import service from '@/api';
+import { datingRank } from '@/api';
 import { openPersonPage } from '@/utils/appNativeFun';
 import { EventBus } from '@/eventBus';
 import downLoadBar from '@/components/downloadBar';
@@ -185,7 +185,7 @@ export default {
     },
     // 获取真爱榜数据
     getData() {
-      service.datingRank(this.query).then((res) => {
+      datingRank(this.query).then((res) => {
         if (res.code === 200) {
           let result = res.data;
           if (result.length) {
@@ -201,7 +201,7 @@ export default {
         this.finished = true;
         return;
       }
-      service.datingRank(this.query).then((res) => {
+      datingRank(this.query).then((res) => {
         if (res.code === 200) {
           // 加载状态结束
           this.loading = false;

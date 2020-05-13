@@ -7,9 +7,14 @@ import '@/utils/flexible';
 import '@/styles/site.scss';
 //测试或正式环境判断
 import { envChenk } from '@/utils';
+
 // 只有是开发环境和
 if (envChenk() === 'beta') {
-  new VConsole();
+  try {
+    new VConsole();
+  } catch (e) {
+    throw new Error(e);
+  }
 }
 
 //实例化操作
