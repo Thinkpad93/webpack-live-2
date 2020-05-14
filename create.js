@@ -4,15 +4,14 @@ const readline = require('readline');
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
 const modules = path.join(__dirname, './src/modules/');
 const activity = path.join(__dirname, './src/activity/');
 
-
 rl.question('输入要创建的文件目录名？', (answer) => {
-  let strArr = answer.split(' ');
+  let strArr = answer.split('/');
   if (strArr.length) {
     const dir = strArr[0] === 'modules' ? modules : activity;
     // 先检查目录是否存在

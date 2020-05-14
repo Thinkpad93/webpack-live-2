@@ -9,6 +9,7 @@
           no3: item.rankNo == 3,
         }"
         v-for="item in data"
+        :key="item.nick"
       >
         <div class="user-hd">
           <template v-if="item.rankNo == 1">
@@ -70,7 +71,7 @@ export default {
       type: Number,
       default: 1,
     },
-    tipText: String
+    tipText: String,
   },
   computed: {
     textStyleIf() {

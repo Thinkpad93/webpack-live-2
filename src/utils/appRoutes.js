@@ -18,7 +18,7 @@ const ROUTES = {
   PHONE_NUM_PAGE: 17, //绑定手机号
   PAY_PWD_PAGE: 18, //设置支付密码
   WITHDRAW_RECORD_PAGE: 19, //提现记录页面
-  SIGNATURE_AND_ICON: 26 //跳转在线客服
+  SIGNATURE_AND_ICON: 26, //跳转在线客服
 };
 
 export default ROUTES;

@@ -1,3 +1,3 @@
-export function isObjest (obj = {}) {
+export function isObjest(obj = {}) {
   return Object.prototype.toString.call(obj) === '[object Object]';
 }
