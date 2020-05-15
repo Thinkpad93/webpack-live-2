@@ -1,4 +1,3 @@
-
 import index from '../index';
 import { List } from 'vant';
 
@@ -7,14 +6,21 @@ import '@/utils/flexible';
 // 引入公共样式
 import '@/styles/site.scss';
 // 测试或正式环境判断
-import { envChenk } from '@/utils';
+import { envChenk, getQueryString } from '@/utils';
 
-// 只有是开发环境和
-if (envChenk() === 'beta') {
+let search = getQueryString();
+
+// 开发环境
+if (location.href.indexOf('beta') > -1) {
+  console.log('开发环境');
   try {
     new VConsole();
   } catch (e) {
     console.log(e);
+  }
+} else if (Object.keys(search).length) {
+  if (search.debug) {
+    new VConsole();
   }
 }
 
