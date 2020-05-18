@@ -7,8 +7,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // vue-loader 插件
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
-
 const $obj = require('./config');
 
 const isDev = process.env.NODE_ENV === 'development' ? true : false;
@@ -59,13 +57,13 @@ module.exports = {
           isDev
             ? 'style-loader'
             : {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                esModule: true,
-                publicPath: '../',
-                hmr: isDev,
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  esModule: true,
+                  publicPath: '../',
+                  hmr: isDev,
+                },
               },
-            },
           'css-loader',
           'postcss-loader',
           'sass-loader',
@@ -109,8 +107,8 @@ module.exports = {
     extensions: ['.js', '.scss', '.css', '.json'],
   },
   externals: {
-    'axios': 'axios',
-    'vue': 'Vue',
+    axios: 'axios',
+    vue: 'Vue',
   },
   plugins: [
     // 请确保引入这个插件来施展魔法
@@ -121,7 +119,7 @@ module.exports = {
       filename: 'index.html',
       minify: false,
       hash: false,
-      favicon: __dirname + "/public/favicon.ico",
+      favicon: __dirname + '/public/favicon.ico',
       chunks: ['index'],
     }),
   ],
@@ -130,7 +128,8 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       '@': path.resolve(__dirname, './src'),
-      assets: path.resolve(__dirname, 'src/assets'),
+      assets: path.resolve(__dirname, './src/assets'),
+      components: path.resolve(__dirname, './src/components'),
     },
   },
 };

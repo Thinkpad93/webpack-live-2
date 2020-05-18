@@ -11,7 +11,10 @@
 import { getQueryString, serializeData } from '@/utils';
 import { checkVersion, initNav } from '@/utils/appNativeFun';
 
-import service from '@/api';
+import { operationGet } from '@/api';
+
+import showTimeText from '@/components/showTimeText/main';
+
 export default {
   name: 'operational',
   data() {
@@ -47,7 +50,7 @@ export default {
       }
     },
     init() {
-      service.operationGet(this.query).then((res) => {
+      operationGet(this.query).then((res) => {
         if (res.code === 200) {
           let result = res.data;
           if (result.actImage && result.actTitle) {
@@ -62,4 +65,11 @@ export default {
   },
 };
 </script>
-<style></style>
+<style lang="scss">
+.container {
+  position: relative;
+  img {
+    max-width: 100%;
+  }
+}
+</style>

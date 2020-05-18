@@ -6,7 +6,7 @@ import '@/utils/flexible';
 // 引入公共样式
 import '@/styles/site.scss';
 // 测试或正式环境判断
-import { envChenk, getQueryString } from '@/utils';
+import { getQueryString } from '@/utils';
 
 let search = getQueryString();
 
