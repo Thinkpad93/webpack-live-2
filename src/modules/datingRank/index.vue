@@ -19,7 +19,7 @@
           <img src="./images/default.png" alt="" width="118" height="118" />
           <p>空空如也</p>
         </div>
-        <div class="heart text-center" v-if="list.length > 1">
+        <div class="heart text-center" v-if="list.length >= 1">
           <svg
             style="width:16px; height:16px"
             id="heart"
@@ -33,7 +33,7 @@
           </svg>
         </div>
         <van-list
-          v-if="list.length > 1"
+          v-if="list.length >= 1"
           v-model="loading"
           :finished="finished"
           :offset="10"
