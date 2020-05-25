@@ -1,5 +1,4 @@
 import index from '../index';
-import { List } from 'vant';
 
 // 引入rem支持
 import '@/utils/flexible';
@@ -19,12 +18,10 @@ if (location.href.indexOf('beta') > -1) {
     console.log(e);
   }
 } else if (Object.keys(search).length) {
-  if (search.debug) {
+  if ('debug' in search) {
     new VConsole();
   }
 }
-
-Vue.use(List);
 
 // 实例化操作
 new Vue({

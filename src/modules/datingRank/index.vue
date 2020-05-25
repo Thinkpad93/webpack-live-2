@@ -143,10 +143,14 @@
   </div>
 </template>
 <script>
+import Vue from 'vue';
+import { List } from 'vant';
 import { datingRank } from '@/api';
 import { openPersonPage } from '@/utils/appNativeFun';
 import { EventBus } from '@/eventBus';
 import downLoadBar from '@/components/downloadBar';
+
+Vue.use(List);
 
 export default {
   name: 'datingRank',
