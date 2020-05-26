@@ -7,7 +7,6 @@
           type="button"
           class="install"
           v-if="!isShowText"
-          :class="{ download: isClick }"
           @click="handle($event)"
         >
           下载安装
@@ -23,7 +22,6 @@ export default {
   name: 'appUpdate',
   data() {
     return {
-      isClick: false,
       isShowText: false,
       query: {
         password: '',
