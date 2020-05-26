@@ -37,3 +37,10 @@ export function datingRank(obj = {}) {
     params: obj,
   });
 }
+
+// 获取第三方平台ios的下载地址
+export function getIOSDownloadUrl(obj = {}) {
+  return request.get('https://www.jikeqi.com/jsonFormat/6VRz', {
+    params: obj,
+  });
+}
