@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="page-bd">
-      <div class="update">
+      <div class="update-box">
         <a class="update" href="" style="display:none"></a>
         <button type="button" class="btn" @click="handle($event)">
           下载安装
@@ -47,11 +47,13 @@ export default {
 };
 </script>
 <style lang="scss">
-.update {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  z-index: 100;
-  transform: translate(-50%, -50%);
+.btn {
+  color: #fff;
+  border: 1px solid rgb(0, 198, 255) !important;
+  background: linear-gradient(
+    to right bottom,
+    rgb(65, 0, 185),
+    rgb(0, 198, 255)
+  );
 }
 </style>
