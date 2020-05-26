@@ -34,11 +34,14 @@ export default {
       }
     });
     document.addEventListener('click', (e) => {
-      if (!e.isTrusted) {
-        console.log('用户行为点击的');
-      } else {
-        console.log('不是用户行为点击的');
-      }
+      console.log(e.target);
+      console.log(e);
+      // 只读属性
+      // if (!e.isTrusted) {
+      //   console.log('用户行为点击的');
+      // } else {
+      //   console.log('不是用户行为点击的');
+      // }
     });
   },
   methods: {
