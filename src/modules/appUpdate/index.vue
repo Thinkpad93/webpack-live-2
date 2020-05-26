@@ -6,17 +6,13 @@
         <button
           type="button"
           class="install"
+          v-if="!isShowText"
           :class="{ download: isClick }"
           @click="handle($event)"
         >
           下载安装
         </button>
-        <div class="tips">
-          <!-- <p
-            class="download"
-            style=""
-          ></p> -->
-        </div>
+        <p v-if="isShowText">正在安装，请按 Home 键在桌面查看</p>
       </div>
     </div>
   </div>
@@ -28,6 +24,7 @@ export default {
   data() {
     return {
       isClick: false,
+      isShowText: false,
       query: {
         password: '',
         location_href: 'https://www.jikeqi.com/6VRz',
@@ -35,6 +32,7 @@ export default {
     };
   },
   mounted() {
+    // 获取51发布平台plist地址
     getIOSDownloadUrl(this.query).then((res) => {
       if (res.code == 200) {
         let info = res.data.info;
@@ -42,29 +40,32 @@ export default {
         document.querySelector('.update').setAttribute('href', downurl);
       }
     });
-    // document.addEventListener('click', (e) => {
-    //   console.log(e.target);
-    //   console.log(e);
-    // });
   },
   methods: {
     handle(e) {
       console.log(e);
-      e.target.disabled = true;
       let instll = document.querySelector('.install');
       let a = document.querySelector('.update');
+      e.target.disabled = true;
       instll.style.width = '40px';
-      setTimeout(() => {
-        this.isClick = true;
+      let timer = setTimeout(() => {
+        instll.classList.add('download');
         // 触发a标签的点击事件
         a.click();
       }, 300);
+
+      let timers = setTimeout(() => {
+        this.isShowText = true;
+      }, 4000);
     },
   },
 };
 </script>
 <style lang="scss">
 .update-box {
+  font-size: 14px;
+  color: #cb1d3d;
+  padding: 100px 0;
   text-align: center;
 }
 .install {
@@ -85,6 +86,7 @@ export default {
   background-color: transparent;
 }
 
+// 旋转动画
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
