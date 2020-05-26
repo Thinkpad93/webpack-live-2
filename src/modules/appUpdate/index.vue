@@ -33,6 +33,9 @@ export default {
         document.querySelector('.update').setAttribute('href', downurl);
       }
     });
+    document.addEventListener('click', (e) => {
+      console.log(e);
+    });
   },
   methods: {
     handle(e) {
