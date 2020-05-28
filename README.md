@@ -51,3 +51,8 @@ git commit -m "fix：修复某某 bug"
 如访问 https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js 资源
 实际上是转发到了去访问 https://cdnjs.com/ 的资源文件，所以会导致打开页面等待时间很长的问题（页面空白）
 这个时候建议更换 CDN 库即可
+
+##### iosApp 强更和软更区别
+
+强更时用户必须点击更新，不能关闭弹出层
+软更进用户可查看完自行关闭

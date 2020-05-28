@@ -42,12 +42,12 @@ export default {
   },
   mounted() {
     this.init();
-    //侦听i-got-clicked事件及其有效负载
+    // 侦听i-got-clicked事件及其有效负载
     EventBus.$on('i-got-clicked', this.clickHandler);
   },
   methods: {
     init() {
-      let info = checkVersion(); //浏览器版本
+      let info = checkVersion(); // 浏览器版本
       if (!info.app) {
         this.isDownload = true;
         this.linkedme();

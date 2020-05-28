@@ -1,6 +1,9 @@
 <template>
   <div class="page">
     <div class="page-bd">
+      <div class="logo">
+        <img src="" alt="" />
+      </div>
       <div class="update-box">
         <a class="update" href="" style="display:none"></a>
         <button
@@ -12,6 +15,11 @@
           下载安装
         </button>
         <p v-if="isShowText">正在安装，请按 Home 键在桌面查看</p>
+        <ul class="">
+          <li>版本 {{ info.version }}</li>
+          <li>大小 {{ info.app_size }}</li>
+          <li>更新时间 {{ info.published_at }}</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -23,6 +31,7 @@ export default {
   data() {
     return {
       isShowText: false,
+      info: {}, // app信息
       query: {
         password: '',
         location_href: 'https://www.jikeqi.com/6VRz',
@@ -33,37 +42,40 @@ export default {
     // 获取51发布平台plist地址
     getIOSDownloadUrl(this.query).then((res) => {
       if (res.code == 200) {
-        let info = res.data.info;
-        let downurl = decodeURIComponent(info.downurl);
+        this.info = res.data.info;
+        // 解析转义字符
+        let downurl = decodeURIComponent(this.info.downurl);
         document.querySelector('.update').setAttribute('href', downurl);
       }
     });
   },
   methods: {
+    // 点击下载
     handle(e) {
       console.log(e);
-      let instll = document.querySelector('.install');
       let a = document.querySelector('.update');
       e.target.disabled = true;
-      instll.style.width = '40px';
+      e.target.innerHTML = '';
+      e.target.style.width = '40px';
       let timer = setTimeout(() => {
-        instll.classList.add('download');
+        e.target.classList.add('download');
         // 触发a标签的点击事件
         a.click();
       }, 300);
 
       let timers = setTimeout(() => {
         this.isShowText = true;
-      }, 4000);
+      }, 5000);
     },
   },
 };
 </script>
 <style lang="scss">
+.page-bd {
+  padding: 100px 0;
+}
 .update-box {
   font-size: 14px;
-  color: #cb1d3d;
-  padding: 100px 0;
   text-align: center;
 }
 .install {
