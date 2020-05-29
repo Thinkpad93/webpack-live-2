@@ -1,26 +1,53 @@
-@function px2rem($px, $rem: 75) {
-  @return $px / $rem + rem;
-}
-
 body {
   background-color: #ffd5e6;
 }
+img {
+  max-width: 100%;
+}
+
 .page-hd {
   position: relative;
   .title {
     position: absolute;
     left: 0;
-    bottom: -5%;
+    bottom: 0;
     z-index: 300;
+    img {
+      vertical-align: top;
+    }
   }
 }
 .page-bd {
-  padding: px2rem(30);
+  padding: 0 px2rem(30) px2rem(60) px2rem(30);
+}
+.page-tabs {
+  position: relative;
+  > .van-tabs__wrap {
+    .van-tabs__nav {
+      background-color: transparent;
+      .van-tab {
+        opacity: 0.6;
+        font-weight: bold;
+        font-size: 12px;
+        margin: 0 2px 2px 0;
+        background-image: url(./images/btn-unselected.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: 0 center;
+      }
+      .van-tab--active {
+        opacity: 1;
+        color: #a8511b;
+        background-image: url(./images/btn-selected.png);
+      }
+    }
+  }
 }
 .container {
   position: relative;
   padding: 12px;
-  border-radius: 1px;
+  margin-top: px2rem(20);
+  border-radius: 2px;
   background-color: #ff90b8;
 }
 .avatar {
@@ -59,9 +86,8 @@ body {
   }
 }
 .list {
-  min-height: 250px;
-  border-radius: 1px;
-  padding: 12px 12px 20px 12px;
+  border-radius: 2px;
+  padding: 20px 12px 20px 12px;
   background-color: #fff;
   .box {
     border-radius: 4px;
@@ -71,6 +97,7 @@ body {
     background-size: 100%;
   }
   li {
+    font-size: 13px;
     color: #fff;
     border-radius: 4px;
     margin-bottom: 10px;
@@ -88,47 +115,14 @@ body {
   }
 }
 
-.left-fixed {
-  position: absolute;
-  left: px2rem(-32);
-  top: px2rem(-154);
-  z-index: 270;
-  img {
-    width: px2rem(488);
-    height: px2rem(288);
-  }
-}
-.right-fixed {
-  position: absolute;
-  right: px2rem(-30);
-  top: px2rem(-140);
-  z-index: 270;
-  img {
-    width: px2rem(234);
-    height: px2rem(308);
-  }
-}
-
 .default {
+  text-align: center;
   font-size: 14px;
   color: #999;
-  padding: 100px 0;
+  padding: 40px 0 0 0;
   border-radius: 1px;
   background-color: #fff;
   p {
     margin-top: 10px;
-  }
-}
-
-.heart {
-  padding-top: px2rem(72);
-  background-color: #fff;
-  img {
-    margin: 0 2px;
-  }
-  svg {
-    fill: #ff579c;
-    display: inline-block;
-    margin: 0 2px;
   }
 }

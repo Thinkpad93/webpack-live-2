@@ -111,7 +111,7 @@
   // 是否使用单引号替代双引号
   "prettier.singleQuote": true,
   // 是否在每行的末尾添加分号
-  "prettier.semi": true,
+  "prettier.semi": false,
 
   // 在函数参数括号前定义空格处理。需要 TypeScript >= 2.1.5。
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,

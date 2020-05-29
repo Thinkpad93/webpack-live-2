@@ -1,234 +1,272 @@
 <template>
   <div class="page">
     <div class="page-hd">
-      <img src="./images/banner.png" alt="" @click="bus" />
+      <img src="./images/banner.png" alt="" />
       <div class="title">
         <img src="./images/img-title.png" alt="" />
       </div>
     </div>
     <div class="page-bd">
-      <div class="container">
-        <div class="left-fixed">
-          <img src="./images/img-1.png" alt="" />
-        </div>
-        <div class="right-fixed">
-          <img src="./images/img-2.png" alt="" />
-        </div>
-        <!-- default -->
-        <div class="default text-center" v-if="!list.length">
-          <img src="./images/default.png" alt="" width="118" height="118" />
-          <p>空空如也</p>
-        </div>
-        <div class="heart text-center" v-if="list.length >= 1">
-          <svg
-            style="width:16px; height:16px"
-            id="heart"
-            viewBox="0 0 100 100"
-            v-for="item in 6"
-            :key="item"
-          >
-            <path
-              d="M85.24 2.67C72.29-3.08 55.75 2.67 50 14.9 44.25 2 27-3.8 14.76 2.67 1.1 9.14-5.37 25 5.42 44.38 13.33 58 27 68.11 50 86.81 73.73 68.11 87.39 58 94.58 44.38c10.79-18.7 4.32-35.24-9.34-41.71z"
-            ></path>
-          </svg>
-        </div>
-        <van-list
-          v-if="list.length >= 1"
-          v-model="loading"
-          :finished="finished"
-          :offset="10"
-          :immediate-check="false"
-          @load="onLoad"
+      <van-tabs
+        class="page-tabs"
+        animated
+        line-width="0px"
+        line-height="0px"
+        v-model="tabActive"
+        :border="false"
+      >
+        <van-tab
+          :title="tabItem"
+          v-for="(tabItem, tabIndex) in tabList"
+          :key="tabIndex"
         >
-          <ul class="list">
-            <li class="item" v-for="(item, index) in list" :key="index">
-              <div
-                class="box flex j-c-c a-i-c"
-                :style="{ backgroundImage: 'url(' + item.backgroudUrl + ')' }"
-              >
-                <div class="hd">
-                  <div class="text-center">
-                    <div
-                      class="header"
-                      @click="handlePersonPage(item.user.uid)"
-                    >
-                      <template v-if="item.user.userHeadwear">
+          <div class="container">
+            <!-- default -->
+            <div class="default" v-if="!list[tabIndex].items.length">
+              <img src="./images/default.png" alt="" width="118" height="118" />
+              <p>空空如也</p>
+            </div>
+            <van-list
+              :offset="10"
+              :immediate-check="false"
+              v-model="list[tabIndex].loading"
+              :finished="list[tabIndex].finished"
+              @load="onLoad(tabIndex)"
+            >
+              <ul class="list">
+                <li
+                  class="item"
+                  v-for="(item, index) in list[tabIndex].items"
+                  :key="index"
+                >
+                  <div
+                    class="box flex j-c-c a-i-c"
+                    :style="{
+                      backgroundImage: 'url(' + item.backgroudUrl + ')',
+                    }"
+                  >
+                    <div class="hd">
+                      <div class="text-center">
                         <div
-                          class="header-wear"
-                          :style="{
-                            backgroundImage:
-                              'url(' + item.user.userHeadwear.pic + ')',
-                          }"
-                        ></div>
-                      </template>
-                      <img :src="item.user.avatar" alt="" class="avatar" />
-                    </div>
-                    <div class="user-info flex j-c-c a-i-c">
-                      <div class="nick text-ellipsis">
-                        {{ item.user.nick }}
+                          class="header"
+                          @click="handlePersonPage(item.user.uid)"
+                        >
+                          <template v-if="item.user.userHeadwear">
+                            <div
+                              class="header-wear"
+                              :style="{
+                                backgroundImage:
+                                  'url(' + item.user.userHeadwear.pic + ')',
+                              }"
+                            ></div>
+                          </template>
+                          <img :src="item.user.avatar" alt="" class="avatar" />
+                        </div>
+                        <div class="user-info flex j-c-c a-i-c">
+                          <div class="nick text-ellipsis">
+                            {{ item.user.nick }}
+                          </div>
+                          <template v-if="item.user.gender == 1">
+                            <img
+                              src="./images/ic-gender-male.png"
+                              width="12"
+                              height="12"
+                            />
+                          </template>
+                          <template v-else>
+                            <img
+                              src="./images/ic-gender-female.png"
+                              width="12"
+                              height="12"
+                            />
+                          </template>
+                        </div>
                       </div>
-                      <template v-if="item.user.gender == 1">
-                        <img
-                          src="./images/ic-gender-male.png"
-                          alt=""
-                          width="12"
-                          height="12"
-                        />
-                      </template>
-                      <template v-else>
-                        <img
-                          src="./images/ic-gender-female.png"
-                          alt=""
-                          width="12"
-                          height="12"
-                        />
-                      </template>
                     </div>
-                  </div>
-                </div>
-                <div class="bd text-center">
-                  <img src="./images/obj.png" alt="" width="74" height="27" />
-                  <div class="love-value">
-                    <span :data-value="item.loveValue">{{
-                      item.loveValue | toTenThousand
-                    }}</span>
-                  </div>
-                </div>
-                <div class="ft">
-                  <div class="text-center">
-                    <div
-                      class="header"
-                      @click="handlePersonPage(item.loverUser.uid)"
-                    >
-                      <template v-if="item.loverUser.userHeadwear">
+                    <div class="bd text-center">
+                      <img
+                        src="./images/obj.png"
+                        alt=""
+                        width="74"
+                        height="27"
+                      />
+                      <div class="love-value">
+                        <span :data-value="item.loveValue">
+                          {{ item.loveValue | toTenThousand }}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="ft">
+                      <div class="text-center">
                         <div
-                          class="header-wear"
-                          :style="{
-                            backgroundImage:
-                              'url(' + item.loverUser.userHeadwear.pic + ')',
-                          }"
-                        ></div>
-                      </template>
-                      <img :src="item.loverUser.avatar" alt="" class="avatar" />
-                    </div>
-                    <div class="user-info flex j-c-c a-i-c">
-                      <div class="nick text-ellipsis">
-                        {{ item.loverUser.nick }}
+                          class="header"
+                          @click="handlePersonPage(item.loverUser.uid)"
+                        >
+                          <template v-if="item.loverUser.userHeadwear">
+                            <div
+                              class="header-wear"
+                              :style="{
+                                backgroundImage:
+                                  'url(' +
+                                  item.loverUser.userHeadwear.pic +
+                                  ')',
+                              }"
+                            ></div>
+                          </template>
+                          <img
+                            :src="item.loverUser.avatar"
+                            alt=""
+                            class="avatar"
+                          />
+                        </div>
+                        <div class="user-info flex j-c-c a-i-c">
+                          <div class="nick text-ellipsis">
+                            {{ item.loverUser.nick }}
+                          </div>
+                          <template v-if="item.loverUser.gender == 1">
+                            <img
+                              src="./images/ic-gender-male.png"
+                              width="12"
+                              height="12"
+                            />
+                          </template>
+                          <template v-else>
+                            <img
+                              src="./images/ic-gender-female.png"
+                              width="12"
+                              height="12"
+                            />
+                          </template>
+                        </div>
                       </div>
-                      <template v-if="item.loverUser.gender == 1">
-                        <img
-                          src="./images/ic-gender-male.png"
-                          alt=""
-                          width="12"
-                          height="12"
-                        />
-                      </template>
-                      <template v-else>
-                        <img
-                          src="./images/ic-gender-female.png"
-                          alt=""
-                          width="12"
-                          height="12"
-                        />
-                      </template>
                     </div>
                   </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </van-list>
-      </div>
+                </li>
+              </ul>
+            </van-list>
+          </div>
+        </van-tab>
+      </van-tabs>
     </div>
   </div>
 </template>
 <script>
-import Vue from 'vue';
-import { List } from 'vant';
-import { datingRank } from '@/api';
-import { openPersonPage } from '@/utils/appNativeFun';
-import { EventBus } from '@/eventBus';
-import downLoadBar from '@/components/downloadBar';
+import Vue from 'vue'
+import { List } from 'vant'
+import { datingRank, datingRankList } from '@/api'
+import { openPersonPage } from '@/utils/appNativeFun'
+import { EventBus } from '@/eventBus'
+import downLoadBar from '@/components/downloadBar'
 
-Vue.use(List);
+Vue.use(List)
 
 export default {
-  name: 'datingRank',
+  name: 'DatingRank',
   data() {
     return {
-      clickCount: 0,
-      maxPage: 2,
-      query: {
-        pageNum: 1,
-        pageSize: 10,
-      },
-      loading: false,
-      finished: false,
-      list: [], // 数据
-    };
+      maxPage: 4, // 最大请求页数
+      tabActive: 0,
+      tabList: [], // tabList
+      list: [],
+    }
   },
   mounted() {
-    this.init();
+    this.init()
   },
   filters: {
     toTenThousand(number) {
-      let num = String(number);
+      let num = String(number)
       if (num.length >= 8) {
-        return '999W+';
+        return '999W+'
       } else if (num.length == 7) {
-        return num.slice(0, 3) + '.' + num.slice(3, 5) + 'W';
+        return num.slice(0, 3) + '.' + num.slice(3, 5) + 'W'
       }
-      return number;
+      return number
     },
   },
   methods: {
     init() {
-      this.getData();
+      this.getTabList() // 初始化tabList
     },
     bus() {
-      this.clickCount++;
-      EventBus.$emit('i-got-clicked', this.clickCount);
+      this.clickCount++
+      EventBus.$emit('i-got-clicked', this.clickCount)
     },
     // 打开个人中心
     handlePersonPage(uid) {
-      openPersonPage(uid);
+      openPersonPage(uid)
+    },
+    // 获取tabList数据
+    getTabList() {
+      datingRankList({}).then((res) => {
+        if (res.code === 200) {
+          if (result.length) {
+            this.tabList = result
+            this.list = []
+            for (let i = 0; i < result.length; i++) {
+              let obj = {
+                items: [],
+                tag: result[i],
+                pageNum: 1,
+                pageSize: 10,
+                loading: false,
+                finished: false,
+              }
+              this.list.push(obj)
+            }
+            this.getData(0)
+            this.getData(1)
+            this.getData(2)
+            this.getData(3)
+          }
+        }
+      })
     },
     // 获取真爱榜数据
-    getData() {
-      datingRank(this.query).then((res) => {
+    getData(index) {
+      let { tag, pageNum, pageSize } = this.list[index]
+      datingRank({ tag, pageNum, pageSize }).then((res) => {
         if (res.code === 200) {
-          let result = res.data;
+          let result = res.data
           if (result.length) {
-            this.list = result;
+            this.list[index].items = result
           }
         }
-      });
+      })
     },
     // 加载更多数据
-    onLoad() {
-      this.query.pageNum++; // 请求下一页
-      if (this.query.pageNum > this.maxPage) {
-        this.finished = true;
-        return;
+    onLoad(index) {
+      let obj = this.list[index]
+      obj.pageNum += 1 // 请求下一页数据
+      if (obj.pageNum > this.maxPage) {
+        obj.finished = true
+        return
       }
-      datingRank(this.query).then((res) => {
+      let params = {
+        pageNum: obj.pageNum,
+        pageSize: obj.pageSize,
+        tag: obj.tag,
+      }
+      datingRank(params).then((res) => {
         if (res.code === 200) {
-          // 加载状态结束
-          this.loading = false;
-          let result = res.data;
+          // 加载结束
+          obj.loading = false
+          let result = res.data
           if (result.length) {
             for (let i = 0; i < result.length; i++) {
-              this.list.push(result[i]);
+              obj.items.push(result[i])
             }
           } else {
-            // 如果没有数据则设置加载完成
-            this.finished = true;
+            // 请求完成
+            obj.finished = true
+            console.log('请求完成')
+            console.log(this.list)
           }
         }
-      });
+      })
     },
   },
-};
+}
 </script>
 <style lang="scss">
 @import './css/index';
