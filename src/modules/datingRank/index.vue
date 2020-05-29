@@ -151,14 +151,16 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import { List } from 'vant'
-import { datingRank, datingRankList } from '@/api'
-import { openPersonPage } from '@/utils/appNativeFun'
-import { EventBus } from '@/eventBus'
-import downLoadBar from '@/components/downloadBar'
+import Vue from 'vue';
+import { List, Tabs, Tab } from 'vant';
+import { datingRank, datingRankList } from '@/api';
+import { openPersonPage } from '@/utils/appNativeFun';
+import { EventBus } from '@/eventBus';
+import downLoadBar from '@/components/downloadBar';
 
 Vue.use(List)
+  .use(Tabs)
+  .use(Tab);
 
 export default {
   name: 'DatingRank',
@@ -168,41 +170,43 @@ export default {
       tabActive: 0,
       tabList: [], // tabList
       list: [],
-    }
+    };
   },
   mounted() {
-    this.init()
+    this.init();
   },
   filters: {
     toTenThousand(number) {
-      let num = String(number)
+      let num = String(number);
       if (num.length >= 8) {
-        return '999W+'
+        return '999W+';
       } else if (num.length == 7) {
-        return num.slice(0, 3) + '.' + num.slice(3, 5) + 'W'
+        return num.slice(0, 3) + '.' + num.slice(3, 5) + 'W';
       }
-      return number
+      return number;
     },
   },
   methods: {
     init() {
-      this.getTabList() // 初始化tabList
+      this.getTabList(); // 初始化tabList
     },
     bus() {
-      this.clickCount++
-      EventBus.$emit('i-got-clicked', this.clickCount)
+      this.clickCount++;
+      EventBus.$emit('i-got-clicked', this.clickCount);
     },
     // 打开个人中心
     handlePersonPage(uid) {
-      openPersonPage(uid)
+      openPersonPage(uid);
     },
     // 获取tabList数据
     getTabList() {
       datingRankList({}).then((res) => {
+        console.log(res);
         if (res.code === 200) {
+          let result = res.data;
           if (result.length) {
-            this.tabList = result
-            this.list = []
+            this.tabList = result;
+            this.list = [];
             for (let i = 0; i < result.length; i++) {
               let obj = {
                 items: [],
@@ -211,62 +215,62 @@ export default {
                 pageSize: 10,
                 loading: false,
                 finished: false,
-              }
-              this.list.push(obj)
+              };
+              this.list.push(obj);
             }
-            this.getData(0)
-            this.getData(1)
-            this.getData(2)
-            this.getData(3)
+            this.getData(0);
+            this.getData(1);
+            this.getData(2);
+            this.getData(3);
           }
         }
-      })
+      });
     },
     // 获取真爱榜数据
     getData(index) {
-      let { tag, pageNum, pageSize } = this.list[index]
+      let { tag, pageNum, pageSize } = this.list[index];
       datingRank({ tag, pageNum, pageSize }).then((res) => {
         if (res.code === 200) {
-          let result = res.data
+          let result = res.data;
           if (result.length) {
-            this.list[index].items = result
+            this.list[index].items = result;
           }
         }
-      })
+      });
     },
     // 加载更多数据
     onLoad(index) {
-      let obj = this.list[index]
-      obj.pageNum += 1 // 请求下一页数据
+      let obj = this.list[index];
+      obj.pageNum += 1; // 请求下一页数据
       if (obj.pageNum > this.maxPage) {
-        obj.finished = true
-        return
+        obj.finished = true;
+        return;
       }
       let params = {
         pageNum: obj.pageNum,
         pageSize: obj.pageSize,
         tag: obj.tag,
-      }
+      };
       datingRank(params).then((res) => {
         if (res.code === 200) {
           // 加载结束
-          obj.loading = false
-          let result = res.data
+          obj.loading = false;
+          let result = res.data;
           if (result.length) {
             for (let i = 0; i < result.length; i++) {
-              obj.items.push(result[i])
+              obj.items.push(result[i]);
             }
           } else {
             // 请求完成
-            obj.finished = true
-            console.log('请求完成')
-            console.log(this.list)
+            obj.finished = true;
+            console.log('请求完成');
+            console.log(this.list);
           }
         }
-      })
+      });
     },
   },
-}
+};
 </script>
 <style lang="scss">
 @import './css/index';

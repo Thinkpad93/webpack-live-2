@@ -1,8 +1,9 @@
+@function px2rem($px, $rem: 75) {
+  @return $px / $rem + rem;
+}
+
 body {
   background-color: #ffd5e6;
-}
-img {
-  max-width: 100%;
 }
 
 .page-hd {
