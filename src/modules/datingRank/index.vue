@@ -167,7 +167,7 @@ export default {
   data() {
     return {
       maxPage: 4, // 最大请求页数
-      tabActive: 0,
+      tabActive: 2,
       tabList: [], // tabList
       list: [],
     };
@@ -263,8 +263,6 @@ export default {
           } else {
             // 请求完成
             obj.finished = true;
-            console.log('请求完成');
-            console.log(this.list);
           }
         }
       });

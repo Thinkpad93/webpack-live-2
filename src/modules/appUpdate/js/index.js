@@ -5,7 +5,23 @@ import '@/utils/flexible';
 // 引入公共样式
 import '@/styles/site.scss';
 
-new VConsole();
+import { getQueryString } from '@/utils';
+
+let search = getQueryString();
+
+// 开发环境
+if (location.href.indexOf('beta') > -1) {
+  console.log('开发环境');
+  try {
+    new VConsole();
+  } catch (e) {
+    console.log(e);
+  }
+} else if (Object.keys(search).length) {
+  if ('debug' in search) {
+    new VConsole();
+  }
+}
 
 // 实例化操作
 new Vue({

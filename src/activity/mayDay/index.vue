@@ -768,7 +768,10 @@ export default {
     // 请求榜单数据
     getData(index) {
       let { items, loading, finished, ...args } = this.list[index];
-      labouractRanking(serializeData(args)).then((res) => {
+      let params = {
+        showLoading: true,
+      };
+      labouractRanking(serializeData(args), params).then((res) => {
         if (res.code === 200) {
           let result = res.data;
           if (result.length) {

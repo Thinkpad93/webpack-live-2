@@ -52,21 +52,22 @@ body {
   background-color: #ff90b8;
 }
 .avatar {
-  width: px2rem(92);
-  height: px2rem(92);
+  width: px2rem(89);
+  height: px2rem(89);
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
 }
 .header {
   position: relative;
+  display: inline-block;
 }
 .header-wear {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 10;
-  width: px2rem(144);
-  height: px2rem(144);
+  width: px2rem(138);
+  height: px2rem(138);
   background-size: 100%;
   background-repeat: no-repeat;
   transform: translate(-50%, -50%);
