@@ -9,7 +9,7 @@ const toastCongfig = {
   duration: 0,
 };
 
-let toastIns = null;
+let toastIns = null; // toast实例
 
 let _page_ = getItem(window.sessionStorage, '_page_');
 
@@ -20,12 +20,10 @@ const instance = axios.create({
 // request
 instance.interceptors.request.use(
   (config) => {
-    console.log(_page_);
     if (_page_ == null) {
       setItem(window.sessionStorage, '_page_', { showLoading: true });
       toastIns = Toast.loading(toastCongfig);
     }
-    console.log(config);
     return config;
   },
   (error) => {
@@ -36,7 +34,6 @@ instance.interceptors.request.use(
 // response
 instance.interceptors.response.use(
   (response) => {
-    console.log(response);
     if (response.data && response.data.code === 200) {
       if (_page_ == null) {
         toastIns.clear();

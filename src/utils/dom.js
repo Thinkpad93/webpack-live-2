@@ -2,3 +2,7 @@
 function contains(node) {
   return node === document.body ? false : document.body.contains(node);
 }
+
+function toggleClass(element, className) {
+  return element.classList.toggle(className);
+}

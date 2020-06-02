@@ -47,7 +47,7 @@ git commit -m "fix：修复某某 bug"
 
 ##### H5 页面打开时间久问题
 
-考虑是 CDN 资源文件问题
+CDN 资源文件问题
 如访问 https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js 资源
 实际上是转发到了去访问 https://cdnjs.com/ 的资源文件，所以会导致打开页面等待时间很长的问题（页面空白）
 这个时候建议更换 CDN 库即可

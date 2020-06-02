@@ -1,26 +1,26 @@
+import { wxInit } from '@/api';
+
 export default {
   wxConfig(callback) {
-    let url = window.location.href.split('#')[0]; //获取当前url,传递到服务端进行签名
-    new Promise((resolve, reject) => {
-      let data = {
-        appid: '',
-        nonceStr: '',
-      };
-      resolve(data);
-    }).then((res) => {
-      if (res.appid && res.nonceStr) {
-        wx.config({
-          beta: true, // 注入wx.invoke方法来调用还未开放的jsapi方法
-          debug: false, // 开启调试模式,开发时可以开启
-          appId: res.appid, // 必填，公众号的唯一标识
-          timestamp: res.timestamp, // 必填，生成签名的时间戳
-          nonceStr: res.nonceStr, // 必填，生成签名的随机串
-          signature: res.signature, // 必填，签名
-          jsApiList: [
-            'previewImage', //预览图片
-            'chooseWXPay', //发起一个微信支付
-          ],
-        });
+    let url = encodeURIComponent(window.location.href.split('#')[0]); //获取当前url,传递到服务端进行签名
+    // 获取签名
+    wxInit({ url }).then((res) => {
+      if (res.code === 200) {
+        let result = res.data;
+        if (result.appid && result.nonceStr) {
+          wx.config({
+            beta: true, // 注入wx.invoke方法来调用还未开放的jsapi方法
+            debug: false, // 开启调试模式,开发时可以开启
+            appId: res.appid, // 必填，公众号的唯一标识
+            timestamp: res.timestamp, // 必填，生成签名的时间戳
+            nonceStr: res.nonceStr, // 必填，生成签名的随机串
+            signature: res.signature, // 必填，签名
+            jsApiList: [
+              'previewImage', //预览图片
+              'chooseWXPay', //发起一个微信支付
+            ],
+          });
+        }
       }
     });
     // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。

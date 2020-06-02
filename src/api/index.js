@@ -51,3 +51,9 @@ export function getIOSDownloadUrl(obj = {}) {
     params: obj,
   });
 }
+
+export function wxInit(obj = {}) {
+  return request.get('/wx/config', {
+    params: obj,
+  });
+}
