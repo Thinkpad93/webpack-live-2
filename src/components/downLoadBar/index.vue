@@ -10,7 +10,8 @@
           height="40"
         />
         <div class="descr">
-          <slot></slot>
+          <p>BiBi约玩</p>
+          <span>约喜欢的人做有趣的事</span>
         </div>
       </div>
       <div class="downloadbar-ft">

@@ -52,8 +52,23 @@ export function getIOSDownloadUrl(obj = {}) {
   });
 }
 
+// 微信配置
 export function wxInit(obj = {}) {
-  return request.get('/wx/config', {
+  return request.get(isDev + '/wx/config', {
+    params: obj,
+  });
+}
+
+// 充值金额列表
+export function chargeprodList(obj = {}) {
+  return request.get(isDev + '/chargeprod/list', {
+    params: obj,
+  });
+}
+
+// 获取排行榜
+export function allrankList(obj = {}) {
+  return request.get('/allrank/listV2', {
     params: obj,
   });
 }
