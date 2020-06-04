@@ -540,7 +540,7 @@ import user from './components/User';
 import empty from './components/Empty';
 
 export default {
-  name: 'mayDay',
+  name: 'MayDay',
   mixins: [mixins],
   components: {
     user,

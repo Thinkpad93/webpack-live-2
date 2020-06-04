@@ -27,7 +27,7 @@
 <script>
 import { getIOSDownloadUrl } from '@/api';
 export default {
-  name: 'appUpdate',
+  name: 'AppUpdate',
   data() {
     return {
       isShowText: false,

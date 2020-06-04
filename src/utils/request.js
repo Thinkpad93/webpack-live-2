@@ -22,7 +22,7 @@ instance.interceptors.request.use(
   (config) => {
     if (_page_ == null) {
       setItem(window.sessionStorage, '_page_', { showLoading: true });
-      toastIns = Toast.loading(toastCongfig);
+      //toastIns = Toast.loading(toastCongfig);
     }
     return config;
   },
@@ -36,7 +36,7 @@ instance.interceptors.response.use(
   (response) => {
     if (response.data && response.data.code === 200) {
       if (_page_ == null) {
-        toastIns.clear();
+        //toastIns.clear();
       }
     }
     return response.data;
