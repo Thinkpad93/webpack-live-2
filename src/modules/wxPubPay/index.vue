@@ -7,7 +7,6 @@
     </div>
     <div class="page-bd">
       <ul class="list" style="margin: 0 -4px">
-        <!--  -->
         <li
           :class="{ active: current === index }"
           class="item"
@@ -36,8 +35,10 @@
 <script>
 import { chargeprodList } from '@/api';
 import { toggleClass } from '@/utils/dom';
+import list from '@/mixins/list';
 export default {
   name: 'WxPubPay',
+  mixins: [list],
   data() {
     return {
       current: -1,
@@ -47,7 +48,6 @@ export default {
         channel: 1,
       },
       bannerUrl: '',
-      list: [], // 数据
     };
   },
   mounted() {
