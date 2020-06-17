@@ -8,46 +8,70 @@ body {
 
 .page-hd {
   position: relative;
+  > img {
+    vertical-align: top;
+  }
   .title {
     position: absolute;
     left: 0;
     bottom: 0;
-    z-index: 300;
+    z-index: 10;
     img {
       vertical-align: top;
     }
   }
 }
 .page-bd {
+  position: relative;
   padding: 0 px2rem(30) px2rem(60) px2rem(30);
+}
+.new-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  .tab {
+    cursor: pointer;
+    opacity: 0.6;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0 4px;
+    flex: 1;
+    text-align: center;
+    margin-bottom: 8px;
+    &:first-child {
+      flex-basis: 100%;
+      .tab-innter {
+        width: px2rem(152);
+      }
+    }
+  }
+  .tab-innter {
+    display: inline-block;
+    width: px2rem(152);
+    height: px2rem(54);
+    line-height: px2rem(54);
+    background-image: url(./images/btn-unselected.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 0 center;
+  }
+  .tab-active {
+    opacity: 1;
+    .tab-innter {
+      color: #a8511b;
+      background-image: url(./images/btn-selected.png);
+    }
+  }
 }
 .page-tabs {
   position: relative;
   > .van-tabs__wrap {
-    .van-tabs__nav {
-      background-color: transparent;
-      .van-tab {
-        opacity: 0.6;
-        font-weight: bold;
-        font-size: 12px;
-        margin: 0 2px 2px 0;
-        background-image: url(./images/btn-unselected.png);
-        background-repeat: no-repeat;
-        background-size: 100%;
-        background-position: 0 center;
-      }
-      .van-tab--active {
-        opacity: 1;
-        color: #a8511b;
-        background-image: url(./images/btn-selected.png);
-      }
-    }
+    display: none !important;
   }
 }
 .container {
   position: relative;
   padding: 12px;
-  margin-top: px2rem(20);
+  margin-top: px2rem(8);
   border-radius: 2px;
   background-color: #ff90b8;
 }
@@ -56,6 +80,7 @@ body {
   height: px2rem(89);
   border-radius: 50%;
   border: 1px solid #fff;
+  vertical-align: top;
 }
 .header {
   position: relative;
@@ -65,7 +90,7 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 10;
+  z-index: 100;
   width: px2rem(138);
   height: px2rem(138);
   background-size: 100%;

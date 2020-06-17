@@ -7,6 +7,17 @@
       </div>
     </div>
     <div class="page-bd">
+      <div class="new-tabs" style="margin: 0 -4px;">
+        <div
+          class="tab"
+          v-for="(tabItem, tabIndex) in tabList"
+          :key="tabIndex"
+          :class="{ 'tab-active': tabIndex == tabActive }"
+          @click="handleTabClick(tabIndex)"
+        >
+          <div class="tab-innter">{{ tabItem }}</div>
+        </div>
+      </div>
       <van-tabs
         class="page-tabs"
         animated
@@ -167,7 +178,7 @@ export default {
   data() {
     return {
       maxPage: 4, // 最大请求页数
-      tabActive: 2,
+      tabActive: 0,
       tabList: [], // tabList
       list: [],
     };
@@ -178,8 +189,10 @@ export default {
   filters: {
     toTenThousand(number) {
       let num = String(number);
-      if (num.length >= 8) {
-        return '999W+';
+      if (num.length == 9) {
+        return 9999.99 + 'W';
+      } else if (num.length == 8) {
+        return num.slice(0, 4) + '.' + num.slice(4, 6) + 'W';
       } else if (num.length == 7) {
         return num.slice(0, 3) + '.' + num.slice(3, 5) + 'W';
       }
@@ -193,6 +206,9 @@ export default {
     bus() {
       this.clickCount++;
       EventBus.$emit('i-got-clicked', this.clickCount);
+    },
+    handleTabClick(tabIndex) {
+      this.tabActive = tabIndex;
     },
     // 打开个人中心
     handlePersonPage(uid) {
@@ -218,10 +234,9 @@ export default {
               };
               this.list.push(obj);
             }
-            this.getData(0);
-            this.getData(1);
-            this.getData(2);
-            this.getData(3);
+            for (let d = 0; d < result.length; d++) {
+              this.getData(d);
+            }
           }
         }
       });
