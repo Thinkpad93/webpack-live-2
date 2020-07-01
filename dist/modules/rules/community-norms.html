@@ -28,7 +28,7 @@
         -webkit-overflow-scrolling: touch;
         -webkit-text-size-adjust: 100%;
         font-family: -apple-system-font, Helvetica Neue, sans-serif,
-          'PingFangSC-Regular';
+          "PingFangSC-Regular";
         background-color: #fafafa;
       }
       table {
@@ -63,7 +63,7 @@
   <body>
     <div id="page">
       <div class="page-bd">
-        <h3 class="title"><span class="shadow">bibi约玩</span>平台社区规范</h3>
+        <h3 class="title"><span class="platflag"></span>平台社区规范</h3> 
         <p>根据《互联网新闻信息服务管理规定》,用户的言论不得违反相关法律法规</p>
         <p class="blod-title">一、法律法规类</p>
         <table border="1" cellspacing="0">
@@ -151,7 +151,7 @@
               <td colspan="2" rowspan="3">永久封禁账号及设备</td>
             </tr>
             <tr>
-              <td>7.恶意诋毁“<span class="shadow">bibi约玩</span>”平台</td>
+              <td>7.恶意诋毁“<span class="platflag"></span>”平台</td>
             </tr>
             <tr>
               <td>8.恶意扰乱平台规则等行为</td>
@@ -361,24 +361,13 @@
 
         <p>5. 用户因发表不当言论而被封号的，封号的时长依次递增。</p>
 
-        <p>
-          6. 请<span class="shadow">bibi约玩</span
-          >的各位用户，遵守平台社区规范。
-        </p>
+        <p>6. 请<span class="platflag"></span>的各位用户，遵守平台社区规范。</p>
 
         <p>社区规则将不定期更新，以最新更新的文档为准</p>
       </div>
     </div>
   </body>
   <script src="../../common/js/utils.js"></script>
-  <script>
-    var arr = document.querySelectorAll('.shadow');
-    var obj = utilsFn.getQueryString();
-    //
-    if (obj.platflag == 'duoduo') {
-      for (var i = 0; i < arr.length; i++) {
-        arr[i].innerHTML = '多多';
-      }
-    }
-  </script>
+  <script src="../../common/js/app.native.fun.js"></script>
+  <script src="./alias.js"></script>
 </html>
