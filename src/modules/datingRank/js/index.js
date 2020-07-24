@@ -1,4 +1,4 @@
-import index from '../index';
+import App from '../App';
 
 // 引入rem支持
 import '@/utils/flexible';
@@ -25,5 +25,5 @@ if (location.href.indexOf('beta') > -1) {
 
 // 实例化操作
 new Vue({
-  render: (h) => h(index),
+  render: (h) => h(App),
 }).$mount('#root');

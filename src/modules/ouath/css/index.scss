@@ -1,0 +1,13 @@
+.box {
+  position: relative;
+  height: px2rem(250);
+  background: linear-gradient(90deg, #ff49e0 0%, #656cff);
+  border-radius: 0 0 50% 50%;
+  .icon {
+    position: absolute;
+    left: 50%;
+    bottom: -30%;
+    z-index: 10;
+    transform: translateX(-50%);
+  }
+}
