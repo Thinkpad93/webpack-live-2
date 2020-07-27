@@ -28,7 +28,8 @@ body {
   top: 0;
   z-index: 9527;
   width: 100%;
-  background-color: #fff;
+  color: #fff;
+  background-color: transparent;
 }
 .header .one {
   height: 34.5px;
@@ -39,6 +40,9 @@ body {
   align-items: center;
 }
 .main {
+  position: relative;
+}
+.content {
   padding: 0 10px;
 }
 .main p {
@@ -54,7 +58,6 @@ body {
   background-size: 100%;
   background-attachment: fixed;
   background-position: center 0;
-  /* padding-top: px2rem(100); */
   overflow: hidden;
 }
 .frosted::after {
@@ -80,10 +83,6 @@ body {
 }
 
 .enter {
-  color: #fff;
-  background-color: transparent !important;
-}
-
-.enter path {
-  color: #fff;
+  color: #262626;
+  background-color: #fff !important;
 }
