@@ -50,7 +50,7 @@
       </div>
     </header>
     <main class="main">
-      <!-- <div
+      <div
         class="frosted"
         style="background-image: url(https://img.cdsfl8888.com/Fo2XXAGTQ3DT5I8EJCjDFXzOtase?imageslim);"
       >
@@ -61,7 +61,7 @@
             <div class="card-bd"></div>
           </div>
         </div>
-      </div> -->
+      </div>
       <div class="content">
         <p>
           人民网北京7月27日电
@@ -135,6 +135,8 @@
       if (os.android) {
         let barHeight = window.androidJsObj.getStatusBarHeight();
         console.log(barHeight / devicePixelRatio);
+        console.log('barHeight' + barHeight);
+        console.log('devicePixelRatio' + devicePixelRatio);
         statusBar.style.height = barHeight / devicePixelRatio + 'px';
       }
       window.addEventListener('scroll', function() {
@@ -144,7 +146,7 @@
         } else if (document.body) {
           top = document.body.scrollTop;
         }
-        console.log(top);
+        // console.log(top);
         if (top > 200) {
           header.classList.add('enter');
         } else {
