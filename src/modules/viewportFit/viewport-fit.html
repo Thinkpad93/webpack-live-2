@@ -8,62 +8,11 @@
     />
     <meta name="apple-mobile-web-app-status-bar-style" content="#138cca" />
     <meta name="theme-color" content="#138cca" />
-    <title>Document</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      *::before,
-      *::after {
-        box-sizing: initial;
-      }
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-size: 14px;
-        color: #262626;
-        background-color: #fff;
-        padding-top: env(safe-area-inset-top);
-        padding-left: env(safe-area-inset-left);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: env(safe-area-inset-bottom);
-      }
-      .flex {
-        display: flex;
-      }
-      .flex-1 {
-        flex: 1;
-      }
-      .header {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        background-color: #fff;
-      }
-      .one {
-        height: 34.5px;
-      }
-      .two {
-        height: 50px;
-        padding: 0 15px;
-        align-items: center;
-      }
-      .main {
-        padding: 0 10px;
-      }
-      .main p {
-        font-size: 14px;
-        margin-bottom: 10px;
-      }
-    </style>
+    <title>发布公告</title>
+    <link href="index.css" rel="stylesheet" />
   </head>
-  <body style="padding-top: 84.5px;">
-    <div class=""></div>
-    <header class="header">
+  <body>
+    <header class="header enter">
       <div class="one"></div>
       <div class="two flex">
         <div class="left">
@@ -114,6 +63,18 @@
       </div>
     </header>
     <main class="main">
+      <div
+        class="frosted"
+        style="background-image: url(https://img.cdsfl8888.com/Fo2XXAGTQ3DT5I8EJCjDFXzOtase?imageslim);"
+      >
+        <div class="frosted-mask"></div>
+        <div class="card">
+          <div class="card-box flex">
+            <div class="card-hd"></div>
+            <div class="card-bd"></div>
+          </div>
+        </div>
+      </div>
       <p>
         人民网北京7月27日电
         （王国菁）目前，国内疫情防控已经进入常态化阶段，但仍有不少人担心在今年秋冬季会有第二波疫情。对此，上海市新冠肺炎临床救治专家组组长，公共卫生专家组共同组长张文宏表示，今年冬季面临的挑战仍很严峻，在新冠疫情全球大流行的背景下，请大家保持警觉并怀着敬畏之心。
@@ -140,6 +101,33 @@
       <p>
         马晓伟强调，当前，要迅速以核酸检测为手段扩大预防，在现有医疗机构、第三方检测机构充分挖潜的同时，用好邻近地市检测资源，加强生物安全管理和采样检测匹配，保障在规定时间内出具采样结果，力争在4天内实现核酸检测全覆盖。
       </p>
+      <p>
+        为应对此次乌鲁木齐市疫情，自治区新冠肺炎医疗救治定点医院副院长陆晨表示，调动一切资源，投入全部力量，提升医疗救治能力、全力以赴做好患者救治工作：“组建自治区新冠肺炎医疗救治定点医院。在国务院联防联控机制指导组的指导下，组建医疗专家团队，调动优质资源、完善诊疗方案，优化诊疗流程，全力开展救治工作。根据疫情发展的需要，对医院进行局部改造，增加了普通床位和重症监护病床。
+      </p>
+      <p>
+        陆晨介绍，此次乌鲁木齐市疫情收治的患者较前期相比，轻症患者和无症状感染者居多，发病年龄的中位数偏轻：“在新冠肺炎医疗救治工作中，按照国家卫健委发布的第七版《新型冠状病毒肺炎诊疗方案》，坚持中西医结合和“一人一策”、多学科协作，目前通过我们积极有效的抗（新冠）病毒治疗，有多例重型病例转为普通病例。”
+      </p>
+      <p>
+        自治区新冠疫情医疗救治专家组充分发挥中医药独特优势，将中医中药治疗第一时间参与到了此次救治工作中。自治区新冠肺炎医疗救治定点医院副院长李风森说：“将中医药治疗深度介入新冠肺炎预防、救治、康复全过程。前期我区新冠肺炎治疗中医药使用率在93%左右，本次疫情中医药的参与度已达到100%，在改善新冠肺炎轻型、普通型、重型临床症状方面都取得了较好疗效。”
+      </p>
     </main>
   </body>
+  <script>
+    window.onload = function() {
+      let header = document.querySelector('.header');
+      window.addEventListener('scroll', function() {
+        let top;
+        if (document.documentElement && document.documentElement.scrollTop) {
+          top = document.documentElement.scrollTop;
+        } else if (document.body) {
+          top = document.body.scrollTop;
+        }
+        if (top > 160) {
+          header.classList.remove('enter');
+        } else {
+          header.classList.add('enter');
+        }
+      });
+    };
+  </script>
 </html>
