@@ -30,7 +30,7 @@ body {
 .header-bd {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 34.5px;
   z-index: 9527;
   width: 100%;
 }
