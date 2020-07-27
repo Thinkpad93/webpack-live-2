@@ -31,19 +31,26 @@
         padding-right: env(safe-area-inset-right);
         padding-bottom: env(safe-area-inset-bottom);
       }
+      .flex {
+        display: flex;
+      }
+      .flex-1 {
+        flex: 1;
+      }
       .header {
         position: fixed;
         left: 0;
-        top: 34.5px;
+        top: 0;
         width: 100%;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        padding: 0 15px;
         background-color: #fff;
       }
-      .header p {
-        flex: 1;
+      .one {
+        height: 34.5px;
+      }
+      .two {
+        height: 50px;
+        padding: 0 15px;
+        align-items: center;
       }
       .main {
         padding: 0 10px;
@@ -57,50 +64,53 @@
   <body style="padding-top: 84.5px;">
     <div class=""></div>
     <header class="header">
-      <div class="left">
-        <svg
-          width="22px"
-          height="22px"
-          viewBox="0 0 22 22"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <g
-            id="control"
-            stroke="none"
-            stroke-width="1"
-            fill="none"
-            fill-rule="evenodd"
+      <div class="one"></div>
+      <div class="two flex">
+        <div class="left">
+          <svg
+            width="22px"
+            height="22px"
+            viewBox="0 0 22 22"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
-            <g id="navigation" fill-rule="nonzero">
-              <g id="back">
-                <rect
-                  id="rect"
-                  opacity="0"
-                  x="0"
-                  y="0"
-                  width="22"
-                  height="22"
-                ></rect>
-                <path
-                  d="M1.92068285,12.5657546 C1.5513414,12.1964132 1.55134139,11.5962333 1.92068285,11.2268918 L6.50182469,6.64574998 C6.87116615,6.27640853 7.47134603,6.27640854 7.84068749,6.64574999 C8.21002895,7.01509145 8.21002895,7.61527132 7.84068749,7.98461278 L3.25954564,12.5657546 C3.07487491,12.7504254 2.83304419,12.8427607 2.59121349,12.8427607 C2.34938276,12.8427607 2.10535358,12.7504254 1.92068285,12.5657546 Z"
-                  id="shape"
-                  fill="#1E2126"
-                ></path>
-                <path
-                  d="M1.64379883,11.8966701 C1.64379883,11.3743424 2.06819009,10.9499512 2.5905178,10.9499512 L19.6506914,10.9499512 C20.1730191,10.9499512 20.5974103,11.3743424 20.5974103,11.8966701 C20.5974103,12.4189978 20.1730191,12.8433891 19.6506914,12.8433891 L2.59051778,12.8433891 C2.32935394,12.8433891 2.09306282,12.7376799 1.92206269,12.5666798 C1.75106254,12.3956796 1.64379883,12.157834 1.64379883,11.8966701 Z"
-                  id="path"
-                  fill="#1E2126"
-                ></path>
+            <g
+              id="control"
+              stroke="none"
+              stroke-width="1"
+              fill="none"
+              fill-rule="evenodd"
+            >
+              <g id="navigation" fill-rule="nonzero">
+                <g id="back">
+                  <rect
+                    id="rect"
+                    opacity="0"
+                    x="0"
+                    y="0"
+                    width="22"
+                    height="22"
+                  ></rect>
+                  <path
+                    d="M1.92068285,12.5657546 C1.5513414,12.1964132 1.55134139,11.5962333 1.92068285,11.2268918 L6.50182469,6.64574998 C6.87116615,6.27640853 7.47134603,6.27640854 7.84068749,6.64574999 C8.21002895,7.01509145 8.21002895,7.61527132 7.84068749,7.98461278 L3.25954564,12.5657546 C3.07487491,12.7504254 2.83304419,12.8427607 2.59121349,12.8427607 C2.34938276,12.8427607 2.10535358,12.7504254 1.92068285,12.5657546 Z"
+                    id="shape"
+                    fill="#1E2126"
+                  ></path>
+                  <path
+                    d="M1.64379883,11.8966701 C1.64379883,11.3743424 2.06819009,10.9499512 2.5905178,10.9499512 L19.6506914,10.9499512 C20.1730191,10.9499512 20.5974103,11.3743424 20.5974103,11.8966701 C20.5974103,12.4189978 20.1730191,12.8433891 19.6506914,12.8433891 L2.59051778,12.8433891 C2.32935394,12.8433891 2.09306282,12.7376799 1.92206269,12.5666798 C1.75106254,12.3956796 1.64379883,12.157834 1.64379883,11.8966701 Z"
+                    id="path"
+                    fill="#1E2126"
+                  ></path>
+                </g>
               </g>
             </g>
-          </g>
-        </svg>
-      </div>
-      <p style="text-align: center;">关于我们</p>
-      <div class="right">
-        <span>发布公告</span>
+          </svg>
+        </div>
+        <p class="flex-1" style="text-align: center;">关于我们</p>
+        <div class="right">
+          <span>发布公告</span>
+        </div>
       </div>
     </header>
     <main class="main">
