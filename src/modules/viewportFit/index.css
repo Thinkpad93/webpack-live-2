@@ -30,13 +30,13 @@ body {
 .header-bd {
   position: fixed;
   left: 0;
-  top: 34.5px;
+  top: 0;
   z-index: 9527;
   width: 100%;
 }
-/* .header .status-bar {
+.header .status-bar {
   height: 34.5px;
-} */
+}
 .header .two {
   height: 50px;
   padding: 0 15px;

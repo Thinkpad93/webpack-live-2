@@ -14,7 +14,7 @@
   <body>
     <header class="header">
       <div class="header-bd">
-        <!-- <div class="status-bar"></div> -->
+        <div class="status-bar"></div>
         <div class="two flex">
           <div class="left">
             <svg width="22px" height="22px" viewBox="0 0 22 22">
@@ -103,7 +103,33 @@
   </body>
   <script>
     window.onload = function() {
+      let os = (function() {
+        var u = navigator.userAgent;
+        return {
+          trident: /(?:Trident)/.test(u), // IE内核
+          presto: /(?:Presto)/.test(u), // opera内核
+          webKit: /(?:AppleWebKit)/.test(u), // 苹果、谷歌内核
+          gecko: /(?:Gecko)/.test(u) && !/(?:KHTML)/.test(u), // 火狐内核
+          mobile: /(?:AppleWebKit.*Mobile.*)/.test(u), // 是否为移动终端
+          ios: /(?:\(i[^;]+;( U;)? CPU.+Mac OS X)/.test(u), // ios终端
+          android: /(?:Android)/.test(u) || /(?:Adr)/.test(u), // android终端
+          iPhone: /(?:iPhone)/.test(u), // 是否为iPhone或者QQHD浏览器
+          iPad: /(?:iPad)/.test(u), // 是否iPad
+          webApp: /(?:Safari)/.test(u), // 是否web应该程序，没有头部与底部
+          weixin: /(?:MicroMessenger)/.test(u), // 是否微信
+          qq: u.match(/\sQQ/i) == ' qq', // 是否QQ
+          app: /(?:mengshengApp)/.test(u), // 是否在app内
+          bibi: /(?:bibi)/.test(u),
+          duoduo: /(?:duoduo)/.test(u),
+          benben: /(?:benben)/.test(u),
+        };
+      })();
+      let devicePixelRatio = window.devicePixelRatio;
       let header = document.querySelector('.header');
+      if (os.android) {
+        let barHeight = window.androidJsObj.getStatusBarHeight();
+        console.log(barHeight / devicePixelRatio);
+      }
       window.addEventListener('scroll', function() {
         let top;
         if (document.documentElement && document.documentElement.scrollTop) {
