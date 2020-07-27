@@ -23,17 +23,20 @@ body {
   flex: 1;
 }
 .header {
+  position: relative;
+  color: #fff;
+  background-color: transparent;
+}
+.header-bd {
   position: fixed;
   left: 0;
   top: 0;
   z-index: 9527;
   width: 100%;
-  color: #fff;
-  background-color: transparent;
 }
-.header .one {
+/* .header .status-bar {
   height: 34.5px;
-}
+} */
 .header .two {
   height: 50px;
   padding: 0 15px;
@@ -82,7 +85,15 @@ body {
   opacity: 0.5;
 }
 
-.enter {
+#shape,
+#path {
+  fill: #fff;
+}
+
+.enter .header-bd {
   color: #262626;
   background-color: #fff !important;
+}
+.enter path {
+  fill: #262626 !important;
 }
