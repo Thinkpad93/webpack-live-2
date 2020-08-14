@@ -89,7 +89,7 @@ blur() {
 
 -
 
-##### 四大错误类型
+##### javaScript 四大错误类型
 
 TypeError 类型错误
 ReferenceError 变量不存在

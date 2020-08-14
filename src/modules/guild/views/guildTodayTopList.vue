@@ -1,23 +1,18 @@
 <template>
   <div class="page">
-    <header-bar></header-bar>
+    <header-bar title="今日捐献榜单"></header-bar>
     <div class="page-bd">
       <van-list
         :offset="10"
         :immediate-check="false"
-        v-model="list[0].loading"
-        :finished="list[0].finished">
-        <ul class="layout">
-          <li class="layout-item flex" @click="handlePersonPage(item.uid)">
-            <div class="hd">
-              <img src="" alt="">
-            </div>
-            <div class="bd">
-              <div class="name"></div>
-              <div class="">今日贡献值856</div>
-            </div>
-          </li>
-        </ul>
+        v-model="loading"
+        :finished="finished"
+        @load="onLoad">
+        <user-list :list-data="list">
+          <template #default="{ row }">
+            <div class="ids">今日贡献值: {{ $utils.dealScore(row.amount) }}</div>
+          </template>
+        </user-list>
       </van-list>
     </div>
   </div>
@@ -26,31 +21,59 @@
 import Vue from 'vue';
 import { List } from 'vant';
 import HeaderBar from './components/HeaderBar';
+import UserList from './components/UserList';
+import { guildRankMemberDay } from '@/api/guild';
 Vue.use(List);
 
 export default {
   name: 'GuildTodayTopList',
   components: {
-    HeaderBar
+    HeaderBar,
+    UserList
   },
   data() {
     return {
-      list: [
-        {
-          items: [],
-          pageNum: 1,
-          pageSize: 30,
-          loading: false,
-          finished: false
-        }
-      ]
+      loading: false,
+      finished: false,
+      query: {
+        uid: this.$state.info.uid,
+        ticket: this.$state.info.ticket,
+        guildId: this.$state.guild.guildId,
+        date: this.$utils.formatDate(new Date(), 'yyyy-MM-dd'),
+        pageNum: 1,
+        pageSize: 10
+      },
+      list: [] // 数据列表
     };
+  },
+  mounted() {
+    this.getData();
   },
   methods: {
     // 打开个人中心
     handlePersonPage(uid) {
       return this.$utils.appTools.jumpAppointPage('PERSON_PAGE', uid);
+    },
+    onLoad() {
+      this.query.pageNum++;
+      this.getData();
+    },
+    // 获取数据
+    getData() {
+      guildRankMemberDay({ data: this.query }).then(res => {
+        if (res.code === 200) {
+          this.loading = false;
+          if (res.data.length) {
+            this.list = this.list.concat(res.data);
+          } else {
+            this.finished = true;
+          }
+        }
+      });
     }
   }
 };
 </script>
+<style lang="scss" scoped>
+@import './css/index.scss';
+</style>

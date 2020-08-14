@@ -1,54 +1,32 @@
 <template>
   <div class="page">
-    <header-bar></header-bar>
+    <header-bar title="升级说明"></header-bar>
     <div class="page-bd">
-      <p>公会等级升级条件</p>
-      <table>
-        <thead>
-          <tr>
-            <th>公会等级</th>
-            <th>公会徽章</th>
-            <th>升级条件</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>实习</td>
-            <td>
-              <img src="https://img.cdsfl8888.com/FjHdmhSniUK7qeMuPGE2k9LPN-Vf?imageslim" alt="" class="pic">
-            </td>
-            <td>50W贡献值</td>
-          </tr>
-          <tr>
-            <td>黄金</td>
-            <td>
-              <img src="https://img.cdsfl8888.com/FjHdmhSniUK7qeMuPGE2k9LPN-Vf?imageslim" alt="" class="pic">
-            </td>
-            <td>100W贡献值</td>
-          </tr>
-          <tr>
-            <td>铂金</td>
-            <td>
-              <img src="https://img.cdsfl8888.com/FjHdmhSniUK7qeMuPGE2k9LPN-Vf?imageslim" alt="" class="pic">
-            </td>
-            <td>200W贡献值</td>
-          </tr>
-          <tr>
-            <td>钻石</td>
-            <td>
-              <img src="https://img.cdsfl8888.com/FjHdmhSniUK7qeMuPGE2k9LPN-Vf?imageslim" alt="" class="pic">
-            </td>
-            <td>300W贡献值</td>
-          </tr>
-          <tr>
-            <td>王者</td>
-            <td>
-              <img src="https://img.cdsfl8888.com/FjHdmhSniUK7qeMuPGE2k9LPN-Vf?imageslim" alt="" class="pic">
-            </td>
-            <td>400W贡献值</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="mod">
+        <div class="upgrade-notes">
+          <h3>1. 公会如何升级？</h3>
+          <p>
+            会长号召公会成员坚持在公会捐献积分可促进公会升级，加入公会后在线时长可转化为积分。
+          </p>
+          <h3>2. 公会等级如何划分？</h3>
+          <p>
+            （1）公会等级划分为5个等级，从实习开始。<br />
+            （2）不同的公会等级有不同的徽章显示。
+          </p>
+          <h3>3. 公会贡献值来源</h3>
+          <p>
+            公会成员在公会可随时捐献积分1:1转化为公会贡献值。
+          </p>
+          <h3>4. 公会等级对应的升级条件</h3>
+          <div class="text-center">
+            <img src="./assets/level.png" alt="">
+          </div>
+        </div>
+        <div class="copyright text-center">
+          <img src="./assets/logo.png" alt="" width="112" height="38">
+          <p class="">最终解释权归多多语音所有</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -66,12 +44,33 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-table {
-  width: 100%;
-  text-align: center;
+@import './css/index.scss';
+.mod {
+  position: relative;
+  padding: px2rem(40) px2rem(30);
+  background-color: #ffff;
 }
-.pic {
-  height: 40px;
-  object-fit: cover;
+.upgrade-notes {
+  h3 {
+    margin-bottom: 10px;
+  }
+  p {
+    color: #5e6d82;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(38,38,38,1);
+    margin-bottom: 10px;
+  }
+  img {
+    max-width: 100%;
+  }
+}
+.copyright {
+  font-size: 13px;
+  padding: px2rem(64) 0 0 0;
+  color: #8c8c8c;
+  > p {
+    margin-top: 6px;
+  }
 }
 </style>

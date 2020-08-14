@@ -12,12 +12,14 @@
             </h3>
             <div class="room-info flex">
               <div class="id">ID: {{ item.erbanNo }}</div>
-              <div class="people">
-                <img src="../assets/sociaty-people.png" alt="" />
+              <div class="people flex">
+                <svg width="16px" height="16px" viewBox="0 0 16 16">
+                  <path d="M10.9046939,5.34746032 C10.9046939,6.84430858 9.69121369,8.05780126 8.19427838,8.05780126 C6.6974923,8.05780126 5.48403694,6.8443832 5.48403694,5.34746032 C5.48403694,3.85061206 6.69752962,2.63710695 8.19427838,2.63710695 C9.69122613,2.63710695 10.9046939,3.850525 10.9046939,5.34746032 Z M8.19424106,13.8791832 C6.03971634,13.8791832 4.29290625,13.6241843 4.29290625,11.7645942 C4.29290625,9.90511596 6.03969147,8.39759662 8.19441519,8.39759662 C10.3490892,8.39759662 12.09575,9.9050289 12.09575,11.7644201 C12.09575,13.6239978 10.3489399,13.8791832 8.19424106,13.8791832 Z" fill="#8c8c8c"></path>
+                </svg>
                 <span>{{ item.onlineNum }}</span>
               </div>
             </div>
-            <div class="tag flex">
+            <div class="tag flex" :data-title="item.roomTag">
               <div class="tag-anima flex">
                 <div class="line"></div>
                 <div class="line"></div>
@@ -103,6 +105,15 @@ export default {
       justify-content: center;
       border-radius: px2rem(16);
       background-color: #17a2ff;
+      &[data-title="女神"] {
+        background-color: #f958d1;
+      }
+      &[data-title="点唱"] {
+        background-color: #ea6c2a;
+      }
+      &[data-title="吃鸡"] {
+        background-color: #f8b52a;
+      }
     }
   }
   .room-hd {
@@ -126,6 +137,7 @@ export default {
     border-radius: 4px;
     background-color: #fff;
     animation: bar 0ms linear infinite alternate running;
+    transform: translate3d(0, 0, 0);
     &:nth-child(1) {
       animation-duration: 337ms;
     }

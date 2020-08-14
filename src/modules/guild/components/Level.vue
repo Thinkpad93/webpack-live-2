@@ -6,7 +6,7 @@
       </div>
       <div class="levels-bd flex flex-1 a-i-c">
         <template v-if="levelInfo.levelGuildVO">
-          <img :src="levelInfo.levelGuildVO.url" alt="">
+          <img :src="levelInfo.levelGuildVO.url" alt="" width="56" height="28">
         </template>
         <div class="progress" :style="{ '--percent': progress }"></div>
       </div>

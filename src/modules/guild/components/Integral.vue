@@ -6,13 +6,13 @@
       class-name="pageDialog"
       :show-confirm-button="false"
       :close-on-click-overlay="true"
-      @close="amountIndex = -1;"
+      @close="dialogClose"
     >
       <div class="dialog">
         <div class="dialog-hd text-center">
           <div class="integral-info">
             <span style="margin-right: 4px;">我的积分</span>
-            <img src="../assets/ic-question.png" alt="" @click="showTips" />
+            <img src="../assets/ic-question.png" alt="" width="16" height="16" @click="showTips" />
           </div>
           <div class="my-integral">{{ newAmount }}</div>
         </div>
@@ -30,11 +30,12 @@
             </div>
             <div class="user-input">
               <input
-                type="text"
                 class="input"
+                pattern="[0-9]*"
                 placeholder="捐献数量必须为100的整数"
                 v-model.trim="userAmount"
                 :disabled="query.amount != 0"
+                @input="handleChangeNum($event)"
               />
             </div>
           </div>
@@ -100,7 +101,7 @@ export default {
       dialogVisible: false,
       amountIndex: -1,
       newAmount: 0, // 最新积分
-      userAmount: '', // 用户输入的积分
+      userAmount: null, // 用户输入的积分
       query: {
         guildId: this.$state.guild.guildId,
         uid: this.$state.info.uid,
@@ -126,6 +127,15 @@ export default {
     jump(routeName = '') {
       this.$router.push({ path: routeName, query: { data: new Date().getTime() }});
     },
+    // dialog关闭事件
+    dialogClose() {
+      this.amountIndex = -1;
+      this.query.amount = null;
+      this.userAmount = null;
+    },
+    handleChangeNum(event) {
+      this.userAmount = this.userAmount.replace(/[^\d\.]/g, '');
+    },
     // 上报积分
     integralUp() {
       let { amount, ...args } = this.query; // eslint-disable-line no-unused-vars
@@ -148,6 +158,10 @@ export default {
           return;
         }
         this.query.amount = this.userAmount;
+      }
+      if (this.newAmount < this.query.amount) {
+        this.$toast('积分不足');
+        return;
       }
       guildIntegralContribute({ data: this.query }).then(res => {
         if (res.code === 200) {

@@ -31,6 +31,16 @@ export default {
   props: {
     title: String
   },
+  mounted() {
+    let devicePixelRatio = window.devicePixelRatio;
+    // let pagehd = document.querySelector('.page-hd');
+    console.log(devicePixelRatio);
+    if (this.$utils.os.android) {
+      let barHeight = window.androidJsObj.getStatusBarHeight();
+      console.log(barHeight);
+      console.log('barHeight');
+    }
+  },
   methods: {
     back() {
       let { from } = this.$route.query;
@@ -66,7 +76,6 @@ export default {
   align-items: center;
   padding: 0 px2rem(20);
   height: px2rem(100);
-  /* box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.15); */
   background-color: #fff;
   transition: background ease .1s;
   .left {

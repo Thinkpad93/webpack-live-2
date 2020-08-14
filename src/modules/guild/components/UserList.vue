@@ -81,6 +81,7 @@ export default {
         height: px2rem(120);
         border-radius: 50%;
         vertical-align: top;
+        object-fit: cover;
       }
     }
 

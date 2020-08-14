@@ -1,12 +1,22 @@
 <template>
   <div class="page">
-    <header-bar></header-bar>
+    <header-bar title="入会申请"></header-bar>
     <div class="page-bd">
       <van-list
         :offset="10"
         :immediate-check="false"
-        v-model="list[0].loading"
-        :finished="list[0].finished">
+        v-model="loading"
+        :finished="finished"
+        @load="onLoad">
+        <user-list :list-data="list" :show-nameplate="false">
+          <template #default="{ row }">
+            <div class="ids">ID: {{ row.userGeneralVo.erbanNo }}</div>
+          </template>
+          <template #handle="{ row, $index }">
+            <b class="b agree" @click="dealApplyIn(row, 2, $index)">同意</b>
+            <b class="b refused" @click="dealApplyIn(row, 3, $index)">拒绝</b>
+          </template>
+        </user-list>
       </van-list>
     </div>
   </div>
@@ -15,33 +25,81 @@
 import Vue from 'vue';
 import { List } from 'vant';
 import HeaderBar from './components/HeaderBar';
-import Empty from './components/Empty';
+import UserList from './components/UserList';
+import { guildApplyList, guildApplyDealApplyIn } from '@/api/guild';
 Vue.use(List);
 
 export default {
   name: 'GuildJoinList',
   components: {
     HeaderBar,
-    Empty
+    UserList
   },
   data() {
     return {
-      list: [
-        {
-          items: [],
-          pageNum: 1,
-          pageSize: 10,
-          loading: false,
-          finished: false
-        }
-      ]
+      loading: false,
+      finished: false,
+      query: {
+        guildId: this.$state.guild.guildId,
+        type: 1, // 申请类型 1入会 2退会
+        pageNum: 1,
+        pageSize: 10
+      },
+      list: [] // 数据列表
     };
   },
+  mounted() {
+    this.getData();
+  },
   methods: {
-    handleAgree(obj = {}) {
-
+    // 会长入会审批 2-同意3-拒绝
+    dealApplyIn(obj = {}, type, index) {
+      let params = {
+        uid: this.$state.info.uid,
+        ticket: this.$state.info.ticket,
+        applyUid: obj.uid,
+        recordId: obj.recordId,
+        type
+      };
+      guildApplyDealApplyIn({ data: params, isReturnResponse: true, loading: { show: true }}).then(res => {
+        let result = res.data;
+        if (result.code === 200) {
+          if (type == 2) {
+            this.$toast(`已同意${obj.userGeneralVo.nick}入会`);
+          } else {
+            this.$toast(`已拒绝${obj.userGeneralVo.nick}入会`)
+          }
+          // this.list.splice(index, 1);
+        } else if (result.code === 60010) {
+          this.$toast(result.message);
+        }
+        this.loading = true;
+        this.finished = false;
+        this.query.pageNum = 1;
+        this.list = [];
+        this.getData();
+      });
+    },
+    onLoad() {
+      this.query.pageNum++;
+      this.getData();
+    },
+    // 获取数据
+    getData() {
+      guildApplyList({ data: this.query }).then(res => {
+        if (res.code === 200) {
+          this.loading = false;
+          if (res.data.length) {
+            this.list = this.list.concat(res.data);
+          } else {
+            this.finished = true;
+          }
+        }
+      });
     }
   }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import './css/index.scss';
+</style>

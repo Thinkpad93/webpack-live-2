@@ -34,7 +34,6 @@ export default {
           for (let i in res.data) {
             this.$state.guild[i] = res.data[i];
           }
-          console.log(this.$state);
           let { redirect, ...args } = this.$route.query; // eslint-disable-line no-unused-vars
           this.$router.replace({
             path: `/${this.redirect}`,
